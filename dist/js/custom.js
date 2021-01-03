@@ -1,6 +1,6 @@
 //datatables
 $(function () {
-    $('#school_admin').DataTable({
+    $('#school_facilitator').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -22,6 +22,31 @@ $(function () {
         "responsive": true,
     });
 });
+
+$(function () {
+    $('#settings_audit').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+$(function () {
+    $('#exam_category').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        'order': [1, "asc"],
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
 
 /** add active class and stay opened when selected */
 var url = window.location;

@@ -10,11 +10,11 @@ include('include/sidebar.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> Students</h1>
+                    <h1 class="m-0 text-dark"> Admin Accounts</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">School</li>
+                        <li class="breadcrumb-item active">Settings</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -26,15 +26,11 @@ include('include/sidebar.php');
         <!-- /.card-header -->
         <section class="content">
             <div class="card-body">
-                <table id="school_students" class="table table-bordered table-striped">
+                <table id="school_admin" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Student ID</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>Allias</th>
-                            <th>School</th>
+                            <th>Admin ID</th>
+                            <th>Name</th>
                             <th>Username</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -44,23 +40,15 @@ include('include/sidebar.php');
                         <tr>
                             <td>123456</td>
                             <td>Aron</td>
-                            <td>Ramirez</td>
-                            <td>Roque</td>
-                            <td>N/A</td>
-                            <td>DYCI</td>
-                            <td>adminadmin</td>
+                            <td>admin</td>
                             <td>Active</td>
-                            <td><a href="#">Update</a> | <a href="#">Deactivate</a></td>
+                            <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Student ID</th>
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>Allias</th>
-                            <th>School</th>
+                            <th>Admin ID</th>
+                            <th>Name</th>
                             <th>Username</th>
                             <th>Status</th>
                             <th>Action</th>

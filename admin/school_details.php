@@ -10,11 +10,11 @@ include('include/sidebar.php');
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">School Details</h1>
+                    <h1 class="m-0 text-dark"> Details</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">School Details</li>
+                        <li class="breadcrumb-item active">School</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -40,7 +40,7 @@ include('include/sidebar.php');
 
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
-                                    <b>School Admin</b> <a class="float-right">1</a>
+                                    <b>Facilitator</b> <a class="float-right">1</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Students</b> <a class="float-right">1000</a>

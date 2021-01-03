@@ -50,9 +50,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="school_admin.php" class="nav-link">
+                            <a href="school_facilitator.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>School Admin</p>
+                                <p>School Facilitator</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -76,15 +76,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="top-nav.html" class="nav-link">
+                            <a href="exam_category.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Categories</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="top-nav-sidebar.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Questionares</p>
+                                <p>Categories & Questionares</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -139,7 +133,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="top-nav.html" class="nav-link">
+                            <a href="settings_account.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Account</p>
                             </a>
@@ -156,12 +150,18 @@
                                 <p>Maintenance</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="settings_audit.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Audit Trail</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <!-- Settings -->
 
                 <li class="nav-item">
-                    <a href="widgets.html" class="nav-link">
+                    <a href="logout.php" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Logout
