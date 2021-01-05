@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2021 at 02:50 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: Jan 05, 2021 at 02:09 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,13 +30,20 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin` (
   `admin_id` int(11) NOT NULL,
   `admin_uid` int(11) NOT NULL,
-  `admin_user` varchar(100) NOT NULL,
+  `admin_email` varchar(100) NOT NULL,
   `admin_pass` varchar(16) NOT NULL,
   `admin_name` varchar(100) NOT NULL,
   `admin_role` varchar(20) NOT NULL,
   `admin_status` varchar(10) NOT NULL,
   `date_created` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_uid`, `admin_email`, `admin_pass`, `admin_name`, `admin_role`, `admin_status`, `date_created`) VALUES
+(1, 10000, 'admin@gmail.com', 'admin', 'ADMIN', 'Super Admin', 'Active', '2021-01-03 05:47:04');
 
 -- --------------------------------------------------------
 
@@ -47,8 +53,37 @@ CREATE TABLE `admin` (
 
 CREATE TABLE `category` (
   `cat_id` int(11) NOT NULL,
-  `cat_name` int(11) NOT NULL,
-  `cat_info` int(11) NOT NULL
+  `cat_name` varchar(100) NOT NULL,
+  `cat_info` text NOT NULL,
+  `cat_items` int(11) NOT NULL,
+  `cat_timer` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`cat_id`, `cat_name`, `cat_info`, `cat_items`, `cat_timer`) VALUES
+(1, 'Reading Comprehension', '', 50, '00:00:00'),
+(2, 'Manipulative Skills', '', 50, '00:00:00'),
+(3, 'Mathematical Ability', '', 50, '00:00:00'),
+(4, 'Clerical Ability', '', 50, '00:00:00'),
+(5, 'Scientific Ability', '', 50, '00:00:00'),
+(6, 'Verbal Ability', '', 50, '00:00:00'),
+(7, 'Non-Verbal Ability', '', 50, '00:00:00'),
+(8, 'Entrepreneurial Ability', '', 50, '00:00:00'),
+(9, 'Logical Reasoning', '', 50, '00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loginlogs`
+--
+
+CREATE TABLE `loginlogs` (
+  `id` int(11) NOT NULL,
+  `IpAddress` varbinary(16) NOT NULL,
+  `TryTime` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -109,6 +144,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`cat_id`);
+
+--
 -- Indexes for table `school-admin`
 --
 ALTER TABLE `school-admin`
@@ -128,7 +169,13 @@ ALTER TABLE `student_info`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `school-admin`
