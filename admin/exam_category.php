@@ -40,7 +40,7 @@ include('include/sidebar.php');
                             <td style="display:none">1</td>
                             <td>Reading Comprehension</td>
                             <td>50</td>
-                            <td><a href="#" class="text-success">Update Category</a> | <a href="#">Update Questionare</a></td>
+                            <td><a href="#" class="text-success">Update Category</a></td>
                         </tr>
                     </tbody>
 

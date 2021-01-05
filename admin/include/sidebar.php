@@ -78,7 +78,13 @@
                         <li class="nav-item">
                             <a href="exam_category.php" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Categories & Questionares</p>
+                                <p>Categories</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="exam_question.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Questionares</p>
                             </a>
                         </li>
                         <li class="nav-item">

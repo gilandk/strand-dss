@@ -25,7 +25,7 @@ include('include/sidebar.php');
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-5">
 
                     <!-- Profile Image -->
                     <div class="card card-primary card-outline">
@@ -84,7 +84,7 @@ include('include/sidebar.php');
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-5">
+                <div class="col-md-7">
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">

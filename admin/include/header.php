@@ -23,19 +23,26 @@
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+
     <!-- summernote -->
     <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
     <!-- fullCalendar -->
     <link rel="stylesheet" href="../plugins/fullcalendar/main.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar-daygrid/main.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar-timegrid/main.min.css">
     <link rel="stylesheet" href="../plugins/fullcalendar-bootstrap/main.min.css">
+
     <!-- datatables -->
     <link rel="stylesheet" href="../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
 
 </head>
 
@@ -137,11 +144,6 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
                 </li>
             </ul>
         </nav>
