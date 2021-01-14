@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
         <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">STRAND DSS</span>
+        <span class="brand-text font-weight-">STRAND DSS</span>
     </a>
 
     <!-- Sidebar -->
@@ -14,7 +14,7 @@
                 <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">ADMIN</a>
             </div>
         </div>
 
@@ -25,8 +25,8 @@
                with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="dashboard.php" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="dashboard" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
                         </p>
@@ -35,7 +35,7 @@
                 <!-- school -->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                        <i class="nav-icon fas fa-school"></i>
                         <p>
                             School
                             <i class="fas fa-angle-left right"></i>
@@ -44,19 +44,19 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="school_details.php" class="nav-link">
+                            <a href="school_details" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>School Details</p>
+                                <p>Details</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="school_facilitator.php" class="nav-link">
+                            <a href="school_facilitator" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>School Facilitator</p>
+                                <p>Facilitator</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="school_students.php" class="nav-link">
+                            <a href="school_students" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Students</p>
                             </a>
@@ -67,7 +67,7 @@
                 <!-- Exam -->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Examination
                             <i class="fas fa-angle-left right"></i>
@@ -76,31 +76,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="exam_category.php" class="nav-link">
+                            <a href="exam_category" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="exam_question.php" class="nav-link">
+                            <a href="exam_question" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Questionares</p>
+                                <p>Questionnaire</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="boxed.html" class="nav-link">
+                            <a href="boxed" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Criteria</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="boxed.html" class="nav-link">
+                            <a href="boxed" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Schedule</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="boxed.html" class="nav-link">
+                            <a href="boxed" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Result</p>
                             </a>
@@ -110,15 +110,7 @@
                 <!-- exam -->
 
                 <li class="nav-item">
-                    <a href="widgets.html" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Announcements
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="calendar.php" class="nav-link">
+                    <a href="calendar" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>
                         <p>
                             Calendar
@@ -130,7 +122,7 @@
                 <!-- Settings -->
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                        <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Settings
                             <i class="fas fa-angle-left right"></i>
@@ -139,25 +131,25 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="settings_account.php" class="nav-link">
+                            <a href="settings_account" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Account</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="top-nav-sidebar.html" class="nav-link">
+                            <a href="top-nav-sidebar" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Change Password</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="boxed.html" class="nav-link">
+                            <a href="boxed" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Maintenance</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="settings_audit.php" class="nav-link">
+                            <a href="settings_audit" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Audit Trail</p>
                             </a>
@@ -167,8 +159,8 @@
                 <!-- Settings -->
 
                 <li class="nav-item">
-                    <a href="logout.php" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="logout" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>
                             Logout
                         </p>

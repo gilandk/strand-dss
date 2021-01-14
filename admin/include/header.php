@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if (empty($_SESSION['IS_LOGIN'])) {
+    header("Location: index.php");
+    exit();
+}
+
+require_once('../db.php');
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -40,9 +52,9 @@
     <link rel="stylesheet" href="../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="../../plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
     <!-- Toastr -->
-    <link rel="stylesheet" href="../../plugins/toastr/toastr.min.css">
+    <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
 
 </head>
 

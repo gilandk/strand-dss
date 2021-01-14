@@ -22,6 +22,15 @@ include('include/sidebar.php');
     </div>
     <!-- /.content-header -->
 
+    <section class="content">
+        <!-- /.content-header -->
+        <div class="card card-primary card-outline">
+
+
+            <!-- /.paste here -->
+
+        </div>
+    </section>
     <!-- /.content -->
 </div>
 

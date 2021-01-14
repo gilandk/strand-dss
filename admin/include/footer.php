@@ -45,6 +45,11 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
+<script src="../plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="../plugins/toastr/toastr.min.js"></script>
+
+
 
 <!-- fullCalendar 2.2.5 -->
 <script src="../plugins/moment/moment.min.js"></script>
@@ -63,6 +68,7 @@
 
 <!-- custom -->
 <script src="../dist/js/custom.js"></script>
+
 
 </body>
 

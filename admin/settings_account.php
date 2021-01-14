@@ -22,9 +22,8 @@ include('include/sidebar.php');
     </div>
     <!-- /.content-header -->
 
-    <div class="card">
-        <!-- /.card-header -->
-        <section class="content">
+    <section class="content">
+        <div class="card card-primary card-outline">
             <div class="card-body">
                 <table id="school_admin" class="table table-bordered table-striped">
                     <thead>
@@ -57,10 +56,10 @@ include('include/sidebar.php');
                 </table>
             </div>
             <!-- /.card-body -->
-    </div>
-    <!-- /.card -->
-    <section>
-        <!-- /.content -->
+        </div>
+        <!-- /.card -->
+        <section>
+            <!-- /.content -->
 </div>
 
 <?php

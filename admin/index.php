@@ -2,7 +2,7 @@
 session_start();
 
 require_once('../db.php');
-
+$show = 'hidden';
 $msg = '';
 if (isset($_POST['submit'])) {
     $time = time() - 30;
@@ -24,14 +24,17 @@ if (isset($_POST['submit'])) {
             $_SESSION['IS_LOGIN'] = 'yes';
             mysqli_query($conn, "delete from loginlogs where IpAddress='$ip_address'");
 
-            echo "<script>window.location.href='dashboard.php';</script>";
+            header('location:dashboard');
         } else {
+
             $total_count++;
             $rem_attm = 3 - $total_count;
             if ($rem_attm == 0) {
+                $show = '';
                 $msg = "To many failed login attempts. Please login after 30 sec";
             } else {
-                $msg = "Please enter valid login details.<br/>$rem_attm attempts remaining";
+                $show = '';
+                $msg = "Please enter valid login details.<br/>$rem_attm attempts remaining<br/>";
             }
             $try_time = time();
             mysqli_query($conn, "insert into loginlogs(IpAddress,TryTime) values('$ip_address','$try_time')");
@@ -86,7 +89,9 @@ function getIpAddr()
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <div id="result"><?php echo $msg ?><br /></div>
+                <div <?php echo $show ?> class="callout callout-danger text-center" id="result">
+                    <?php echo $msg ?>
+                </div>
 
                 <form id="login-form" method="post">
                     <div class="input-group mb-3">
