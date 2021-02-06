@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-if (empty($_SESSION['IS_LOGIN'])) {
+if (empty($_SESSION['role']) || empty($_SESSION['logged_in'])) {
     header("Location: index.php");
     exit();
 }
-
 require_once('../db.php');
 
 ?>
@@ -23,6 +22,10 @@ require_once('../db.php');
     <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Ion Slider -->
+    <link rel="stylesheet" href="../plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+    <!-- bootstrap slider -->
+    <link rel="stylesheet" href="../plugins/bootstrap-slider/css/bootstrap-slider.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
     <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
@@ -36,8 +39,6 @@ require_once('../db.php');
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
 
-    <!-- summernote -->
-    <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
@@ -55,6 +56,9 @@ require_once('../db.php');
     <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+
+    <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
+
 
 </head>
 

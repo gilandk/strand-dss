@@ -2,7 +2,7 @@
 
 session_start();
 
-require_once('../../db.php');
+require_once('../db.php');
 
 if (isset($_POST)) {
 
@@ -16,15 +16,14 @@ if (isset($_POST)) {
 
 
     $sql = "INSERT INTO questions (q_cat, question, q_A, q_B, q_C, q_D, q_Ans) VALUES ('$category', '$question', '$choice1', '$choice2', '$choice3', '$choice4', '$ans')";
-
     if ($conn->query($sql) == TRUE) {
-        echo "<script type='text/javascript'>toastr.success('Have Fun')</script>";
-        header("Location: ../question_add.php");
+
+        header("Location: question_add.php");
         exit();
     } else {
-        echo "<script type='text/javascript'>toastr.danger('Have Fun')</script>";
+        echo $conn->error;
     }
 } else {
-    header("Location: ../question_add.php");
+    header("Location: question_add.php");
     exit();
 }

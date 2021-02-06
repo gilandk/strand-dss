@@ -31,11 +31,12 @@ include('include/sidebar.php');
         <div class="card card-primary card-outline">
           <div class="card-body pad">
 
-            <form action="action/add_question.php" method="POST" enctype="multipart/form-data">
+            <form action="add_question.php" method="POST" enctype="multipart/form-data">
 
               <!-- editor -->
               <div class=" row ml-5 mb-3">
                 <div class="col-md-6">
+
                   <div class="float-left">
                     <!-- select -->
                     <div class="form-group">
@@ -61,7 +62,6 @@ include('include/sidebar.php');
                       </datalist>
                     </div>
                   </div>
-
                 </div>
               </div>
               <!-- editor -->
@@ -71,7 +71,7 @@ include('include/sidebar.php');
               </div>
 
               <div class="row ml-5">
-                <div class="col-md-7">
+                <div class="col-md-8">
                   <!-- editor -->
                   <div class="mb-3">
                     <label>Choice: A</label>
@@ -104,54 +104,50 @@ include('include/sidebar.php');
                   <!-- editor -->
                 </div>
                 <!--choices-->
-
-                <!--answer checkbox-->
-                <div class="col-md-5">
-                  <div class="ml-5 float-left">
-                    <!-- radio -->
-                    <div class=" form-group">
-                      <div class="form-check" style="margin-top:70px;">
-                        <input class="form-check-input" type="radio" value="A" name="ans" id="ans">
-                        <label class="form-check-label">Correct Answer</label>
-                      </div>
-                      <div class="form-check" style="margin-top:140px;">
-                        <input class="form-check-input" type="radio" value="B" name="ans" id="ans">
-                        <label class="form-check-label">Correct Answer</label>
-                      </div>
-                      <div class="form-check" style="margin-top:140px;">
-                        <input class="form-check-input" type="radio" value="C" name="ans" id="ans">
-                        <label class="form-check-label">Correct Answer</label>
-                      </div>
-                      <div class="form-check" style="margin-top:140px;">
-                        <input class="form-check-input" type="radio" value="D" name="ans" id="ans">
-                        <label class="form-check-label">Correct Answer</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
+              <!--row-->
+
               <!--answer checkbox-->
               <div class="float-right mt-5 mr-5">
-                <button type="submit" class="btn btn-success" id="save" onclick="saveQuestion()">Save</button>
+                <button type="submit" class="btn btn-success" id="save">Save</button>
               </div>
             </form>
           </div>
         </div>
         <!--card body-->
       </div>
-    </div>
-    <!-- /.col-->
+      <!-- ./row -->
+  </section>
+  <!-- /.content -->
 </div>
-<!-- ./row -->
+<!-- /.col-->
 
-</section>
-<!-- /.content -->
+<script>
+  CKEDITOR.replace('question', {
+    height: 300,
+    filebrowserUploadUrl: "upload.php"
+  });
+  CKEDITOR.replace('choice1', {
+    height: 200,
+    filebrowserUploadUrl: "upload.php"
+  });
 
+  CKEDITOR.replace('choice2', {
+    height: 200,
+    filebrowserUploadUrl: "upload.php"
+  });
 
+  CKEDITOR.replace('choice3', {
+    height: 200,
+    filebrowserUploadUrl: "upload.php"
+  });
 
+  CKEDITOR.replace('choice4', {
+    height: 200,
+    filebrowserUploadUrl: "upload.php"
+  });
+</script>
 
-
-</div>
 
 <?php
 include('include/footer.php');

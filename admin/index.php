@@ -2,6 +2,7 @@
 session_start();
 
 require_once('../db.php');
+
 $show = 'hidden';
 $msg = '';
 if (isset($_POST['submit'])) {
@@ -19,12 +20,22 @@ if (isset($_POST['submit'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
         // Coding for login
-        $res = mysqli_query($conn, "SELECT * FROM admin WHERE admin_email='$email' AND  admin_pass='$password'");
-        if (mysqli_num_rows($res)) {
-            $_SESSION['IS_LOGIN'] = 'yes';
-            mysqli_query($conn, "delete from loginlogs where IpAddress='$ip_address'");
+        $sql = "SELECT * FROM admin WHERE admin_email='$email' AND admin_pass='$password'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
 
-            header('location:dashboard');
+                $_SESSION['logged_in'] = 'yes';
+                $_SESSION['role'] = $row['admin_role'];
+                $_SESSION['name'] = $row['admin_name'];
+                $_SESSION['status'] = $row['admin_status'];
+                $_SESSION['id'] = $row['admin_id'];
+                $_SESSION['uid'] = $row['admin_uid'];
+
+                mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");
+
+                header('location:dashboard.php');
+            }
         } else {
 
             $total_count++;

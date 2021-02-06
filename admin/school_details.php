@@ -25,7 +25,7 @@ include('include/sidebar.php');
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-12">
 
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
