@@ -245,3 +245,47 @@ $('#exam_sched').daterangepicker({
         format: 'MM/DD/YYYY hh:mm A'
     }
 });
+
+
+$(document).ready(function() {
+
+    // Add Class
+    $('.edit').click(function() {
+        $(this).addClass('editMode');
+    });
+
+    // Save data
+    $(".edit").focusout(function() {
+        $(this).removeClass("editMode");
+        var id = this.id;
+        var split_id = id.split("_");
+        var field_name = split_id[0];
+        var edit_id = split_id[1];
+        var value = $(this).text();
+
+        $.ajax({
+            url: 'update_timer.php',
+            type: 'post',
+            data: { field: field_name, value: value, id: edit_id },
+            success: function(response) {
+                console.log('Save successfully');
+            }
+        });
+
+    });
+
+});
+
+$(document).ready(function() {
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if (activeTab) {
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
+
+$("input[data-bootstrap-switch]").each(function() {
+    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+});

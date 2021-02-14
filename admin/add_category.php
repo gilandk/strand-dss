@@ -6,23 +6,19 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
-    $msg = '';
     $category = mysqli_real_escape_string($conn, $_POST['category']);
     $instruction = mysqli_real_escape_string($conn, $_POST['instruction']);
     $items = mysqli_real_escape_string($conn, $_POST['items']);
-    $hour = mysqli_real_escape_string($conn, $_POST['hours']);
-    $min = mysqli_real_escape_string($conn, $_POST['min']);
-
 
     $title = "SELECT * FROM category WHERE cat_name = '$category'";
     $result = $conn->query($title);
 
     if ($result->num_rows == 0) {
 
-        $sql = "INSERT INTO category (cat_name, cat_instruct, cat_items, time_hour, time_minute) VALUES ('$category', '$instruction', '$items', '$hour', '$min')";
+        $sql = "INSERT INTO category (cat_name, cat_instruct, cat_items) VALUES ('$category', '$instruction', '$items')";
         if ($conn->query($sql) == TRUE) {
 
-            $_SESSION['addSuccess'] = true;
+            $_SESSION['addCategorySuccess'] = true;
             header("Location: exam_manage.php");
             exit();
         } else {
@@ -31,7 +27,7 @@ if (isset($_POST)) {
         }
     } else {
         //if email found in database then show email already exists error.
-        $_SESSION['addFailed'] = true;
+        $_SESSION['addCategoryFailed'] = true;
         header("Location: exam_manage.php");
         exit();
     }

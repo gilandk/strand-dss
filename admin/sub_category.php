@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
 
                     <?php
                     //If User already registered with this email then show error message.
-                    if (isset($_SESSION['addSuccess'])) {
+                    if (isset($_SESSION['addSCSuccess'])) {
                     ?>
                         <div class="alert alert-success alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -63,13 +63,13 @@ if ($result->num_rows > 0) {
                             Category Successfully Added!
                         </div>
                     <?php
-                        unset($_SESSION['addSuccess']);
+                        unset($_SESSION['addSCSuccess']);
                     }
                     ?>
 
                     <?php
                     //If User already registered with this email then show error message.
-                    if (isset($_SESSION['addFailed'])) {
+                    if (isset($_SESSION['addSCFailed'])) {
                     ?>
                         <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
                             Category title already exist!
                         </div>
                     <?php
-                        unset($_SESSION['addFailed']);
+                        unset($_SESSION['addSCFailed']);
                     }
                     ?>
 
@@ -104,8 +104,8 @@ if ($result->num_rows > 0) {
                                     <tr>
                                         <th>#</th>
                                         <th>Question</th>
-                                        <th>Items</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Items</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
 
                                 </thead>
@@ -128,10 +128,12 @@ if ($result->num_rows > 0) {
                                             <tr>
                                                 <td><?php echo $rows['sc_index']; ?></td>
                                                 <td><?php echo $rows['sub_title']; ?></td>
-                                                <td><?php echo $sc_items; ?></td>
-                                                <td>
-                                                    <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-block btn-outline-success btn-sm">Questions</a>
-                                                    <a href="category_update.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Update</a>
+                                                <td class="text-center"><?php echo $sc_items; ?></td>
+                                                <td class="text-center">
+
+                                                    <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-success btn-sm">Questions</a>
+                                                    <a href="subcat_edit.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-warning btn-sm">Update</a>
+
                                                 </td>
                                             </tr>
                                     <?php
@@ -158,7 +160,9 @@ if ($result->num_rows > 0) {
                     <div class="modal-body">
                         <form action="add_subcategory.php" method="POST" enctype="multipart/form-data">
 
-                            <div class="form-group">
+                            <input type="hidden" name="main_id" value="<?php echo $c_id; ?>" />
+
+                            <div class=" form-group">
                                 <label>Sub-Category</label>
                                 <input type="text" class="form-control" placeholder="Sub-Category title" name="subcategory" />
                             </div>

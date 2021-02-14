@@ -29,7 +29,7 @@ include('include/sidebar.php');
         <div class="col-md-12">
           <?php
           //If User already registered with this email then show error message.
-          if (isset($_SESSION['addSuccess'])) {
+          if (isset($_SESSION['addCategorySuccess'])) {
           ?>
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -37,13 +37,13 @@ include('include/sidebar.php');
               Category Successfully Added!
             </div>
           <?php
-            unset($_SESSION['addSuccess']);
+            unset($_SESSION['addCategorySuccess']);
           }
           ?>
 
           <?php
           //If User already registered with this email then show error message.
-          if (isset($_SESSION['addFailed'])) {
+          if (isset($_SESSION['addCategoryFailed'])) {
           ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -51,7 +51,7 @@ include('include/sidebar.php');
               Category title already exist!
             </div>
           <?php
-            unset($_SESSION['addFailed']);
+            unset($_SESSION['addCategoryFailed']);
           }
           ?>
           <div class="card card-primary card-outline">
@@ -71,7 +71,6 @@ include('include/sidebar.php');
                     <th>Category Name</th>
 
                     <th class="text-center">No. of Questions</th>
-                    <th class="text-center">Time Limit</th>
                     <th class="text-center">Action</th>
                   </tr>
                 </thead>
@@ -89,30 +88,10 @@ include('include/sidebar.php');
                         <td class="text-center"><?php echo $row['cat_seq']; ?></td>
                         <td><?php echo $row['cat_name']; ?></td>
                         <td class="text-center"><?php echo $row['cat_items']; ?></td>
-                        <td class="text-center">
-                          <?php
-                          if (($row['time_hour']) == '0') {
-                            $hour = '';
-                          } else if (($row['time_hour']) == '1') {
-                            $hour = '1 hour';
-                          } else {
-                            $hour = $row['time_hour'] . ' hours';
-                          }
-
-                          if (($row['time_minute']) == '0') {
-                            $min = '';
-                          } else if (($row['time_minute']) == '1') {
-                            $min = '1 minute';
-                          } else {
-                            $min = $row['time_minute'] . ' minutes';
-                          }
-                          echo $hour . ' ' . $min; ?>
-                        </td>
-
 
                         <td class="text-center">
-                          <a href="sub_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-sm">Sub-category</a>
-                          <a href="category_update.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Update</a>
+                          <a href="sub_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Manage</a>
+                          <a href="exam_category_edit.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
                         </td>
                       </tr>
                   <?php
@@ -158,18 +137,6 @@ include('include/sidebar.php');
               <div class="form-group">
                 <label>Items</label>
                 <input type="number" class="form-control" placeholder="How many items?" name="items" max="150" />
-              </div>
-
-              <div class="form-group">
-                <label>Timer:</label>
-                <div class="row">
-                  <div class="col-3">
-                    <input type="number" class="form-control" placeholder="Hours" default-value="0" name="hours" min="0" max="24">
-                  </div>
-                  <div class="col-3">
-                    <input type="number" class="form-control" placeholder="Minutes" name="min" min="0" max="60">
-                  </div>
-                </div>
               </div>
           </div>
           <div class="modal-footer justify-content-between">

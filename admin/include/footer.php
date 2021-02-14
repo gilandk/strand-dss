@@ -45,6 +45,8 @@
 <script src="../plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 <!-- Bootstrap slider -->
 <script src="../plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
 <!-- fullCalendar 2.2.5 -->
 <script src="../plugins/moment/moment.min.js"></script>

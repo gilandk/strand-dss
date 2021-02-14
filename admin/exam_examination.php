@@ -27,9 +27,8 @@ include('include/sidebar.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-
                     <?php
-                    //If User already registered with this email then show error message.
+
                     if (isset($_SESSION['addExamSuccess'])) {
                     ?>
                         <div class="alert alert-success alert-dismissible">
@@ -43,7 +42,7 @@ include('include/sidebar.php');
                     ?>
 
                     <?php
-                    //If User already registered with this email then show error message.
+
                     if (isset($_SESSION['addExamFailed'])) {
                     ?>
                         <div class="alert alert-danger alert-dismissible">
@@ -70,9 +69,9 @@ include('include/sidebar.php');
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th>Type</th>
-                                        <th class="text-center">Time Limit</th>
                                         <th class="text-center">Exam Start</th>
                                         <th class="text-center">Exam End</th>
+                                        <th class="text-center">Proctor</th>
                                         <th class="text-center">Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -91,29 +90,11 @@ include('include/sidebar.php');
                                                 <td class="text-center"><?php echo $i;
                                                                         $i++; ?></td>
                                                 <td><?php echo $row['exam_type']; ?></td>
-                                                <td class="text-center">
-                                                    <?php
-                                                    if (($row['exam_hour']) == '0') {
-                                                        $hour = '';
-                                                    } else if (($row['exam_hour']) == '1') {
-                                                        $hour = '1 hour';
-                                                    } else {
-                                                        $hour = $row['exam_hour'] . ' hours';
-                                                    }
 
-                                                    if (($row['exam_min']) == '0') {
-                                                        $min = '';
-                                                    } else if (($row['exam_min']) == '1') {
-                                                        $min = '1 minute';
-                                                    } else {
-                                                        $min = $row['exam_min'] . ' minutes';
-                                                    }
-                                                    echo $hour . ' ' . $min; ?>
-                                                </td>
                                                 <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($row['exam_date_s'])); ?></td>
                                                 <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($row['exam_date_e'])); ?></td>
+                                                <td class="text-center"><?php echo $row['exam_handler']; ?></td>
                                                 <td class="text-center"><?php echo $row['exam_status']; ?></td>
-
                                                 <td class="text-center">
                                                     <a href="manage_exam.php?id=<?php echo $row['exam_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Manage</a>
                                                 </td>
@@ -141,28 +122,32 @@ include('include/sidebar.php');
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <form action="add_exam.php" method="POST" enctype="multipart/form-data">
 
                     <div class="form-group">
-                        <label>Examination Type</label>
+                        <label>Type</label>
                         <input type="text" class="form-control" placeholder="Examination Type" name="exam_type" />
                     </div>
-
-                    <div class="form-group">
-                        <label>Examination Schedule:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="far fa-clock"></i></span>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Schedule:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-clock"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" id="exam_sched" name="exam_sched">
+                                </div>
+                                <!-- /.input group -->
                             </div>
-                            <input type="text" class="form-control float-right" id="exam_sched" name="exam_sched">
+                            <!-- /.form group -->
                         </div>
-                        <!-- /.input group -->
                     </div>
-                    <!-- /.form group -->
 
                     <div class="form-group">
-                        <label>Examination Guide:</label>
+                        <label>Guide:</label>
                         <textarea class="textarea" name="guide" id="guide"></textarea>
                         <script>
                             CKEDITOR.replace('guide', {
@@ -172,28 +157,9 @@ include('include/sidebar.php');
                         </script>
                     </div>
 
-                    <div class="form-group">
-                        <label>Examination Duration:</label>
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Hours</span>
-                                    </div>
-                                    <input type="number" class="form-control" placeholder="Hours" value="0" name="hours" min="0" max="24">
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">Minutes</span>
-                                    </div>
-                                    <input type="number" class="form-control" placeholder="Minutes" value="0" name="min" min="0" max="60">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            </div>
+
+            </div><!-- /.modal-body -->
+
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" name="save" class="btn btn-primary">Save</button>
