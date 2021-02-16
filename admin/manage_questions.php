@@ -38,6 +38,34 @@ while ($row = $result1->fetch_assoc()) {
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
+
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['addQuestionSuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
+              Question Successfully Added!
+            </div>
+          <?php
+            unset($_SESSION['addQuestionSuccess']);
+          }
+          ?>
+
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['addQUestionFailed'])) {
+          ?>
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+              Question Failed to Add!
+            </div>
+          <?php
+            unset($_SESSION['addQuestionFailed']);
+          }
+          ?>
           <div class="card card-primary card-outline">
             <div class="card-header">
               <div class="row mb-2">
@@ -46,7 +74,33 @@ while ($row = $result1->fetch_assoc()) {
                 </button>
               </div>
             </div>
+            <?php
+            //If User already registered with this email then show error message.
+            if (isset($_SESSION['addCategorySuccess'])) {
+            ?>
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-check"></i> Success!</h5>
+                Category Successfully Added!
+              </div>
+            <?php
+              unset($_SESSION['addCategorySuccess']);
+            }
+            ?>
 
+            <?php
+            //If User already registered with this email then show error message.
+            if (isset($_SESSION['addCategoryFailed'])) {
+            ?>
+              <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+                Category title already exist!
+              </div>
+            <?php
+              unset($_SESSION['addCategoryFailed']);
+            }
+            ?>
             <div class="card-body pad table-responsive">
 
 
@@ -81,8 +135,8 @@ while ($row = $result1->fetch_assoc()) {
                         <td><?php echo $rows['question']; ?></td>
                         <td class="text-center"><?php echo $rows['groupIndex']; ?></td>
                         <td class="text-center">
-                          <a href="update_question.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Update</a>
-                          <a href="delete_question.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-block btn-outline-danger btn-sm">Delete</a>
+                          <a href="manage_question_edit.php?id=<?php echo $rows['q_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Update</a>
+                          <a href="delete_question.php?id=<?php echo $rows['q_id']; ?>" class="btn btn-block btn-outline-danger btn-sm">Delete</a>
                         </td>
                       </tr>
                   <?php
@@ -107,8 +161,11 @@ while ($row = $result1->fetch_assoc()) {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body ml-5 mr-5">
-                <form action="add_category.php" method="POST" enctype="multipart/form-data">
+              <div class="modal-body ml-3 mr-3">
+                <form action="add_question.php" method="POST" enctype="multipart/form-data">
+
+                  <input type="hidden" name="q_scat" value="<?php echo $subc_id; ?>">
+                  <input type="hidden" name="q_cat" value="<?php echo $cat_id; ?>">
 
                   <div class="form-group">
                     <label>Question:</label>
@@ -116,7 +173,9 @@ while ($row = $result1->fetch_assoc()) {
                     <script>
                       CKEDITOR.replace('question', {
                         height: 200,
-                        removePlugins: 'sourcearea, about, wsc, scayt, check, maximize, link, unlink, anchor, strike, blockquote',
+                        toolbar: [
+                          ['Bold', 'Italic', 'Underline', '-', 'Image', 'Table', 'HorizontalRule'],
+                        ],
                         filebrowserUploadUrl: "upload.php",
                       });
                     </script>
@@ -126,52 +185,56 @@ while ($row = $result1->fetch_assoc()) {
                     <div class="col-md-8">
 
                       <div class="form-group">
-                        <label>Choice A</label>
+                        <label>Choice 1</label>
                         <textarea class="textarea" name="choice1" id="choice1"></textarea>
                         <script>
                           CKEDITOR.replace('choice1', {
                             height: 100,
-                            width: 600,
-                            removePlugins: 'sourcearea, about, wsc, scayt, check, maximize, link, unlink, anchor, strike, blockquote',
+                            toolbar: [
+                              ['Bold', 'Italic', 'Underline', '-', 'Image', 'Table', 'HorizontalRule'],
+                            ],
                             filebrowserUploadUrl: "upload.php",
                           });
                         </script>
                       </div>
 
                       <div class="form-group">
-                        <label>Choice B</label>
+                        <label>Choice 2</label>
                         <textarea class="textarea" name="choice2" id="choice2"></textarea>
                         <script>
                           CKEDITOR.replace('choice2', {
                             height: 100,
-                            width: 600,
-                            removePlugins: 'sourcearea, about, wsc, scayt, check, maximize, link, unlink, anchor, strike, blockquote',
+                            toolbar: [
+                              ['Bold', 'Italic', 'Underline', '-', 'Image', 'Table', 'HorizontalRule'],
+                            ],
                             filebrowserUploadUrl: "upload.php",
                           });
                         </script>
                       </div>
 
                       <div class="form-group">
-                        <label>Choice C</label>
+                        <label>Choice 3</label>
                         <textarea class="textarea" name="choice3" id="choice3"></textarea>
                         <script>
                           CKEDITOR.replace('choice3', {
                             height: 100,
-                            width: 600,
-                            removePlugins: 'sourcearea, about, wsc, scayt, check, maximize, link, unlink, anchor, strike, blockquote',
+                            toolbar: [
+                              ['Bold', 'Italic', 'Underline', '-', 'Image', 'Table', 'HorizontalRule'],
+                            ],
                             filebrowserUploadUrl: "upload.php",
                           });
                         </script>
                       </div>
 
                       <div class="form-group">
-                        <label>Choice D</label>
+                        <label>Choice 4</label>
                         <textarea class="textarea" name="choice4" id="choice4"></textarea>
                         <script>
                           CKEDITOR.replace('choice4', {
                             height: 100,
-                            width: 600,
-                            removePlugins: 'sourcearea, about, wsc, scayt, check, maximize, link, unlink, anchor, strike, blockquote',
+                            toolbar: [
+                              ['Bold', 'Italic', 'Underline', '-', 'Image', 'Table', 'HorizontalRule'],
+                            ],
                             filebrowserUploadUrl: "upload.php",
                           });
                         </script>
@@ -183,17 +246,17 @@ while ($row = $result1->fetch_assoc()) {
 
                       <div class="form-group">
                         <label>Correct Answer:</label>
-                        <select class="form-control">
-                          <option value="A">Choice A</option>
-                          <option value="B">Choice B</option>
-                          <option value="C">Choice C</option>
-                          <option value="D">Choice D</option>
+                        <select class="form-control" name="ans">
+                          <option value="1">Choice 1</option>
+                          <option value="2">Choice 2</option>
+                          <option value="3">Choice 3</option>
+                          <option value="4">Choice 4</option>
                         </select>
                       </div>
 
                       <div class="form-group">
                         <label>Group Question:</label>
-                        <select class="form-control">
+                        <select class="form-control" name="groupQ">
                           <option value="no">No</option>
                           <option value="yes">Yes</option>
                         </select>
@@ -201,14 +264,15 @@ while ($row = $result1->fetch_assoc()) {
 
                       <div class="form-group">
                         <label>Group Index:</label>
-                        <select class="form-control">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="C">C</option>
-                          <option value="D">D</option>
-                          <option value="E">E</option>
-                          <option value="F">F</option>
-                          <option value="G">G</option>
+                        <select class="form-control" name="groupIndex">
+                          <option>None</option>
+                          <option>A</option>
+                          <option>B</option>
+                          <option>C</option>
+                          <option>D</option>
+                          <option>E</option>
+                          <option>F</option>
+                          <option>G</option>
                         </select>
                       </div>
 

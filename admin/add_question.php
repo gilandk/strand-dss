@@ -6,24 +6,32 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
-    $category = mysqli_real_escape_string($conn, $_POST['category']);
+    $q_cat = mysqli_real_escape_string($conn, $_POST['q_cat']);
+    $q_scat = mysqli_real_escape_string($conn, $_POST['q_scat']);
     $question = mysqli_real_escape_string($conn, $_POST['question']);
-    $choice1 = mysqli_real_escape_string($conn, $_POST['choice1']);
-    $choice2 = mysqli_real_escape_string($conn, $_POST['choice2']);
-    $choice3 = mysqli_real_escape_string($conn, $_POST['choice3']);
+    $choice1 = mysqli_real_escape_string($conn, $_POST['Choice1']);
+    $choiceb = mysqli_real_escape_string($conn, $_POST['choiceb']);
+    $choicec = mysqli_real_escape_string($conn, $_POST['choicec']);
     $choice4 = mysqli_real_escape_string($conn, $_POST['choice4']);
     $ans = mysqli_real_escape_string($conn, $_POST['ans']);
+    $groupQ = mysqli_real_escape_string($conn, $_POST['groupQ']);
+    $groupIndex = mysqli_real_escape_string($conn, $_POST['groupIndex']);
 
+    if ($groupQ == 'no') {
+        $groupIndex = NULL;
+    }
 
-    $sql = "INSERT INTO questions (q_cat, question, q_A, q_B, q_C, q_D, q_Ans) VALUES ('$category', '$question', '$choice1', '$choice2', '$choice3', '$choice4', '$ans')";
+    $sql = "INSERT INTO questions (q_cat, q_scat, question, choice1, choiceb, choicec, choice4, answerQ, groupQ, groupIndex) VALUES('$q_cat', '$q_scat', '$question', '$choice1', '$choiceb', '$choicec', '$choice4', '$ans', '$groupQ', '$groupIndex')";
     if ($conn->query($sql) == TRUE) {
 
-        header("Location: question_add.php");
+        $_SESSION['addQuestionSuccess'] = true;
+        header("Location: manage_questions.php?id=" . $q_scat);
         exit();
     } else {
         echo $conn->error;
     }
 } else {
-    header("Location: question_add.php");
+    $_SESSION['addQuestionFailed'] = true;
+    header("Location: manage_questions.php?id=" . $q_scat);
     exit();
 }
