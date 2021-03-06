@@ -17,7 +17,6 @@ if ($result->num_rows > 0) {
         $cat_items = $row['cat_items'];
     }
 }
-
 ?>
 
 <!-- Content Wrapper. Contains page content -->

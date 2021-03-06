@@ -1,6 +1,20 @@
 <?php
 include('include/header.php');
 include('include/sidebar.php');
+
+$sql = "SELECT * FROM school_info";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+  while ($row = $result->fetch_assoc()) {
+
+    $s_id = $row['school_id'];
+    $school = $row['school_name'];
+    $address = $row['school_address'];
+    $strands = $row['strands'];
+    $email = $row['email'];
+    $contact = $row['contact'];
+  }
+}
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -25,7 +39,7 @@ include('include/sidebar.php');
   <section class="content">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-5">
 
           <!-- Profile Image -->
           <div class="card card-primary card-outline">
@@ -34,7 +48,7 @@ include('include/sidebar.php');
                 <img class="profile-user-img img-fluid img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
               </div>
 
-              <h3 class="profile-username text-center">School Name</h3>
+              <h3 class="profile-username text-center"><?php echo $school; ?></h3>
 
               <p class="text-muted text-center">Junior - Senior High</p>
 
@@ -54,28 +68,28 @@ include('include/sidebar.php');
           <!-- About Me Box -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">About Me</h3>
+              <h3 class="card-title">About</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <strong><i class="fas fa-book mr-1"></i> Strand Offered</strong>
 
               <p class="text-muted">
-                Business, Accountancy, Management (BAM); Humanities, Education, Social Sciences (HESS); and Science, Technology, Engineering, Mathematics (STEM)
+                <?php echo $strands; ?>
               </p>
 
               <hr>
 
               <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-              <p class="text-muted">Bulcan, Philippines</p>
+              <p class="text-muted"><?php echo $address; ?></p>
 
               <hr>
 
               <strong><i class="fas fa-map-marker-alt mr-1"></i> Contact Information</strong>
-              <p class="text-muted"><strong>Email: </strong>school@deped.com</p>
+              <p class="text-muted"><strong>Email: </strong><?php echo $email; ?></p>
 
-              <p class="text-muted"><strong>Contact: </strong>+6391231231</p>
+              <p class="text-muted"><strong>Contact: </strong><?php echo $contact; ?></p>
 
 
             </div>
@@ -85,6 +99,33 @@ include('include/sidebar.php');
         </div>
         <!-- /.col -->
         <div class="col-md-7">
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['updateSchoolSuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
+              School Info Successfully Updated!
+            </div>
+          <?php
+            unset($_SESSION['updateSchoolSuccess']);
+          }
+          ?>
+
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['updateSchoolFailed'])) {
+          ?>
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+              School Info Failed to Update!
+            </div>
+          <?php
+            unset($_SESSION['updateSchoolFailed']);
+          }
+          ?>
           <div class="card">
             <div class="card-header p-2">
               <ul class="nav nav-pills">
@@ -92,39 +133,40 @@ include('include/sidebar.php');
               </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
+
               <div class="tab-content">
 
                 <div class="active tab-pane" id="settings">
-                  <form class="form-horizontal">
+
+                  <form class="form-horizontal" method="POST" action="update_schoolinfo.php" enctype="multipart/form-data">
                     <div class="form-group row">
                       <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputName" placeholder="Name">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <label for="inputName2" class="col-sm-2 col-form-label">Location</label>
-                      <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                        <input type="text" class="form-control" id="inputName" placeholder="Name" value="<?php echo $school; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputExperience" class="col-sm-2 col-form-label">Strand Offered</label>
+                      <label for="inputStrand" class="col-sm-2 col-form-label">Strand Offered</label>
                       <div class="col-sm-10">
-                        <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+                        <textarea class="form-control" id="inputExperience" placeholder="Strand Offered"><?php echo $strands; ?></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="inputLocation" class="col-sm-2 col-form-label">Location</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputName2" placeholder="Location" value="<?php echo $address; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="<?php echo $email; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputEmail" class="col-sm-2 col-form-label">Contact</label>
+                      <label for="inputContact" class="col-sm-2 col-form-label">Contact</label>
                       <div class="col-sm-10">
-                        <input type="number" class="form-control" id="inputEmail" placeholder="Email">
+                        <input type="text" class="form-control" id="inputEmail" placeholder="Contact" value="<?php echo $contact; ?>">
                       </div>
                     </div>
                     <div class="form-group row">

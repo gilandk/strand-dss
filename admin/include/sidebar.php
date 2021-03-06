@@ -118,28 +118,35 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            <?php
+                            if ($_SESSION['role'] == 'Super Admin') { ?>
+
+                                <li class="nav-item">
+                                    <a href="settings_account.php" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Account</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="boxed" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Maintenance</p>
+                                    </a>
+                                </li>
+                            <?php
+                            }
+
+                            ?>
                             <li class="nav-item">
-                                <a href="settings_account.php" class="nav-link">
+                                <a href="settings_audit.php" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Account</p>
+                                    <p>Audit Trail</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="top-nav-sidebar" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Change Password</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="boxed" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Maintenance</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="settings_audit.php" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Audit Trail</p>
                                 </a>
                             </li>
                         </ul>
