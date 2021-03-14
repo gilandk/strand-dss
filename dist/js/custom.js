@@ -289,3 +289,23 @@ $(document).ready(function() {
 $("input[data-bootstrap-switch]").each(function() {
     $(this).bootstrapSwitch('state', $(this).prop('checked'));
 });
+
+//password
+$("#admin").on("submit", function(e) {
+    e.preventDefault();
+    if ($('#password').val() != $('#cpassword').val()) {
+        $('#passwordError').show();
+    } else {
+        $(this).unbind('submit').submit();
+    }
+});
+
+//changepassword
+$("#changePassword").on("submit", function(e) {
+    e.preventDefault();
+    if ($('#password').val() != $('#cpassword').val()) {
+        $('#passwordError').show();
+    } else {
+        $(this).unbind('submit').submit();
+    }
+});

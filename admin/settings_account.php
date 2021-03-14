@@ -30,29 +30,29 @@ $result = $conn->query($sql);
         <div class="container-fluid">
             <?php
             //If User already registered with this email then show error message.
-            if (isset($_SESSION['addCategorySuccess'])) {
+            if (isset($_SESSION['addAdminSuccess'])) {
             ?>
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i> Success!</h5>
-                    Category Successfully Added!
+                    Admin Successfully Added!
                 </div>
             <?php
-                unset($_SESSION['addCategorySuccess']);
+                unset($_SESSION['addAdminSuccess']);
             }
             ?>
 
             <?php
             //If User already registered with this email then show error message.
-            if (isset($_SESSION['addCategoryFailed'])) {
+            if (isset($_SESSION['addAdminFailed'])) {
             ?>
                 <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                    Category title already exist!
+                    Email already exist!
                 </div>
             <?php
-                unset($_SESSION['addCategoryFailed']);
+                unset($_SESSION['addAdminFailed']);
             }
             ?>
             <div class="card card-primary card-outline">
@@ -66,12 +66,11 @@ $result = $conn->query($sql);
                     <table id="school_admin" class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th class="text-center">Role</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,12 +78,13 @@ $result = $conn->query($sql);
                             ?>
 
                                 <tr>
-                                    <td><?php echo $row['admin_uid']; ?></td>
                                     <td><?php echo $row['admin_name']; ?></td>
                                     <td><?php echo $row['admin_email']; ?></td>
-                                    <td><?php echo $row['admin_role']; ?></td>
-                                    <td><?php echo $row['admin_status']; ?></td>
-                                    <td><a href="#">Edit</a> | <a href="#">Delete</a></td>
+                                    <td class="text-center"><?php echo $row['admin_role']; ?></td>
+                                    <td class="text-center"><?php echo $row['admin_status']; ?></td>
+                                    <td class="text-center">
+                                        <a href="settings_account_edit.php?id=<?php echo $row['admin_id']; ?>" class="btn btn-outline-warning">Update</a>
+                                    </td>
                                 </tr>
                             <?php
                             }
@@ -92,12 +92,11 @@ $result = $conn->query($sql);
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th class="text-center">Role</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -117,7 +116,7 @@ $result = $conn->query($sql);
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="add_admin.php" method="POST" enctype="multipart/form-data">
+                        <form action="add_admin.php" id="admin" method="POST" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label>Name</label>
@@ -129,19 +128,33 @@ $result = $conn->query($sql);
                                 <input type="email" class="form-control" placeholder="Email Address" name="email" />
                             </div>
 
+                            <label>Password</label>
+                            <div class="form-group">
+                                <input class="form-control" type="password" id="password" name="password" placeholder="*********" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm Password</label>
+                                <input class="form-control" type="password" id="cpassword" name="cpassword" placeholder="*********" required>
+                            </div>
+
+                            <div id="passwordError" class="btn btn-flat btn-danger hide-me">
+                                Password Mismatch!!
+                            </div>
+
+
                             <div class="form-group">
                                 <label>Role:</label>
-                                <select class="form-control" name="ans">
-                                    <option value="1">Super Admin</option>
-                                    <option value="2">Admin</option>
+                                <select class="form-control" name="role">
+                                    <option>Super Admin</option>
+                                    <option>Admin</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Correct Answer:</label>
-                                <select class="form-control" name="ans">
-                                    <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
+                                <label>Status:</label>
+                                <select class="form-control" name="status">
+                                    <option>Active</option>
+                                    <option>Inactive</option>
                                 </select>
                             </div>
 
@@ -159,8 +172,6 @@ $result = $conn->query($sql);
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
-
-
 
         <section>
             <!-- /.content -->
