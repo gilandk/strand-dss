@@ -151,6 +151,7 @@ if ($result->num_rows > 0) {
                             <thead>
                               <tr>
                                 <th hidden>ID</th>
+                                <th class="text-center"></th>
                                 <th class="text-center">Order</th>
                                 <th class="text-center">Category</th>
                                 <th class=" text-center">Hours</th>
@@ -166,6 +167,7 @@ if ($result->num_rows > 0) {
                                 while ($row1 = $result1->fetch_assoc()) {
                               ?>
                                   <tr>
+                                    <td class="text-center"><a class="confirmation" href="unset_category.php?id=<?php echo $row1['ec_id']; ?>&eid=<?php echo $exam_id; ?>"><i class=" fas fa-minus text-danger"></i></a></td>
                                     <td class="text-center"><?php echo $row1['cat_seq']; ?></td>
                                     <td class="text-center"><?php echo $row1['cat_name']; ?></td>
                                     <td class="text-center edit" id="cHour_<?php echo $row1['ec_id']; ?>" contenteditable>

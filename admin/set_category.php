@@ -14,12 +14,10 @@ $r = $conn->query($q);
 
 if ($r->num_rows == 0) {
 
-
     $sql = "INSERT INTO exam_category (examID, catID, cat_status) VALUES ('$exam_ID', '$cat_ID', 'active')";
     $result = $conn->query($sql);
 
     if ($result === TRUE) {
-
         header('location: manage_exam.php?id=' . $exam_ID);
     } else {
 
