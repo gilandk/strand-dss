@@ -13,13 +13,20 @@ if (isset($_POST)) {
     $role = mysqli_real_escape_string($conn, $_POST['role']);
     $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $oldpassword = mysqli_real_escape_string($conn, $_POST['oldpassword']);
+    $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
+
+    if ($newpassword == NULL) {
+        $password = $oldpassword;
+    } else {
+        $password = $newpassword;
+    }
 
     $emailcheck = "SELECT * FROM admin WHERE admin_email = '$email'";
     $result = $conn->query($emailcheck);
 
     if ($email == $emailcomp) {
-        $sql = "UPDATE admin SET admin_name='$name', admin_email='$email', admin_role='$role', admin_status='$status' WHERE admin_id = '$a_id'";
+        $sql = "UPDATE admin SET admin_name='$name', admin_role='$role', admin_status='$status', admin_pass='$password' WHERE admin_id = '$a_id'";
         if ($conn->query($sql) == TRUE) {
 
             $_SESSION['updateAdminSuccess'] = true;
@@ -31,7 +38,7 @@ if (isset($_POST)) {
         }
     } else if ($result->num_rows == 0) {
 
-        $sql = "UPDATE admin SET admin_name='$name', admin_email='$email', admin_role='$role', admin_status='$status' WHERE admin_id = '$a_id'";
+        $sql = "UPDATE admin SET admin_name='$name', admin_email='$email', admin_role='$role', admin_status='$status', admin_pass='$password' WHERE admin_id = '$a_id'";
         if ($conn->query($sql) == TRUE) {
 
             $_SESSION['updateAdminSuccess'] = true;

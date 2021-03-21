@@ -36,6 +36,8 @@
 <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.js"></script>
+<!-- Select2 -->
+<script src="../plugins/select2/js/select2.full.min.js"></script>
 
 <script src="../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->

@@ -16,6 +16,7 @@ if ($result->num_rows > 0) {
         $admin_email = $row['admin_email'];
         $admin_role = $row['admin_role'];
         $admin_status = $row['admin_status'];
+        $admin_pass = $row['admin_pass'];
     }
 }
 
@@ -108,11 +109,12 @@ if ($result->num_rows > 0) {
 
                                 <label>Password</label>
                                 <div class="form-group">
-                                    <input class="form-control" type="password" id="password" name="password" placeholder="*********">
+                                    <input class="form-control hide-me" type="password" name="oldpassword" value="<?php echo $admin_pass; ?>" />
+                                    <input class="form-control" type="password" id="password" name="newpassword" placeholder="*********" />
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input class="form-control" type="password" id="cpassword" name="cpassword" placeholder="*********">
+                                    <input class="form-control" type="password" id="cpassword" name="cpassword" placeholder="*********" />
                                 </div>
 
                                 <div id="passwordError" class="btn btn-flat btn-danger hide-me">

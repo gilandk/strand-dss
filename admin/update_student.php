@@ -6,24 +6,62 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
-    $a_id = mysqli_real_escape_string($conn, $_POST['a_id']);
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $u_id = mysqli_real_escape_string($conn, $_POST['user_id']);
+    $student_id = mysqli_real_escape_string($conn, $_POST['st_id']);
+    $firstname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $middlename = mysqli_real_escape_string($conn, $_POST['mname']);
+    $lastname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $allias = mysqli_real_escape_string($conn, $_POST['allias']);
+    $birthdate = mysqli_real_escape_string($conn, $_POST['birthdate']);
+    $age = mysqli_real_escape_string($conn, $_POST['age']);
+    $contact = mysqli_real_escape_string($conn, $_POST['contact']);
+
+    $school = mysqli_real_escape_string($conn, $_POST['school']);
+    $grade = mysqli_real_escape_string($conn, $_POST['grade']);
+    $section = mysqli_real_escape_string($conn, $_POST['section']);
+    $s_year = mysqli_real_escape_string($conn, $_POST['s_year']);
+    $strand_opt1 = mysqli_real_escape_string($conn, $_POST['strand1']);
+    $strand_opt2 = mysqli_real_escape_string($conn, $_POST['strand2']);
+
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $emailcomp = mysqli_real_escape_string($conn, $_POST['emailcomp']);
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
-    $status = mysqli_real_escape_string($conn, $_POST['status']);
 
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $oldpassword = mysqli_real_escape_string($conn, $_POST['oldpassword']);
+    $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
-    $emailcheck = "SELECT * FROM admin WHERE admin_email = '$email'";
+    if ($newpassword == NULL) {
+        $password = $oldpassword;
+    } else {
+        $password = $newpassword;
+    }
+
+
+    $emailcheck = "SELECT * FROM student_info WHERE user_email='$email'";
     $result = $conn->query($emailcheck);
 
     if ($email == $emailcomp) {
-        $sql = "UPDATE admin SET admin_name='$name', admin_email='$email', admin_role='$role', admin_status='$status' WHERE admin_id = '$a_id'";
+        $sql = "UPDATE student_info SET
+        
+            student_id='$student_id',
+            firstname='$firstname',
+            middlename='$middlename',
+            lastname='$lastname',
+            allias='$allias',
+            birthdate='$birthdate',
+            age='$age',
+            contact='$contact',
+            school='$school',
+            grade='$grade',
+            section='$section',
+            strand_opt1='$strand_opt1',
+            strand_opt2='$strand_opt2',
+            user_pass='$password'
+
+            WHERE user_id = '$u_id'";
         if ($conn->query($sql) == TRUE) {
 
-            $_SESSION['updateAdminSuccess'] = true;
-            header("Location: settings_account_edit.php?id=" . $a_id);
+            $_SESSION['updateStudentSuccess'] = true;
+            header("Location: school_students_edit.php?id=" . $u_id);
             exit();
         } else {
             //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -31,11 +69,29 @@ if (isset($_POST)) {
         }
     } else if ($result->num_rows == 0) {
 
-        $sql = "UPDATE admin SET admin_name='$name', admin_email='$email', admin_role='$role', admin_status='$status' WHERE admin_id = '$a_id'";
+        $sql = "UPDATE student_info SET
+        
+            student_id='$student_id',
+            firstname='$firstname',
+            middlename='$middlename',
+            lastname='$lastname',
+            allias='$allias',
+            birthdate='$birthdate',
+            age='$age',
+            contact='$contact',
+            school='$school',
+            grade='$grade',
+            section='$section',
+            strand_opt1='$strand_opt1',
+            strand_opt2='$strand_opt2',
+            user_pass='$password',
+            user_email='$email'
+
+            WHERE user_id = '$u_id'";
         if ($conn->query($sql) == TRUE) {
 
-            $_SESSION['updateAdminSuccess'] = true;
-            header("Location: settings_account_edit.php?id=" . $a_id);
+            $_SESSION['updateStudentSuccess'] = true;
+            header("Location: school_students_edit.php?id=" . $u_id);
             exit();
         } else {
             //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -44,14 +100,14 @@ if (isset($_POST)) {
     } else {
 
         //if name found in database then show email already exists error.
-        $_SESSION['updateAdminFailed'] = true;
-        header("Location: settings_account_edit.php?id=" . $a_id);
+        $_SESSION['updateStudentFailed'] = true;
+        header("Location: school_students_edit.php?id=" . $u_id);
         exit();
     }
     //Close database connection. Not compulsory but good practice.
     $conn->close();
 } else {
     //redirect them back to register page if they didn't click register button
-    header("Location: settings_account_edit.php?id=" . $a_id);
+    header("Location: school_students_edit.php?id=" . $u_id);
     exit();
 }

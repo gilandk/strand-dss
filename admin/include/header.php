@@ -5,6 +5,7 @@ if (empty($_SESSION['role']) || empty($_SESSION['logged_in'])) {
     header("Location: index.php");
     exit();
 }
+
 require_once('../db.php');
 
 $abm = 'Accountancy, Business and Management (ABM)';
@@ -46,6 +47,8 @@ $ad = 'Arts and Design';
     <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+    <!-- select2 -->
+    <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
     <!-- custom-css -->
     <link rel="stylesheet" href="../dist/css/custom.css">
 
@@ -71,6 +74,7 @@ $ad = 'Arts and Design';
 
 
 </head>
+<!-- oncontextmenu="return false" -->
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">

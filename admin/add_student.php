@@ -17,7 +17,7 @@ if (isset($_POST)) {
 
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $emailcheck = "SELECT * FROM student_info WHERE user_email = '$email' AND student_id='$st_id'";
+    $emailcheck = "SELECT * FROM student_info WHERE user_email = '$email'";
     $result = $conn->query($emailcheck);
 
     if ($result->num_rows == 0) {

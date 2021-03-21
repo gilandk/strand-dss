@@ -9,7 +9,9 @@ if (isset($_POST)) {
     $school_id = mysqli_real_escape_string($conn, $_POST['s_id']);
     $school_name = mysqli_real_escape_string($conn, $_POST['school_name']);
     $school_address = mysqli_real_escape_string($conn, $_POST['school_address']);
-    $strands = mysqli_real_escape_string($conn, $_POST['strands']);
+
+    $strands = implode(', ', $_POST['strands']);
+
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
 

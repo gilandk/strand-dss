@@ -1,3 +1,52 @@
+document.onkeydown = function(e) {
+    if (event.keyCode == 123) {
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+        return false;
+    }
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+        return false;
+    }
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+        return false;
+    }
+}
+
+function validatePhone(event) {
+    //event.keycode will return unicode for characters and numbers like a, b, c, 5 etc.
+    //event.which will return key for mouse events and other events like ctrl alt etc. 
+    var key = window.event ? event.keyCode : event.which;
+
+    if (event.keyCode == 8 || event.keyCode == 46 || event.keyCode == 37 || event.keyCode == 39) {
+        // 8 means Backspace
+        //46 means Delete
+        // 37 means left arrow
+        // 39 means right arrow
+        return true;
+    } else if (key < 48 || key > 57) {
+        // 48-57 is 0-9 numbers on your keyboard.
+        return false;
+    } else return true;
+}
+
+//dob
+$('#birthdate').on('change', function() {
+    var today = new Date();
+    var birthDate = new Date($(this).val());
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+
+    $('#age').val(age);
+});
+
 //datatables
 $(function() {
     $('#school_facilitator').DataTable({
@@ -30,7 +79,7 @@ $(function() {
         "searching": true,
         "ordering": true,
         "info": true,
-        "autoWidth": tr,
+        "autoWidth": true,
         "responsive": true,
     });
 });
@@ -318,4 +367,11 @@ $("#changePassword").on("submit", function(e) {
     } else {
         $(this).unbind('submit').submit();
     }
+});
+
+$(function() {
+    //Initialize Select2 Elements
+    $('.select2').select2({
+
+    })
 });

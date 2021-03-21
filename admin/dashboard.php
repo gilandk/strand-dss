@@ -58,45 +58,7 @@ include('include/sidebar.php');
 
                         ?>
 
-                        <div class="form-group">
-                            <label>Allias</label>
-                            <input type="text" class="form-control" placeholder="Allias" name="allias" />
-                        </div>
 
-                        <div class="form-group">
-                            <label>Age</label>
-                            <input type="number" class="form-control" placeholder="Age" name="age" max="150" />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea class="form-control" name="address"></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label>School</label>
-                            <input type="text" class="form-control" placeholder="School" name="school" />
-                        </div>
-                        <div class="form-group">
-                            <label>School Year</label>
-                            <select class="form-control" name="s_year">
-                                <?php
-                                $date2 = date('Y', strtotime('+1 Years'));
-                                for ($i = date('Y'); $i < $date2 + 10; $i++) {
-                                    echo '<option>' . $i . '-' . ($i + 1) . '</option>';
-                                }
-                                ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Strand 1st Option</label>
-                            <input type="text" class="form-control" placeholder="Strand Title" name="strand1" />
-                        </div>
-
-                        <div class="form-group">
-                            <label>Strand 2nd Option</label>
-                            <input type="text" class="form-control" placeholder="Strand Title" name="strand2" />
-                        </div>
                         <!-- /.paste here -->
 
 

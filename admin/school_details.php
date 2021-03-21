@@ -13,6 +13,9 @@ if ($result->num_rows > 0) {
     $strands = $row['strands'];
     $email = $row['email'];
     $contact = $row['contact'];
+
+    $strands = $row['strands'];
+    $strands = explode(', ', $strands);
   }
 }
 ?>
@@ -75,7 +78,11 @@ if ($result->num_rows > 0) {
               <strong><i class="fas fa-book mr-1"></i> Strand Offered</strong>
 
               <p class="text-muted">
-                <?php echo $strands; ?>
+                <?php
+                foreach ($strands as $value) {
+                  echo  $value . ' <br/>';
+                }
+                ?>
               </p>
 
               <hr>
@@ -147,9 +154,24 @@ if ($result->num_rows > 0) {
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="inputStrand" class="col-sm-2 col-form-label">Strand Offered</label>
-                      <div class="col-sm-10">
-                        <textarea class="form-control" name="strands" id="inputExperience" placeholder="Strand Offered"><?php echo $strands; ?></textarea>
+                      <label class="col-sm-2 col-form-label">Strand Offered</label>
+                      <div class="col-sm-10 select2-purple">
+                        <select class="select2" multiple="multiple" size="5" data-placeholder="Select Strands" autocomplete="false" name="strands[]" style="width: 100%;">
+
+                          <?php
+                          foreach ($strands as $value) {
+                          ?>
+                            <option <?php if ($value == $abm) echo 'selected' ?>><?php echo $abm; ?></option>
+                            <option <?php if ($value == $ict) echo 'selected' ?>><?php echo $ict; ?></option>
+                            <option <?php if ($value == $stem) echo 'selected' ?>><?php echo $stem; ?></option>
+                            <option <?php if ($value == $he) echo 'selected' ?>><?php echo $he; ?></option>
+                            <option <?php if ($value == $ia) echo 'selected' ?>><?php echo $ia; ?></option>
+                            <option <?php if ($value == $afa) echo 'selected' ?>><?php echo $afa; ?></option>
+                            <option <?php if ($value == $ad) echo 'selected' ?>><?php echo $ad; ?></option>
+                          <?php
+                          }
+                          ?>
+                        </select>
                       </div>
                     </div>
                     <div class="form-group row">
@@ -172,7 +194,7 @@ if ($result->num_rows > 0) {
                     </div>
                     <div class="form-group row">
                       <div class="offset-sm-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">Save</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                       </div>
                     </div>
                   </form>
