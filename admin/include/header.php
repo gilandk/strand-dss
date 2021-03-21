@@ -8,6 +8,7 @@ if (empty($_SESSION['role']) || empty($_SESSION['logged_in'])) {
 
 require_once('../db.php');
 
+
 $abm = 'Accountancy, Business and Management (ABM)';
 $stem = 'Science Technology Engineering and Mathematics (STEM)';
 $he = 'Home Economics';
@@ -15,7 +16,6 @@ $ict = 'Information and Communication Technology (ICT)';
 $afa = 'Agri-Fishery Arts';
 $ia = 'Industrial Arts';
 $ad = 'Arts and Design';
-
 ?>
 
 <!DOCTYPE html>

@@ -6,28 +6,26 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
-    $st_id = mysqli_real_escape_string($conn, $_POST['st_id']);
+    $f_id = mysqli_real_escape_string($conn, $_POST['f_id']);
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
-    $mname = mysqli_real_escape_string($conn, $_POST['mname']);
-    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $grade = mysqli_real_escape_string($conn, $_POST['grade']);
-    $section = mysqli_real_escape_string($conn, $_POST['section']);
-    $s_year = mysqli_real_escape_string($conn, $_POST['s_year']);
+    $school = mysqli_real_escape_string($conn, $_POST['school']);
+    $contact = mysqli_real_escape_string($conn, $_POST['contact']);
+    $position = mysqli_real_escape_string($conn, $_POST['position']);
 
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    $emailcheck = "SELECT * FROM student_info WHERE user_email = '$email'";
+    $emailcheck = "SELECT * FROM school_admin WHERE sa_email = '$email'";
     $result = $conn->query($emailcheck);
 
     if ($result->num_rows == 0) {
 
-        $sql = "INSERT INTO student_info (student_id, firstname, middlename, lastname, user_email, grade, section, user_pass)
-                                    VALUES ('$st_id','$fname', '$mname', '$lname', '$email', '$grade', '$section', '$password')";
+        $sql = "INSERT INTO school_admin (sa_uid, sa_fullname, sa_email, sa_pass, sa_school, sa_contact, sa_position)
+                                    VALUES ('$f_id','$fname', '$email', '$password', '$school', '$contact', '$position')";
         if ($conn->query($sql) == TRUE) {
 
-            $_SESSION['addStudentSuccess'] = true;
-            header("Location: school_students.php");
+            $_SESSION['addFacilitatorSuccess'] = true;
+            header("Location: school_facilitator.php");
             exit();
         } else {
             //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -35,14 +33,14 @@ if (isset($_POST)) {
         }
     } else {
         //if email found in database then show email already exists error.
-        $_SESSION['addStudentFailed'] = true;
-        header("Location: school_students.php");
+        $_SESSION['addFacilitatorFailed'] = true;
+        header("Location: school_facilitator.php");
         exit();
     }
     //Close database connection. Not compulsory but good practice.
     $conn->close();
 } else {
     //redirect them back to register page if they didn't click register button
-    header("Location: school_students.php");
+    header("Location: school_facilitator.php");
     exit();
 }

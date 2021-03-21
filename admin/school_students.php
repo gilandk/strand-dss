@@ -2,6 +2,16 @@
 include('include/header.php');
 include('include/sidebar.php');
 
+function first_char($str)
+{
+    if ($str)
+        return strtolower(substr($str, 0, 1));
+
+    return false;
+}
+
+
+
 $sql = "SELECT * FROM student_info";
 $result = $conn->query($sql);
 ?>
@@ -29,7 +39,6 @@ $result = $conn->query($sql);
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-
                     <?php
                     //If User already registered with this email then show error message.
                     if (isset($_SESSION['addStudentSuccess'])) {
@@ -85,7 +94,7 @@ $result = $conn->query($sql);
                                         while ($rows = $result->fetch_assoc()) {
                                             $st_id = $rows['student_id'];
                                             $email = $rows['user_email'];
-                                            $fullname = $rows['firstname'] . ' ' . substr($rows['middlename'], 0) . ' ' . $rows['lastname'] . ' ' . $rows['allias'];
+                                            $fullname = $rows['firstname'] . ' ' . strtoupper(first_char($rows['middlename'])) . '. ' . $rows['lastname'] . ' ' . $rows['allias'];
 
                                             $grade = $rows['grade'];
                                             $section = $rows['section'];

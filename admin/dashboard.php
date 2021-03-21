@@ -58,7 +58,6 @@ include('include/sidebar.php');
 
                         ?>
 
-
                         <!-- /.paste here -->
 
 
