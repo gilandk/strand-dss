@@ -136,7 +136,6 @@ $result = $conn->query($sql);
                                 <label>Confirm Password</label>
                                 <input class="form-control" type="password" id="cpassword" name="cpassword" placeholder="*********" required>
                             </div>
-
                             <div id="passwordError" class="btn btn-flat btn-danger hide-me">
                                 Password Mismatch!!
                             </div>

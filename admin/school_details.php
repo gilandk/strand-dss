@@ -140,33 +140,34 @@ if ($result->num_rows > 0) {
 
                   <form class="form-horizontal" method="POST" action="update_schoolinfo.php" enctype="multipart/form-data">
                     <div class="form-group row">
+                      <input type="hidden" name="s_id" value="<?php echo $s_id; ?>" />
                       <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName" placeholder="Name" value="<?php echo $school; ?>">
+                        <input type="text" name="school_name" class="form-control" id="inputName" placeholder="Name" value="<?php echo $school; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputStrand" class="col-sm-2 col-form-label">Strand Offered</label>
                       <div class="col-sm-10">
-                        <textarea class="form-control" id="inputExperience" placeholder="Strand Offered"><?php echo $strands; ?></textarea>
+                        <textarea class="form-control" name="strands" id="inputExperience" placeholder="Strand Offered"><?php echo $strands; ?></textarea>
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputLocation" class="col-sm-2 col-form-label">Location</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputName2" placeholder="Location" value="<?php echo $address; ?>">
+                        <input type="text" class="form-control" name="school_address" id="inputName2" placeholder="Location" value="<?php echo $address; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                       <div class="col-sm-10">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="<?php echo $email; ?>">
+                        <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email" value="<?php echo $email; ?>">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputContact" class="col-sm-2 col-form-label">Contact</label>
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Contact" value="<?php echo $contact; ?>">
+                        <input type="text" class="form-control" name="contact" id="inputEmail" placeholder="Contact" value="<?php echo $contact; ?>">
                       </div>
                     </div>
                     <div class="form-group row">

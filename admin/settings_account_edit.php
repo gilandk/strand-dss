@@ -119,7 +119,6 @@ if ($result->num_rows > 0) {
                                     Password Mismatch!!
                                 </div>
 
-
                                 <button type="submit" name="save" class="btn btn-primary">Save</button>
                         </div>
 
