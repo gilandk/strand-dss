@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2021 at 04:06 PM
+-- Generation Time: Mar 27, 2021 at 09:06 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -44,7 +44,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_uid`, `admin_email`, `admin_pass`, `admin_name`, `admin_role`, `admin_status`, `date_created`, `date_updated`) VALUES
-(1, 10000, 'admin@gmail.com', 'admin', 'ADMIN', 'Super Admin', 'Active', '2021-01-03 05:47:04', NULL);
+(1, 10000, 'admin@gmail.com', 'adminadmin', 'ADMIN', 'Super Admin', 'Active', '2021-03-27 06:48:31', '2021-03-27 06:48:31'),
+(2, 10001, 'gilandk@gmail.com', '123456', 'Izaya', 'Admin', 'Active', '2021-02-28 15:42:11', NULL),
+(5, 0, 'asterisk@gmail.com', '123456', 'dasdasdasdasd', 'Super Admin', 'Active', '2021-03-06 07:42:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -144,14 +146,17 @@ CREATE TABLE `exam_category` (
 --
 
 INSERT INTO `exam_category` (`ec_id`, `examID`, `catID`, `cHour`, `cMin`, `cat_status`, `date_created`, `date_updated`) VALUES
-(1, 3, 1, 1, 30, 'active', '2021-02-16 09:34:33', NULL),
+(1, 3, 1, 1, 20, 'active', '2021-02-16 09:34:33', '2021-03-14 07:59:05'),
 (2, 3, 2, 0, 30, 'active', '2021-02-16 09:34:33', NULL),
 (3, 3, 3, 1, 0, 'active', '2021-02-16 09:34:33', NULL),
 (4, 3, 4, 1, 30, 'active', '2021-02-16 09:34:33', NULL),
-(5, 3, 9, 0, 30, 'active', '2021-02-16 09:34:33', NULL),
 (6, 1, 1, 0, 0, 'active', '2021-02-16 09:34:33', NULL),
 (7, 1, 2, 0, 0, 'active', '2021-02-16 09:34:33', NULL),
-(8, 1, 3, 0, 0, 'active', '2021-02-16 09:34:33', NULL);
+(8, 1, 3, 0, 0, 'active', '2021-02-16 09:34:33', NULL),
+(9, 3, 5, 0, 0, 'active', '2021-03-14 03:04:11', NULL),
+(11, 0, 0, 0, 0, 'active', '2021-03-21 16:20:05', NULL),
+(12, 3, 23, 0, 0, 'active', '2021-03-21 16:24:44', NULL),
+(13, 3, 6, 0, 0, 'active', '2021-03-21 16:33:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -208,17 +213,23 @@ INSERT INTO `questions` (`q_id`, `q_cat`, `q_scat`, `question`, `choice1`, `choi
 
 CREATE TABLE `school_admin` (
   `sa_id` int(11) NOT NULL,
-  `sa_uid` int(11) NOT NULL,
-  `sa_fullname` varchar(100) NOT NULL,
-  `sa_status` varchar(20) NOT NULL,
-  `date_joined` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `sa_school` varchar(100) NOT NULL,
-  `sa_position` varchar(20) NOT NULL,
-  `sa_contact` varchar(11) NOT NULL,
+  `sa_uid` int(20) NOT NULL,
   `sa_email` varchar(50) NOT NULL,
-  `sa_user` varchar(100) NOT NULL,
-  `sa_pass` varchar(100) NOT NULL
+  `sa_pass` varchar(100) NOT NULL,
+  `sa_fullname` varchar(100) NOT NULL,
+  `sa_contact` varchar(11) NOT NULL,
+  `sa_position` varchar(20) NOT NULL,
+  `sa_status` varchar(20) NOT NULL DEFAULT 'active',
+  `date_joined` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `school_admin`
+--
+
+INSERT INTO `school_admin` (`sa_id`, `sa_uid`, `sa_email`, `sa_pass`, `sa_fullname`, `sa_contact`, `sa_position`, `sa_status`, `date_joined`) VALUES
+(1, 2147483647, 'asdasd@gmail.com', '123123', 'Aaron Paul Roque', '12312312312', 'asdasd', 'active', '2021-03-27 05:30:00'),
+(4, 666666555, 'test@gmail.com', '123123', 'Testing Testing', '21312312312', 'Coordinator', 'active', '2021-03-27 06:24:28');
 
 -- --------------------------------------------------------
 
@@ -242,7 +253,7 @@ CREATE TABLE `school_info` (
 --
 
 INSERT INTO `school_info` (`school_id`, `school_name`, `school_address`, `strands`, `email`, `contact`, `logo`, `dateupdated`) VALUES
-(1, 'Dr. Yanga\'s Colleges Inc', 'Bocaue, Bulacan', 'HUMS, STEM, GAS', 'dyci@edu.ph', '0991234567', '', NULL);
+(1, 'Dr. Yanga\'s Colleges, Inc.', 'Bocaue, Bulacan', 'Information and Communication Technology (ICT), Science Technology Engineering and Mathematics (STEM), Home Economics', 'dyci@edu.ph', '0991234567', '', '2021-03-21 14:37:10');
 
 -- --------------------------------------------------------
 
@@ -252,24 +263,32 @@ INSERT INTO `school_info` (`school_id`, `school_name`, `school_address`, `strand
 
 CREATE TABLE `student_info` (
   `user_id` int(11) NOT NULL,
-  `user_uid` int(11) NOT NULL,
-  `user_name` varchar(100) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
   `user_pass` varchar(100) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `middlename` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `allias` varchar(50) NOT NULL,
+  `birthdate` date DEFAULT NULL,
   `age` int(11) NOT NULL,
-  `address` varchar(150) NOT NULL,
+  `contact` varchar(13) NOT NULL,
   `school` varchar(100) NOT NULL,
   `grade` int(11) NOT NULL,
   `section` varchar(50) NOT NULL,
   `s_year` varchar(50) NOT NULL,
-  `desired_strand1` varchar(50) NOT NULL,
-  `desired_strand2` varchar(50) NOT NULL,
-  `status` varchar(20) NOT NULL,
+  `strand_opt1` varchar(150) NOT NULL,
+  `strand_opt2` varchar(150) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'active',
   `date_joined` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student_info`
+--
+
+INSERT INTO `student_info` (`user_id`, `student_id`, `user_email`, `user_pass`, `firstname`, `middlename`, `lastname`, `allias`, `birthdate`, `age`, `contact`, `school`, `grade`, `section`, `s_year`, `strand_opt1`, `strand_opt2`, `status`, `date_joined`) VALUES
+(7, 265465132, 'asterisk@gmail.com', '1234567', 'Aron', 'Roque', 'Ramirez', '', '1995-11-19', 25, '01231231231', 'Dr. Yanga', 10, 'A', '2022 - 2023', 'Information and Communication Technology (ICT)', 'Accountancy, Business and Management (ABM)', 'active', '2021-03-27 05:33:49');
 
 -- --------------------------------------------------------
 
@@ -293,7 +312,8 @@ CREATE TABLE `sub_category` (
 
 INSERT INTO `sub_category` (`sub_id`, `main_cat`, `sc_index`, `sub_title`, `sub_instruction`, `date_created`, `date_updated`) VALUES
 (1, '1', 'A', 'Paragraph Comprehension', '<p>test</p>\r\n', '2021-02-16 09:40:01', NULL),
-(2, '1', 'B', 'Logical Organization Ideas', '<p>testasdzxczx</p>\r\n', '2021-02-16 09:40:01', NULL);
+(2, '1', 'B', 'Logical Organization Ideas', '<p>testasdzxczx</p>\r\n', '2021-02-16 09:40:01', NULL),
+(8, '23', '', 'Testing', '<p>asdasdasdasdasd</p>\r\n', '2021-03-14 04:00:20', NULL);
 
 --
 -- Indexes for dumped tables
@@ -367,13 +387,13 @@ ALTER TABLE `sub_category`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `exams`
@@ -391,7 +411,7 @@ ALTER TABLE `exam_answers`
 -- AUTO_INCREMENT for table `exam_category`
 --
 ALTER TABLE `exam_category`
-  MODIFY `ec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ec_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `questions`
@@ -403,7 +423,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `school_admin`
 --
 ALTER TABLE `school_admin`
-  MODIFY `sa_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `school_info`
@@ -415,13 +435,13 @@ ALTER TABLE `school_info`
 -- AUTO_INCREMENT for table `student_info`
 --
 ALTER TABLE `student_info`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sub_category`
 --
 ALTER TABLE `sub_category`
-  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
