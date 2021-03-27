@@ -71,7 +71,6 @@ $result = $conn->query($sql);
 										<th>Fullname</th>
 										<th>Email</th>
 										<th>Position</th>
-										<th>School</th>
 										<th>Contact</th>
 										<th>Status</th>
 										<th>Action</th>
@@ -87,7 +86,6 @@ $result = $conn->query($sql);
 												<td><?php echo $rows['sa_fullname']; ?></td>
 												<td><?php echo $rows['sa_email']; ?></td>
 												<td><?php echo $rows['sa_position']; ?></td>
-												<td><?php echo $rows['sa_school']; ?></td>
 												<td><?php echo $rows['sa_contact']; ?></td>
 												<td><span class="text-success"><?php echo $rows['sa_status']; ?></td>
 												<td><a href="school_facilitator_edit.php?id=<?php echo $rows['sa_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
@@ -103,7 +101,6 @@ $result = $conn->query($sql);
 										<th>Fullname</th>
 										<th>Email</th>
 										<th>Position</th>
-										<th>School</th>
 										<th>Contact</th>
 										<th>Status</th>
 										<th>Action</th>
@@ -159,12 +156,6 @@ $result = $conn->query($sql);
 							<div id="passwordError" class="btn btn-flat btn-danger hide-me">
 								Password Mismatch!!
 							</div>
-
-							<div class="form-group">
-								<label>School</label>
-								<input type="text" class="form-control" placeholder="School" name="school" required />
-							</div>
-
 							<div class="form-group">
 								<label>Position</label>
 								<input type="text" class="form-control" placeholder="Position" name="position" required />

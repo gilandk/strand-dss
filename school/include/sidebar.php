@@ -50,12 +50,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="school_facilitator.php" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Facilitator</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="school_students.php" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Students</p>
@@ -82,12 +76,6 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="exam_category.php" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Manage Categories/Questions</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a href="boxed" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Exam Results</p>
@@ -108,31 +96,6 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <?php
-                            if ($_SESSION['role'] == 'Super Admin') { ?>
-
-                                <li class="nav-item">
-                                    <a href="settings_account.php" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Account</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="boxed" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Maintenance</p>
-                                    </a>
-                                </li>
-                            <?php
-                            }
-
-                            ?>
-                            <li class="nav-item">
-                                <a href="settings_audit.php" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Audit Trail</p>
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a href="settings_update_acc.php" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>

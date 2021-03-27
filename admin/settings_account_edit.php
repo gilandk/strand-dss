@@ -96,14 +96,7 @@ if ($result->num_rows > 0) {
                                     <select class="form-control" name="role">
                                         <option <?php if ($admin_role == 'Super Admin') echo 'Selected' ?>>Super Admin</option>
                                         <option <?php if ($admin_role == 'Admin') echo 'Selected' ?>>Admin</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Status:</label>
-                                    <select class="form-control" name="status">
-                                        <option <?php if ($admin_status == 'Active') echo 'Selected' ?>>Active</option>
-                                        <option <?php if ($admin_status == 'Inactive') echo 'Selected' ?>>Inactive</option>
+                                        <option <?php if ($admin_role == 'Editor') echo 'Selected' ?>>Editor</option>
                                     </select>
                                 </div>
 

@@ -146,6 +146,7 @@ $result = $conn->query($sql);
                                 <select class="form-control" name="role">
                                     <option>Super Admin</option>
                                     <option>Admin</option>
+                                    <option>Editor</option>
                                 </select>
                             </div>
 

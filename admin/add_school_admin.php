@@ -9,7 +9,6 @@ if (isset($_POST)) {
     $f_id = mysqli_real_escape_string($conn, $_POST['f_id']);
     $fname = mysqli_real_escape_string($conn, $_POST['fname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $school = mysqli_real_escape_string($conn, $_POST['school']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $position = mysqli_real_escape_string($conn, $_POST['position']);
 
@@ -20,8 +19,8 @@ if (isset($_POST)) {
 
     if ($result->num_rows == 0) {
 
-        $sql = "INSERT INTO school_admin (sa_uid, sa_fullname, sa_email, sa_pass, sa_school, sa_contact, sa_position)
-                                    VALUES ('$f_id','$fname', '$email', '$password', '$school', '$contact', '$position')";
+        $sql = "INSERT INTO school_admin (sa_uid, sa_fullname, sa_email, sa_pass, sa_contact, sa_position)
+                                    VALUES ('$f_id','$fname', '$email', '$password', '$contact', '$position')";
         if ($conn->query($sql) == TRUE) {
 
             $_SESSION['addFacilitatorSuccess'] = true;

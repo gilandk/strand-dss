@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('db.php');
+require_once('../db.php');
 
 $show = 'hidden';
 $msg = '';
@@ -20,20 +20,20 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     // Coding for login
-    $sql = "SELECT * FROM student_info WHERE user_email='$email' AND user_pass='$password'";
+    $sql = "SELECT * FROM school_admin WHERE sa_email='$email' AND sa_pass='$password'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
 
         $_SESSION['logged_in'] = 'yes';
-        $_SESSION['fullname'] = $row['firstname'] . ' ' . $row['middlename'] . '. ' . $row['lastname'] . ' ' . $row['allias'];
-        $_SESSION['status'] = $row['status'];
-        $_SESSION['id'] = $row['user_id'];
-        $_SESSION['uid'] = $row['student_uid'];
+        $_SESSION['name'] = $row['sa_fullname'];
+        $_SESSION['status'] = $row['sa_status'];
+        $_SESSION['id'] = $row['sa_id'];
+        $_SESSION['uid'] = $row['sa_uid'];
 
         mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");
 
-        header('location: users/index.php');
+        header('location:dashboard.php');
       }
     } else {
 
@@ -78,13 +78,13 @@ function getIpAddr()
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -94,7 +94,7 @@ function getIpAddr()
     <div class="login-logo">
       <a href="#"><b>Strand</b>DSS</a>
       <a href="#">
-        <h5>Student Sign in</h5>
+        <h5>School Panel</h5>
       </a>
     </div>
     <!-- /.login-logo -->
@@ -134,8 +134,6 @@ function getIpAddr()
               <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
             </div>
             <!-- /.col -->
-
-
           </div>
         </form>
 
@@ -149,11 +147,11 @@ function getIpAddr()
   <!-- /.login-box -->
 
   <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
+  <script src="../plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
+  <script src="../dist/js/adminlte.min.js"></script>
 
 </body>
 

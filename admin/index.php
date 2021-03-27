@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!empty($_SESSION['role']) || !empty($_SESSION['logged_in'])) {
+    header("Location: dashboard.php");
+    exit();
+}
+
 require_once('../db.php');
 
 $show = 'hidden';
@@ -94,6 +99,9 @@ function getIpAddr()
     <div class="login-box">
         <div class="login-logo">
             <a href="#"><b>Strand</b>DSS</a>
+            <a href="#">
+                <h5>Admin Panel</h5>
+            </a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
