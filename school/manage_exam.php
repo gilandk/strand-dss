@@ -51,7 +51,6 @@ if ($result->num_rows > 0) {
               <h3 class="card-title p-3">Examination Info</h3>
               <ul class="nav nav-pills ml-auto p-2" id="myTab">
                 <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Info</a></li>
-                <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">Categories</a></li>
                 <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">Students</a></li>
               </ul>
             </div><!-- /.card-header -->
@@ -191,37 +190,7 @@ if ($result->num_rows > 0) {
 
                     </div><!-- /.col-md-8 -->
 
-                    <div class="col-md-3">
-                      <div class="card">
-                        <div class="card-body table-responsive p-0">
-                          <table class="table table-hover text-nowrap">
-                            <thead>
-                              <tr>
-                                <th class="text-center">Add</th>
-                                <th>Category</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <?php
-                              $sql1 = "SELECT * FROM category LEFT JOIN exam_category ON category.cat_id = exam_category.catID AND exam_category.examID='$e_id' WHERE exam_category.catID IS NULL";
-                              $result1 = $conn->query($sql1);
 
-                              if ($result1->num_rows > 0) {
-                                while ($row1 = $result1->fetch_assoc()) {
-                              ?>
-                                  <tr>
-                                    <td class="text-center"><a class="confirmation" href="set_category.php?eid=<?php echo $exam_id; ?>&cid=<?php echo $row1['cat_id']; ?>"><i class=" fas fa-plus"></i></a></td>
-                                    <td><?php echo $row1['cat_name']; ?></td>
-                                  </tr>
-                              <?php
-                                }
-                              }
-                              ?>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 

@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
       while ($row = $result->fetch_assoc()) {
 
         $_SESSION['logged_in'] = 'yes';
-        $_SESSION['fullname'] = $row['firstname'] . ' ' . $row['middlename'] . '. ' . $row['lastname'] . ' ' . $row['allias'];
+        $_SESSION['fullname'] = $row['firstname'] . ' ' . strtoupper(first_char($rows['middlename'])) . '. ' . $row['lastname'] . ' ' . $row['allias'];
         $_SESSION['status'] = $row['status'];
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['uid'] = $row['student_uid'];
@@ -63,6 +63,14 @@ function getIpAddr()
     $ipAddr = $_SERVER['REMOTE_ADDR'];
   }
   return $ipAddr;
+}
+
+function first_char($str)
+{
+  if ($str)
+    return strtolower(substr($str, 0, 1));
+
+  return false;
 }
 ?>
 
