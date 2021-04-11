@@ -28,7 +28,6 @@ if ($result->num_rows > 0) {
     }
   }
 }
-
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -70,8 +69,8 @@ if ($result->num_rows > 0) {
 
           <ul>
             <?php
-            $sql1 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
-            $result1 = $conn->query($sql1);
+            $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
+            $result1 = $conn->query($sql2);
 
             if ($result1->num_rows > 0) {
               while ($row1 = $result1->fetch_assoc()) {
@@ -81,13 +80,10 @@ if ($result->num_rows > 0) {
                   <?php echo $cat_name; ?>
                 </li>
             <?php
-
               }
             }
             ?>
           </ul>
-
-
           <a href="exam.php?id=<?php echo $exam_id; ?>" class="card-link">Start Examination</a>
           <a href="index.php" class="card-link">Back</a>
         </div>
