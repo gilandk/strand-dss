@@ -76,7 +76,7 @@ $ad = 'Arts and Design';
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
       <div class="container">
-        <a href="../../index3.html" class="navbar-brand">
+        <a href="index.php" class="navbar-brand">
           <img src="../dist/img/dycilogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">Strand DSS</span>
         </a>
@@ -89,7 +89,7 @@ $ad = 'Arts and Design';
           <!-- Left navbar links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="index3.html" class="nav-link">Home</a>
+              <a href="index.php" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
               <a href="#" class="nav-link">Strands</a>
@@ -138,7 +138,7 @@ $ad = 'Arts and Design';
 
                 <li class="dropdown-divider"></li>
 
-                <li><a href="#" class="dropdown-item">Sign out</a></li>
+                <li><a href="logout.php" class="dropdown-item">Sign out</a></li>
 
               </ul>
             </li>
