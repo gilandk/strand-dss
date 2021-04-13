@@ -51,8 +51,6 @@ include('include/header.php');
           } else {
             $handler = 'None';
           }
-
-
       ?>
 
           <div class="card">
@@ -65,6 +63,7 @@ include('include/header.php');
               <a href="exam_info.php?id=<?php echo $exam_id; ?>" class="card-link">Take Exam</a>
             </div>
           </div>
+
       <?php
         }
       }

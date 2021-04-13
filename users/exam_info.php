@@ -56,44 +56,66 @@ if ($result->num_rows > 0) {
   <div class="content">
     <div class="container">
 
-      <div class="card">
-        <div class="card-body">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Categories</h3>
 
-          <p class="card-text">
-            <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
-          </p>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0">
+              <ul class="nav nav-pills flex-column">
+                <?php
+                $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
+                $result1 = $conn->query($sql2);
 
-          <p class="card-text">
-            <?php echo $guide; ?>
-          </p>
-
-          <ul>
-            <?php
-            $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
-            $result1 = $conn->query($sql2);
-
-            if ($result1->num_rows > 0) {
-              while ($row1 = $result1->fetch_assoc()) {
-                $cat_name = $row1['cat_name'];
-            ?>
-                <li class="card-text">
-                  <?php echo $cat_name; ?>
-                </li>
-            <?php
-              }
-            }
-            ?>
-          </ul>
-          <a href="exam.php?id=<?php echo $exam_id; ?>" class="card-link">Start Examination</a>
-          <a href="index.php" class="card-link">Back</a>
+                if ($result1->num_rows > 0) {
+                  while ($row1 = $result1->fetch_assoc()) {
+                    $c_id = $row1['cat_id'];
+                    $cat_name = $row1['cat_name'];
+                    $cat_instruct = $row1['cat_instruct'];
+                ?>
+                    <li class="nav-item">
+                      <a href="exam.php?id=<?php echo $e_id; ?>&cid=<?php echo $c_id; ?>" class="nav-link">
+                        <i class="fas fa-inbox"></i> <?php echo $cat_name; ?>
+                        <span class="far fa-circle text-info float-right"></span>
+                      </a>
+                    </li>
+                <?php
+                  }
+                }
+                ?>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
         </div>
-      </div>
+        <div class="col-md-9">
+          <div class="card">
+            <div class="card-body">
 
-    </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
+              <p class="card-text">
+                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
+              </p>
+
+              <p class="card-text">
+                <?php echo $guide; ?>
+              </p>
+
+              <a href="index.php" class="card-link">Back</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
