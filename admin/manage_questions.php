@@ -111,7 +111,6 @@ while ($row = $result1->fetch_assoc()) {
                   <tr>
                     <th class="text-center">#</th>
                     <th>Question</th>
-                    <th class="text-center">Group</th>
                     <th class="text-center">Action</th>
                   </tr>
 
@@ -119,8 +118,6 @@ while ($row = $result1->fetch_assoc()) {
                 <tbody>
 
                   <?php
-
-                  $num = '1';
 
                   $sql = "SELECT * FROM questions WHERE q_scat = '$subc_id'";
                   $result = $conn->query($sql);
@@ -130,10 +127,8 @@ while ($row = $result1->fetch_assoc()) {
 
                   ?>
                       <tr>
-                        <td class="text-center"><?php echo $num;
-                                                $num++; ?></td>
+                        <td class="text-center"><?php echo $rows['q_item']; ?></td>
                         <td><?php echo $rows['question']; ?></td>
-                        <td class="text-center"><?php echo $rows['groupIndex']; ?></td>
                         <td class="text-center">
                           <a href="manage_question_edit.php?id=<?php echo $rows['q_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Update</a>
                           <a href="delete_question.php?id=<?php echo $rows['q_id']; ?>" class="btn btn-block btn-outline-danger btn-sm">Delete</a>
@@ -155,8 +150,7 @@ while ($row = $result1->fetch_assoc()) {
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
               <div class="modal-header">
-                <h4 class="modal-title">Add Question #<?php echo $num;
-                                                      $num = $num + 2; ?></h4>
+                <h4 class="modal-title">Add Question</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -245,6 +239,13 @@ while ($row = $result1->fetch_assoc()) {
                     <div class="col-md-4">
 
                       <div class="form-group">
+                        <label>Item #:</label>
+                        <input type="number" name="q_item" class="form-control" placeholder="Items" required>
+                        </select>
+                      </div>
+
+
+                      <div class="form-group">
                         <label>Correct Answer:</label>
                         <select class="form-control" name="ans">
                           <option value="1">Choice 1</option>
@@ -253,32 +254,7 @@ while ($row = $result1->fetch_assoc()) {
                           <option value="4">Choice 4</option>
                         </select>
                       </div>
-
-                      <div class="form-group">
-                        <label>Group Question:</label>
-                        <select class="form-control" name="groupQ">
-                          <option value="no">No</option>
-                          <option value="yes">Yes</option>
-                        </select>
-                      </div>
-
-                      <div class="form-group">
-                        <label>Group Index:</label>
-                        <select class="form-control" name="groupIndex">
-                          <option>None</option>
-                          <option>A</option>
-                          <option>B</option>
-                          <option>C</option>
-                          <option>D</option>
-                          <option>E</option>
-                          <option>F</option>
-                          <option>G</option>
-                        </select>
-                      </div>
-
-
                     </div>
-
                   </div>
               </div>
               <div class="modal-footer justify-content-between">

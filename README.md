@@ -1,6 +1,3 @@
 # Strand-dss
 
-
 JUNIOR-SENIOR HIGH STRAND CAREER
-
- 

@@ -40,7 +40,6 @@ if ($result1->num_rows > 0) {
   }
 }
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -72,13 +71,9 @@ if ($result1->num_rows > 0) {
       <?php include('include/exam_questions.php'); ?>
 
 
-    </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    </div><!-- /.container-fluid -->
+  </div><!-- /.content -->
+</div><!-- /.content-wrapper -->
 
 <?php
 
