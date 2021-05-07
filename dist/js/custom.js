@@ -217,3 +217,12 @@ $(function() {
 
     })
 });
+
+//confirmation when click
+$('.confirmation').on('click', function() {
+    var confirmation = confirm('Are you sure to take this exam');
+    if (confirmation) {
+        return true;
+    }
+    return false;
+});

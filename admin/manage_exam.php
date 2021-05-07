@@ -4,6 +4,14 @@ include('include/sidebar.php');
 
 $e_id = $_REQUEST['id'];
 
+function first_char($str)
+{
+  if ($str)
+    return strtolower(substr($str, 0, 1));
+
+  return false;
+}
+
 $sql = "SELECT * FROM exams WHERE exam_id = '$e_id'";
 $result = $conn->query($sql);
 
@@ -227,13 +235,49 @@ if ($result->num_rows > 0) {
 
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="tab_3">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                  when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                  It has survived not only five centuries, but also the leap into electronic typesetting,
-                  remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
-                  sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
+                  <div class="card">
+                    <div class="card-body table-responsive p-0">
+                      <table class="table table-hover text-nowrap">
+                        <thead>
+                          <tr>
+                            <th>Full name</th>
+                            <th>School</th>
+                            <th>Strand Opt. 1</th>
+                            <th>Strand Opt. 2</th>
+                            <th>Results</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $sql4 = "SELECT * FROM examinee_student WHERE exam_id='$e_id'";
+                          $result4 = $conn->query($sql4);
+
+                          if ($result4->num_rows > 0) {
+                            while ($row4 = $result4->fetch_assoc()) {
+                              $student_id = $row4['student_id'];
+
+                              $sql5 = "SELECT * FROM student_info WHERE user_id='$student_id'";
+                              $result5 = $conn->query($sql5);
+                              if ($result5->num_rows > 0) {
+                                while ($row5 = $result5->fetch_assoc()) {
+                          ?>
+                                  <tr>
+                                    <td><?php echo $row5['firstname'] . ' ' . strtoupper(first_char($row5['middlename'])) . '. ' . $row5['lastname'] . ' ' . $row5['allias']; ?></td>
+                                    <td><?php echo $row5['school']; ?></td>
+                                    <td><?php echo $row5['strand_opt1']; ?></td>
+                                    <td><?php echo $row5['strand_opt2']; ?></td>
+                                    <td><a href="exam_student_result.php?id=<?php echo $row5['user_id']; ?>" class="btn btn-block btn-outline-primary btn-xs">Result</a></td>
+                                  </tr>
+                          <?php
+                                }
+                              }
+                            }
+                          }
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
                 <!-- /.tab-pane -->
 
