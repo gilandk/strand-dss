@@ -280,12 +280,7 @@ if ($result->num_rows > 0) {
                   </div>
                 </div>
                 <!-- /.tab-pane -->
-
-
               </div><!-- /.card-body -->
-
-
-
             </div><!-- /.card-outline -->
           </div><!-- /.col -->
         </div><!-- /. row -->

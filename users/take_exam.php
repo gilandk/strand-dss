@@ -11,10 +11,11 @@ if (isset($_POST)) {
   $user_id = $_SESSION['id'];
   $exam_status = 0;
 
-  $sql1 = "SELECT * FROM examinee_student WHERE exam_id = '$exam_id' AND student_id = '$student_id'";
+  $sql1 = "SELECT * FROM examinee_student WHERE exam_id = '$exam_id' AND student_id = '$user_id'";
   $result = $conn->query($sql1);
 
   if ($result->num_rows == 0) {
+
     $sql = "INSERT INTO examinee_student (exam_id, student_id, exam_status) VALUES ('$exam_id', '$user_id', '$exam_status')";
     if ($conn->query($sql) == TRUE) {
 
@@ -22,11 +23,17 @@ if (isset($_POST)) {
       header("Location: exam_info.php?id=" . $exam_id);
       exit();
     } else {
-      echo $conn->error;
+
+      echo "Error " . $sql . "<br>" . $conn->error;
     }
   } else {
-    $_SESSION['examStatus'] = 'Resume';
+    $_SESSION['examStatus'] = 'Ongoing';
     header("Location: exam_info.php?id=" . $exam_id);
     exit();
   }
+  $conn->close();
+} else {
+
+  header("Location: index.php");
+  exit();
 }

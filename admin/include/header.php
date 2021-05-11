@@ -11,6 +11,7 @@ require_once('../db.php');
 
 $abm = 'Accountancy, Business and Management (ABM)';
 $stem = 'Science Technology Engineering and Mathematics (STEM)';
+$humss = 'Humanities and Social Sciences Strand (HUMSS)';
 $he = 'Home Economics';
 $ict = 'Information and Communication Technology (ICT)';
 $afa = 'Agri-Fishery Arts';
