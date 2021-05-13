@@ -28,7 +28,6 @@ if ($result->num_rows > 0) {
     }
   }
 }
-
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -57,47 +56,88 @@ if ($result->num_rows > 0) {
   <div class="content">
     <div class="container">
 
-      <div class="card">
-        <div class="card-body">
+      <div class="row">
 
-          <p class="card-text">
-            <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
-          </p>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
 
-          <p class="card-text">
-            <?php echo $guide; ?>
-          </p>
+              <p class="card-text">
+                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
+              </p>
 
-          <ul>
-            <?php
-            $sql1 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
-            $result1 = $conn->query($sql1);
+              <p class="card-text">
+                <?php echo $guide; ?>
+              </p>
 
-            if ($result1->num_rows > 0) {
-              while ($row1 = $result1->fetch_assoc()) {
-                $cat_name = $row1['cat_name'];
-            ?>
-                <li class="card-text">
-                  <?php echo $cat_name; ?>
-                </li>
-            <?php
-
-              }
-            }
-            ?>
-          </ul>
-
-
-          <a href="exam.php?id=<?php echo $exam_id; ?>" class="card-link">Start Examination</a>
-          <a href="index.php" class="card-link">Back</a>
+              <a href="index.php" class="card-link">Back</a>
+            </div>
+          </div>
         </div>
-      </div>
 
-    </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Categories</h3>
+
+            </div>
+            <div class="card-body p-0">
+              <ul class="nav nav-pills flex-column">
+                <?php
+                $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
+                $result2 = $conn->query($sql2);
+
+                if ($result2->num_rows > 0) {
+                  while ($row2 = $result2->fetch_assoc()) {
+                    $c_id = $row2['cat_id'];
+                    $cat_name = $row2['cat_name'];
+                    $cat_instruct = $row2['cat_instruct'];
+
+                    $sql3 = "SELECT * FROM exam_answers WHERE category_id = $c_id";
+                    $result3 = $conn->query($sql3);
+
+                    if ($result3->num_rows > 0) {
+                      while ($row3 = $result3->fetch_assoc()) {
+                        $exam_status = $row3['status'];
+                      }
+                    } else {
+                      $exam_status = 0;
+                    }
+
+                    if ($exam_status == 0) {
+
+                ?>
+                      <li class="nav-item">
+                        <a href="exam.php?id=<?php echo $e_id; ?>&cid=<?php echo $c_id; ?>" class="nav-link">
+                          <i class="fas fa-inbox"></i> <?php echo $cat_name; ?>
+                          <span class="far fa-circle text-info float-right"></span>
+                        </a>
+                      </li>
+                    <?php
+                    } else {
+                    ?>
+                      <li class="nav-item">
+                        <a href="exam.php?id=<?php echo $e_id; ?>&cid=<?php echo $c_id; ?>" class="nav-link disabled">
+                          <i class="fas fa-inbox"></i> <?php echo $cat_name; ?>
+                          <span class="far fa-check-circle text-info float-right"></span>
+                        </a>
+                      </li>
+                <?php
+                    }
+                  }
+                }
+                ?>
+              </ul>
+            </div>
+            <!-- /.card-body -->
+          </div>
+        </div>
+
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

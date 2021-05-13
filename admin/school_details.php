@@ -163,6 +163,7 @@ if ($result->num_rows > 0) {
                           ?>
                             <option <?php if ($value == $abm) echo 'selected' ?>><?php echo $abm; ?></option>
                             <option <?php if ($value == $ict) echo 'selected' ?>><?php echo $ict; ?></option>
+                            <option <?php if ($value == $humss) echo 'selected' ?>><?php echo $humss; ?></option>
                             <option <?php if ($value == $stem) echo 'selected' ?>><?php echo $stem; ?></option>
                             <option <?php if ($value == $he) echo 'selected' ?>><?php echo $he; ?></option>
                             <option <?php if ($value == $ia) echo 'selected' ?>><?php echo $ia; ?></option>

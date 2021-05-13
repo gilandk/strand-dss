@@ -51,8 +51,6 @@ include('include/header.php');
           } else {
             $handler = 'None';
           }
-
-
       ?>
 
           <div class="card">
@@ -62,9 +60,10 @@ include('include/header.php');
               <p class="card-text">
                 <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
               </p>
-              <a href="exam_info.php?id=<?php echo $exam_id; ?>" class="card-link">Take Exam</a>
+              <a href="take_exam.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Take Exam</a>
             </div>
           </div>
+
       <?php
         }
       }

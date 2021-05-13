@@ -2,6 +2,7 @@
 include('include/header.php');
 
 $e_id = $_REQUEST['id'];
+$c_id = $_REQUEST['cid'];
 
 $sql = "SELECT * FROM exams WHERE exam_id='$e_id'";
 $result = $conn->query($sql);
@@ -28,8 +29,17 @@ if ($result->num_rows > 0) {
     }
   }
 }
-?>
 
+$sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' and cat_id='$c_id' ORDER by cat_seq ASC";
+$result1 = $conn->query($sql2);
+
+if ($result1->num_rows > 0) {
+  while ($row1 = $result1->fetch_assoc()) {
+    $cat_name = $row1['cat_name'];
+    $cat_instruct = $row1['cat_instruct'];
+  }
+}
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -37,7 +47,7 @@ if ($result->num_rows > 0) {
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> <?php echo $type; ?> </h1>
+          <h1 class="m-0 text-dark"> <?php echo $type; ?></h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -56,28 +66,14 @@ if ($result->num_rows > 0) {
   <div class="content">
     <div class="container">
 
-      <div class="card">
-        <div class="card-body">
 
-          <p class="card-text">
-            <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
+      <?php include('include/exam_guide.php'); ?>
+      <?php include('include/exam_questions.php'); ?>
 
 
-          <p class="card-text">
-            <?php echo $guide; ?>
-          </p>
-          <a href="exam.php?id=<?php echo $exam_id; ?>" class="card-link">Start Examination</a>
-          <a href="index.php" class="card-link">Back</a>
-        </div>
-      </div>
-
-    </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+    </div><!-- /.container-fluid -->
+  </div><!-- /.content -->
+</div><!-- /.content-wrapper -->
 
 <?php
 
