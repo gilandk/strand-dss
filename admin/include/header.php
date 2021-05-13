@@ -67,7 +67,6 @@ $ad = 'Arts and Design';
 
   <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
 
-
 </head>
 <!-- oncontextmenu="return false" -->
 

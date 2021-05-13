@@ -62,6 +62,30 @@
 <script src="../dist/js/ajax.js"></script>
 
 
+<script type="text/javascript">
+  // Get context with jQuery - using jQuery's .get() method.
+  var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+  var donutData = {
+    labels: <?php echo json_encode($json2) ?>,
+    datasets: [{
+      data: <?php echo json_encode($json) ?>,
+      backgroundColor: ['#f55454', '#00a669', '#f3cd12', '#00c0ef', '#4b3cbc', '#ded2d9', '#AC33FF', '#33FF8E'],
+    }]
+  }
+  var donutOptions = {
+    maintainAspectRatio: false,
+    responsive: true,
+  }
+  //Create pie or douhnut chart
+  // You can switch between pie and douhnut using the method below.
+  var donutChart = new Chart(donutChartCanvas, {
+    type: 'doughnut',
+    data: donutData,
+    options: donutOptions
+  })
+</script>
+
+
 </body>
 
 </html>
