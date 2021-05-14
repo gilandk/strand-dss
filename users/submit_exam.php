@@ -11,8 +11,7 @@ if (isset($_POST['submit'])) {
   $user_id = $_SESSION['id'];
   $c_id = mysqli_real_escape_string($conn, $_POST['c_id']);
   $status = 1;
-  $apt = '';
-  $val = 0;
+
 
   if (!empty($_POST['ans'])) {
 
@@ -40,12 +39,10 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  $score;
-
   $sql3 = "SELECT * FROM category WHERE cat_id = '$c_id'";
   $result3 = $conn->query($sql3);
 
-  if ($result2->num_rows > 0) {
+  if ($result3->num_rows > 0) {
     while ($row3 = $result3->fetch_assoc()) {
       $cat_items = $row3['cat_items'];
 
@@ -84,10 +81,15 @@ if (isset($_POST['submit'])) {
     }
   }
 
+  echo $score;
+  echo $apt;
+  echo $percentile;
+  echo $val;
+
   $sql = "INSERT INTO exam_answers
-    (exam_id, examinee_id, category_id, score, status, percentile, aptitude, value)
-    VALUES
-    ('$e_id', '$user_id', '$c_id', '$score', '$status', '$percentile', '$apt', '$val')";
+      (exam_id, examinee_id, category_id, score, status, percentile, aptitude, value)
+      VALUES
+      ('$e_id', '$user_id', '$c_id', '$score', '$status', '$percentile', '$apt', '$val')";
   if ($conn->query($sql) == TRUE) {
 
     $_SESSION['answerExamSuccess'] = true;

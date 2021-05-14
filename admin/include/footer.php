@@ -10,16 +10,9 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="../plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-
 <!-- Bootstrap 4 -->
 <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="../plugins/chart.js/Chart.min.js"></script>
+
 <!-- Sparkline -->
 <script src="../plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
@@ -42,7 +35,7 @@
 <script src="../plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Toastr -->
 <script src="../plugins/toastr/toastr.min.js"></script>
-<!-- CKeditor -->
+
 <!-- Ion Slider -->
 <script src="../plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
 <!-- Bootstrap slider -->
@@ -60,30 +53,6 @@
 <!-- custom -->
 <script src="../dist/js/custom.js"></script>
 <script src="../dist/js/ajax.js"></script>
-
-
-<script type="text/javascript">
-  // Get context with jQuery - using jQuery's .get() method.
-  var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-  var donutData = {
-    labels: <?php echo json_encode($json2) ?>,
-    datasets: [{
-      data: <?php echo json_encode($json) ?>,
-      backgroundColor: ['#f55454', '#00a669', '#f3cd12', '#00c0ef', '#4b3cbc', '#ded2d9', '#AC33FF', '#33FF8E'],
-    }]
-  }
-  var donutOptions = {
-    maintainAspectRatio: false,
-    responsive: true,
-  }
-  //Create pie or douhnut chart
-  // You can switch between pie and douhnut using the method below.
-  var donutChart = new Chart(donutChartCanvas, {
-    type: 'doughnut',
-    data: donutData,
-    options: donutOptions
-  })
-</script>
 
 
 </body>

@@ -25,7 +25,7 @@ $ad = 'Arts and Design';
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Strand DSS | Dashboard</title>
+  <title>Strand DSS | Admin Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -66,6 +66,13 @@ $ad = 'Arts and Design';
   <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
 
   <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
+  <!-- ChartJS -->
+  <script src="../plugins/chart.js/Chart.min.js"></script>
+  <!-- jQuery -->
+  <script src="../plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 
 </head>
 <!-- oncontextmenu="return false" -->

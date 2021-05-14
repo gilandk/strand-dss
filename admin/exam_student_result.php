@@ -320,7 +320,6 @@ if ($resultuser->num_rows > 0) {
                               }
 
 
-
                               $abm_score = (($rc + $ca + $ea) / 24) * 100;
                               $stem_score = (($ma + $ms + $lr + $rc) / 32) * 100;
                               $humss_score = (($va + $nvr + $ea + $rc) / 32) * 100;
@@ -385,42 +384,42 @@ if ($resultuser->num_rows > 0) {
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $abm; ?></strong></td>
-                      <td class="text-center"><?php echo $abm_score; ?></td>
+                      <td class="text-center"><?php echo number_format($abm_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_abm; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $stem; ?></strong></td>
-                      <td class="text-center"><?php echo $stem_score; ?></td>
+                      <td class="text-center"><?php echo number_format($stem_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_stem; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $humss; ?></strong></td>
-                      <td class="text-center"><?php echo $humss_score; ?></td>
+                      <td class="text-center"><?php echo number_format($humss_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_humss; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $he; ?></strong></td>
-                      <td class="text-center"><?php echo $he_score; ?></td>
+                      <td class="text-center"><?php echo number_format($he_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_he; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $ict; ?></strong></td>
-                      <td class="text-center"><?php echo $ict_score; ?></td>
+                      <td class="text-center"><?php echo number_format($ict_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_ict; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $afa; ?></strong></td>
-                      <td class="text-center"><?php echo $afa_score; ?></td>
+                      <td class="text-center"><?php echo number_format($afa_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_afa; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $ia; ?></strong></td>
-                      <td class="text-center"><?php echo $ia_score; ?></td>
+                      <td class="text-center"><?php echo number_format($ia_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_ia; ?></td>
                     </tr>
                     <tr>
                       <td class="tdresize"><strong><?php echo $ad; ?></strong></td>
-                      <td class="text-center"><?php echo $ad_score; ?></td>
+                      <td class="text-center"><?php echo number_format($ad_score, 2) . ' %'; ?></td>
                       <td class="text-center"><?php echo $c_ad; ?></td>
                     </tr>
 
@@ -435,6 +434,29 @@ if ($resultuser->num_rows > 0) {
       </div><!-- /.container-fluid -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<script>
+  // Get context with jQuery - using jQuery's .get() method.
+  var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+  var donutData = {
+    labels: <?php echo json_encode($json2) ?>,
+    datasets: [{
+      data: <?php echo json_encode($json) ?>,
+      backgroundColor: ['#f55454', '#00a669', '#f3cd12', '#00c0ef', '#4b3cbc', '#ded2d9', '#AC33FF', '#33FF8E'],
+    }]
+  }
+  var donutOptions = {
+    maintainAspectRatio: false,
+    responsive: true,
+  }
+  //Create pie or douhnut chart
+  // You can switch between pie and douhnut using the method below.
+  var donutChart = new Chart(donutChartCanvas, {
+    type: 'doughnut',
+    data: donutData,
+    options: donutOptions
+  })
+</script>
 <?php
 include('include/footer.php');
 ?>

@@ -2,6 +2,7 @@
 include('include/header.php');
 
 $e_id = $_REQUEST['id'];
+$u_id = $_SESSION['id'];
 
 $sql = "SELECT * FROM exams WHERE exam_id='$e_id'";
 $result = $conn->query($sql);
@@ -93,7 +94,7 @@ if ($result->num_rows > 0) {
                     $cat_name = $row2['cat_name'];
                     $cat_instruct = $row2['cat_instruct'];
 
-                    $sql3 = "SELECT * FROM exam_answers WHERE category_id = $c_id";
+                    $sql3 = "SELECT * FROM exam_answers WHERE examinee_id = '$u_id' AND category_id = $c_id";
                     $result3 = $conn->query($sql3);
 
                     if ($result3->num_rows > 0) {
