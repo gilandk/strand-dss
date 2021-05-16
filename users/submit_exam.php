@@ -4,7 +4,7 @@ session_start();
 
 require_once('../db.php');
 
-if (isset($_POST['submit'])) {
+if (isset($_POST)) {
 
 
   $e_id = mysqli_real_escape_string($conn, $_POST['e_id']);

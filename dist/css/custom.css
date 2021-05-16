@@ -16,3 +16,9 @@
 .tdresize {
     width: 50%;
 }
+
+.element {
+    position: fixed;
+    bottom: 6%;
+    right: 1%;
+}

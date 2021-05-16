@@ -12,6 +12,7 @@
      <div class="card">
        <div class="card-header">
          <h3 class="card-title"><?php echo $sub_name; ?></h3>
+
        </div>
        <div class="card-body">
          <p class="card-text">
@@ -27,10 +28,8 @@
 
            <?php
 
-            $num = '1';
             $total = 0;
             $rowtotal = 0;
-            $point = 0;
 
             $ques = "SELECT * FROM questions WHERE q_scat = '$sub_id' ORDER BY q_item";
             $resultq = $conn->query($ques);
@@ -58,13 +57,13 @@
                      <td> </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio1_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="1" required />
+                         <input class="custom-control-input" type="radio" id="customRadio1_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="1" />
                          <label for="customRadio1_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice1; ?></label>
                        </div>
                      </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio2_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="2" required />
+                         <input class="custom-control-input" type="radio" id="customRadio2_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="2" />
                          <label for="customRadio2_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice2; ?></label>
                        </div>
                      </td>
@@ -73,13 +72,13 @@
                      <td> </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio3_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="3" required />
+                         <input class="custom-control-input" type="radio" id="customRadio3_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="3" />
                          <label for="customRadio3_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice3; ?></label>
                        </div>
                      </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio4_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="4" required />
+                         <input class="custom-control-input" type="radio" id="customRadio4_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="4" />
                          <label for="customRadio4_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice4; ?></label>
                        </div>
                      </td>
@@ -90,6 +89,8 @@
               }
             }
             ?>
+           <hr />
+
        </div>
 
      </div>
@@ -98,9 +99,7 @@
 
     }
   }
-
   ?>
 
-
- <button type="submit" class="btn btn-success" name="submit">Submit</button>
+ <button type="submit" class="btn btn-success" name="save">Submit</button>
  </form>
