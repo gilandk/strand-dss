@@ -17,6 +17,7 @@ if (isset($_POST)) {
   if ($result->num_rows == 0) {
 
     $sql = "INSERT INTO strands (strand_name, strand_abr, strand_description) VALUES ('$strand_name', '$strand_abr', '$strand_description')";
+
     if ($conn->query($sql) == TRUE) {
 
       $_SESSION['addStrandSuccess'] = true;
