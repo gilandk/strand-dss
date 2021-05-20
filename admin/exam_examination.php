@@ -74,7 +74,6 @@ $result = $conn->query($sql);
                     <th>Type</th>
                     <th class="text-center">Exam Start</th>
                     <th class="text-center">Exam End</th>
-                    <th class="text-center">Proctor</th>
                     <th class="text-center">Status</th>
                     <th class="text-center">Action</th>
                   </tr>
@@ -90,19 +89,7 @@ $result = $conn->query($sql);
                       $type = $row['exam_type'];
                       $date_s = $row['exam_date_s'];
                       $date_e = $row['exam_date_e'];
-                      $handler_id = $row['exam_handler'];
                       $status = $row['exam_status'];
-
-                      $sql1 = "SELECT * FROM school_admin WHERE sa_id = '$handler_id'";
-                      $res1 = $conn->query($sql1);
-                      if ($res1->num_rows > 0) {
-                        while ($sa = $res1->fetch_assoc()) {
-
-                          $handler = $sa['sa_fullname'];
-                        }
-                      } else {
-                        $handler = 'None';
-                      }
 
                   ?>
                       <tr>
@@ -112,7 +99,6 @@ $result = $conn->query($sql);
 
                         <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_s)); ?></td>
                         <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_e)); ?></td>
-                        <td class="text-center"><?php echo $handler; ?></td>
                         <td class="text-center"><?php echo $status; ?></td>
                         <td class="text-center">
                           <a href="manage_exam.php?id=<?php echo $exam_id; ?>" class="btn btn-block btn-outline-info btn-xs">Manage</a>

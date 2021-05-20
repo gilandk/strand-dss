@@ -57,13 +57,13 @@
                      <td> </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio1_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="1" />
+                         <input class="custom-control-input" type="radio" id="customRadio1_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="1" required />
                          <label for="customRadio1_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice1; ?></label>
                        </div>
                      </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio2_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="2" />
+                         <input class="custom-control-input" type="radio" id="customRadio2_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="2" required />
                          <label for="customRadio2_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice2; ?></label>
                        </div>
                      </td>
@@ -72,13 +72,13 @@
                      <td> </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio3_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="3" />
+                         <input class="custom-control-input" type="radio" id="customRadio3_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="3" required />
                          <label for="customRadio3_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice3; ?></label>
                        </div>
                      </td>
                      <td>
                        <div class="custom-control custom-radio">
-                         <input class="custom-control-input" type="radio" id="customRadio4_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="4" />
+                         <input class="custom-control-input" type="radio" id="customRadio4_<?php echo $qid; ?>" name="ans[<?php echo $q_item; ?>]" value="4" required />
                          <label for="customRadio4_<?php echo $qid; ?>" class="custom-control-label"><?php echo $choice4; ?></label>
                        </div>
                      </td>

@@ -57,11 +57,8 @@ if ($result->num_rows > 0) {
 
               <ul class="list-group list-group-unbordered mb-3">
                 <li class="list-group-item">
-                  <b>Facilitator</b> <a class="float-right">1</a>
-                </li>
-                <li class="list-group-item">
                   <b>Students</b> <a class="float-right">1000</a>
-
+                </li>
               </ul>
             </div>
             <!-- /.card-body -->

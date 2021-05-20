@@ -94,7 +94,7 @@ if ($result->num_rows > 0) {
                   }
                   ?>
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                       <div class="card">
 
                         <form action="update_examinfo.php" method="POST" enctype="multipart/form-data">
@@ -136,14 +136,7 @@ if ($result->num_rows > 0) {
 
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="card">
-                        <div class="form-group mt-3 ml-3 mr-3">
-                          <label>Proctor:</label>
 
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
 

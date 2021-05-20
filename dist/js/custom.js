@@ -213,9 +213,15 @@ $("#changePassword").on("submit", function(e) {
 
 $(function() {
     //Initialize Select2 Elements
-    $('.select2').select2({
+    //Initialize Select2 Elements
+    $('.select2').select2()
 
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
     })
+
+
 });
 
 //confirmation when click
@@ -226,3 +232,7 @@ $('.confirmation').on('click', function() {
     }
     return false;
 });
+
+
+//Bootstrap Duallistbox
+$('.duallistbox').bootstrapDualListbox()

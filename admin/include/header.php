@@ -12,6 +12,7 @@ require_once('../db.php');
 $abm = 'Accountancy, Business and Management (ABM)';
 $stem = 'Science Technology Engineering and Mathematics (STEM)';
 $humss = 'Humanities and Social Sciences Strand (HUMSS)';
+$gas = 'General Academic Strand';
 $he = 'Home Economics';
 $ict = 'Information and Communication Technology (ICT)';
 $afa = 'Agri-Fishery Arts';
@@ -48,10 +49,14 @@ $ad = 'Arts and Design';
   <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
-  <!-- select2 -->
+  <!-- Select2 -->
   <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- custom-css -->
   <link rel="stylesheet" href="../dist/css/custom.css">
+
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
 
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">

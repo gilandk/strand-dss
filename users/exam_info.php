@@ -15,18 +15,6 @@ if ($result->num_rows > 0) {
     $type = $row['exam_type'];
     $date_s = $row['exam_date_s'];
     $date_e = $row['exam_date_e'];
-    $handler_id = $row['exam_handler'];
-
-    $sql1 = "SELECT * FROM school_admin WHERE sa_id = '$handler_id'";
-    $res1 = $conn->query($sql1);
-    if ($res1->num_rows > 0) {
-      while ($sa = $res1->fetch_assoc()) {
-
-        $handler = $sa['sa_fullname'];
-      }
-    } else {
-      $handler = 'None';
-    }
   }
 }
 ?>
@@ -56,6 +44,33 @@ if ($result->num_rows > 0) {
   <!-- Main content -->
   <div class="content">
     <div class="container">
+      <?php
+
+      if (isset($_SESSION['submitExamSuccess'])) {
+      ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fas fa-check"></i> Success!</h5>
+          Examination Successfully Submit!
+        </div>
+      <?php
+        unset($_SESSION['submitExamSuccess']);
+      }
+      ?>
+
+      <?php
+
+      if (isset($_SESSION['submitExamFailed'])) {
+      ?>
+        <div class="alert alert-danger alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+          Examination Failed to Submit!
+        </div>
+      <?php
+        unset($_SESSION['submitExamFailed']);
+      }
+      ?>
 
       <div class="row">
 
@@ -64,7 +79,7 @@ if ($result->num_rows > 0) {
             <div class="card-body">
 
               <p class="card-text">
-                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
+                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
               </p>
 
               <p class="card-text">
@@ -109,7 +124,7 @@ if ($result->num_rows > 0) {
 
                 ?>
                       <li class="nav-item">
-                        <a href="exam.php?id=<?php echo $e_id; ?>&cid=<?php echo $c_id; ?>" class="nav-link">
+                        <a href="exam.php?id=<?php echo $e_id; ?>&cid=<?php echo $c_id; ?>" class="nav-link text-primary">
                           <i class="fas fa-inbox"></i> <?php echo $cat_name; ?>
                           <span class="far fa-circle text-info float-right"></span>
                         </a>
@@ -142,7 +157,7 @@ if ($result->num_rows > 0) {
 </div>
 <!-- /.content-wrapper -->
 
-<?php
 
+<?php
 include('include/footer.php');
 ?>

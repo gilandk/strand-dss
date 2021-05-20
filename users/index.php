@@ -23,7 +23,6 @@ include('include/header.php');
   </div>
   <!-- /.content-header -->
 
-
   <!-- Main content -->
   <div class="content">
     <div class="container">
@@ -39,18 +38,6 @@ include('include/header.php');
           $type = $row['exam_type'];
           $date_s = $row['exam_date_s'];
           $date_e = $row['exam_date_e'];
-          $handler_id = $row['exam_handler'];
-
-          $sql1 = "SELECT * FROM school_admin WHERE sa_id = '$handler_id'";
-          $res1 = $conn->query($sql1);
-          if ($res1->num_rows > 0) {
-            while ($sa = $res1->fetch_assoc()) {
-
-              $handler = $sa['sa_fullname'];
-            }
-          } else {
-            $handler = 'None';
-          }
       ?>
 
           <div class="card">
@@ -58,7 +45,7 @@ include('include/header.php');
               <h5 class="card-title mb-2"><?php echo $type; ?></h5>
 
               <p class="card-text">
-                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?> &nbsp; | &nbsp; <i class="fas fa-user-edit"></i> <?php echo $handler; ?>
+                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
               </p>
               <a href="take_exam.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Take Exam</a>
             </div>
@@ -68,11 +55,11 @@ include('include/header.php');
         }
       }
       ?>
-    </div>
-    <!-- /.row -->
-  </div><!-- /.container-fluid -->
-</div>
-<!-- /.content -->
+
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

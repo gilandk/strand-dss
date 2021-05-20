@@ -50,12 +50,6 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="school_facilitator.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Facilitator</p>
-                  </a>
-                </li>
-                <li class="nav-item">
                   <a href="school_students.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Students</p>
@@ -64,6 +58,34 @@
               </ul>
             </li>
             <!-- school -->
+            <!-- strand -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-school"></i>
+                <p>
+                  Strands
+                  <i class="fas fa-angle-left right"></i>
+                  <span class="badge badge-info right">6</span>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="manage_strands.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="strand_formula.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Formula</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- strand -->
+
+
             <!-- Exam -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">

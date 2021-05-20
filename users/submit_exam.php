@@ -92,7 +92,7 @@ if (isset($_POST)) {
       ('$e_id', '$user_id', '$c_id', '$score', '$status', '$percentile', '$apt', '$val')";
   if ($conn->query($sql) == TRUE) {
 
-    $_SESSION['answerExamSuccess'] = true;
+    $_SESSION['submitExamSuccess'] = true;
     header("Location: exam_info.php?id=" . $e_id);
     exit();
   } else {
@@ -101,7 +101,7 @@ if (isset($_POST)) {
   }
 } else {
   //if email found in database then show email already exists error.
-  $_SESSION['answerExamFailed'] = true;
+  $_SESSION['submitExamFailed'] = true;
   header("Location: exam_info.php?id=" . $e_id);
   exit();
 }
