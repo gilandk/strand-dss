@@ -23,7 +23,6 @@ if ($result->num_rows > 0) {
     $exam_guide = $row['exam_guide'];
     $exam_date_s = $row['exam_date_s'];
     $exam_date_e = $row['exam_date_e'];
-    $exam_handler = $row['exam_handler'];
     $exam_status = $row['exam_status'];
   }
 }
