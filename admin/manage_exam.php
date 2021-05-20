@@ -258,7 +258,7 @@ if ($result->num_rows > 0) {
                                     <td><?php echo $row5['school']; ?></td>
                                     <td><?php echo $row5['strand_opt1']; ?></td>
                                     <td><?php echo $row5['strand_opt2']; ?></td>
-                                    <td><a href="exam_student_result.php?id=<?php echo $row5['user_id']; ?>" class="btn btn-block btn-outline-primary btn-xs">Result</a></td>
+                                    <td><a href="exam_student_result.php?id=<?php echo $row5['user_id']; ?>&eid=<?php echo $e_id; ?>" class="btn btn-block btn-outline-primary btn-xs">Result</a></td>
                                   </tr>
                           <?php
                                 }

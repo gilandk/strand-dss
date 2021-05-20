@@ -99,456 +99,420 @@ $result = $conn->query($sql);
                   </div><!-- /.card-header -->
                   <div class="card-body">
 
-
                     <div class="row">
-
-                      <!-- category #1 -->
-                      <?php
-                      if ($c_count < 1) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
+                      <div class="col-sm-6">
+                        <!-- checkbox -->
                         <div class="form-group">
-                          <label>Category #1</label>
-                          <select class="form-control select2bs4" style="width: 100%;" name="category1">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc1 = "SELECT * FROM category";
-                            $resultc1 = $conn->query($sqlc1);
-                            if ($resultc1->num_rows > 0) {
-                              while ($rowc1 = $resultc1->fetch_assoc()) {
-                                $category_id = $rowc1['cat_id'];
-                                $category_name = $rowc1['cat_name'];
+                          <!-- category #1 -->
+                          <?php
+                          if ($c_count < 1) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
 
-                                $sqls1 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results1 = $conn->query($sqls1);
-                                if ($results1->num_rows > 0) {
-                                  while ($rows1 = $results1->fetch_assoc()) {
-                                    $category1 = $rows1['category1'];
+                          <?php
+                          $sqlc1 = "SELECT * FROM category WHERE cat_id = 1";
+                          $resultc1 = $conn->query($sqlc1);
+                          if ($resultc1->num_rows > 0) {
+                            while ($rowc1 = $resultc1->fetch_assoc()) {
+                              $category_id = $rowc1['cat_id'];
+                              $category_name = $rowc1['cat_name'];
 
-                                    if ($category1 == $category_id) {
-                                      $selected1 = 'selected';
-                                    } else {
-                                      $selected1 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected1; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                              $sqls1 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results1 = $conn->query($sqls1);
+                              if ($results1->num_rows > 0) {
+                                while ($rows1 = $results1->fetch_assoc()) {
+                                  $category1 = $rows1['category1'];
+
+                                  if ($category1 == $category_id) {
+                                    $checked1 = 'checked';
+                                  } else {
+                                    $checked1 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked1; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #1 -->
-                      <!-- category #2 -->
-                      <?php
-                      if ($c_count < 2) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #2</label>
-                          <select class="form-control select2bs4" style="width: 100%;" name="category2">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc2 = "SELECT * FROM category";
-                            $resultc2 = $conn->query($sqlc2);
-                            if ($resultc2->num_rows > 0) {
-                              while ($rowc2 = $resultc2->fetch_assoc()) {
-                                $category_id = $rowc2['cat_id'];
-                                $category_name = $rowc2['cat_name'];
+                          }
+                          ?>
+                          <!-- category #1 -->
+                          <!-- category #2 -->
+                          <?php
+                          if ($c_count < 2) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
 
-                                $sqls2 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results2 = $conn->query($sqls2);
-                                if ($results2->num_rows > 0) {
-                                  while ($rows2 = $results2->fetch_assoc()) {
-                                    $category2 = $rows2['category2'];
+                          <?php
+                          $sqlc2 = "SELECT * FROM category WHERE cat_id = 2";
+                          $resultc2 = $conn->query($sqlc2);
+                          if ($resultc2->num_rows > 0) {
+                            while ($rowc2 = $resultc2->fetch_assoc()) {
+                              $category_id = $rowc2['cat_id'];
+                              $category_name = $rowc2['cat_name'];
 
-                                    if ($category2 == $category_id) {
-                                      $selected2 = 'selected';
-                                    } else {
-                                      $selected2 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected2; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                              $sqls2 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results2 = $conn->query($sqls2);
+                              if ($results2->num_rows > 0) {
+                                while ($rows2 = $results2->fetch_assoc()) {
+                                  $category2 = $rows2['category2'];
+
+                                  if ($category2 == $category_id) {
+                                    $checked2 = 'checked';
+                                  } else {
+                                    $checked2 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked2; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #2 -->
-                      <!-- category #3 -->
-                      <?php
-                      if ($c_count < 3) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #3</label>
-                          <select class="form-control select3bs4" style="width: 100%;" name="category3">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc3 = "SELECT * FROM category";
-                            $resultc3 = $conn->query($sqlc3);
-                            if ($resultc3->num_rows > 0) {
-                              while ($rowc3 = $resultc3->fetch_assoc()) {
-                                $category_id = $rowc3['cat_id'];
-                                $category_name = $rowc3['cat_name'];
+                          }
+                          ?>
 
-                                $sqls3 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results3 = $conn->query($sqls3);
-                                if ($results3->num_rows > 0) {
-                                  while ($rows3 = $results3->fetch_assoc()) {
-                                    $category3 = $rows3['category3'];
+                          <!-- category #2 -->
+                          <!-- category #3 -->
+                          <?php
+                          if ($c_count < 3) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
+                          <?php
+                          $sqlc3 = "SELECT * FROM category WHERE cat_id = 3";
+                          $resultc3 = $conn->query($sqlc3);
+                          if ($resultc3->num_rows > 0) {
+                            while ($rowc3 = $resultc3->fetch_assoc()) {
+                              $category_id = $rowc3['cat_id'];
+                              $category_name = $rowc3['cat_name'];
 
-                                    if ($category3 == $category_id) {
-                                      $selected3 = 'selected';
-                                    } else {
-                                      $selected3 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected3; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                              $sqls3 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results3 = $conn->query($sqls3);
+                              if ($results3->num_rows > 0) {
+                                while ($rows3 = $results3->fetch_assoc()) {
+                                  $category3 = $rows3['category3'];
+
+                                  if ($category3 == $category_id) {
+                                    $checked3 = 'checked';
+                                  } else {
+                                    $checked3 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked3; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #3 -->
-                      <!-- category #4 -->
-                      <?php
-                      if ($c_count < 4) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #4</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category4">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc4 = "SELECT * FROM category";
-                            $resultc4 = $conn->query($sqlc4);
-                            if ($resultc4->num_rows > 0) {
-                              while ($rowc4 = $resultc4->fetch_assoc()) {
-                                $category_id = $rowc4['cat_id'];
-                                $category_name = $rowc4['cat_name'];
+                          }
+                          ?>
 
-                                $sqls4 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results4 = $conn->query($sqls4);
-                                if ($results4->num_rows > 0) {
-                                  while ($rows4 = $results4->fetch_assoc()) {
-                                    $category4 = $rows4['category4'];
+                          <!-- category #3 -->
+                          <!-- category #4 -->
+                          <?php
+                          if ($c_count < 4) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
+                          <?php
+                          $sqlc4 = "SELECT * FROM category  WHERE cat_id = 4";
+                          $resultc4 = $conn->query($sqlc4);
+                          if ($resultc4->num_rows > 0) {
+                            while ($rowc4 = $resultc4->fetch_assoc()) {
+                              $category_id = $rowc4['cat_id'];
+                              $category_name = $rowc4['cat_name'];
 
-                                    if ($category4 == $category_id) {
-                                      $selected4 = 'selected';
-                                    } else {
-                                      $selected4 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected4; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                              $sqls4 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results4 = $conn->query($sqls4);
+                              if ($results4->num_rows > 0) {
+                                while ($rows4 = $results4->fetch_assoc()) {
+                                  $category4 = $rows4['category4'];
+
+                                  if ($category4 == $category_id) {
+                                    $checked4 = 'checked';
+                                  } else {
+                                    $checked4 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked4; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #4 -->
-                      <!-- category #5 -->
-                      <?php
-                      if ($c_count < 5) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #5</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category5">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc5 = "SELECT * FROM category";
-                            $resultc5 = $conn->query($sqlc5);
-                            if ($resultc5->num_rows > 0) {
-                              while ($rowc5 = $resultc5->fetch_assoc()) {
-                                $category_id = $rowc5['cat_id'];
-                                $category_name = $rowc5['cat_name'];
+                          }
+                          ?>
 
-                                $sqls5 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results5 = $conn->query($sqls5);
-                                if ($results5->num_rows > 0) {
-                                  while ($rows5 = $results5->fetch_assoc()) {
-                                    $category5 = $rows5['category5'];
+                          <!-- category #4 -->
+                          <!-- category #5 -->
+                          <?php
+                          if ($c_count < 5) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
+                          <?php
+                          $sqlc5 = "SELECT * FROM category WHERE cat_id = 5";
+                          $resultc5 = $conn->query($sqlc5);
+                          if ($resultc5->num_rows > 0) {
+                            while ($rowc5 = $resultc5->fetch_assoc()) {
+                              $category_id = $rowc5['cat_id'];
+                              $category_name = $rowc5['cat_name'];
 
-                                    if ($category5 == $category_id) {
-                                      $selected5 = 'selected';
-                                    } else {
-                                      $selected5 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected5; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                              $sqls5 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results5 = $conn->query($sqls5);
+                              if ($results5->num_rows > 0) {
+                                while ($rows5 = $results5->fetch_assoc()) {
+                                  $category5 = $rows5['category5'];
+
+                                  if ($category5 == $category_id) {
+                                    $checked5 = 'checked';
+                                  } else {
+                                    $checked5 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked5; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #5 -->
-                      <!-- category #6 -->
-                      <?php
-                      if ($c_count < 6) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #6</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category6">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc6 = "SELECT * FROM category";
-                            $resultc6 = $conn->query($sqlc6);
-                            if ($resultc6->num_rows > 0) {
-                              while ($rowc6 = $resultc6->fetch_assoc()) {
-                                $category_id = $rowc6['cat_id'];
-                                $category_name = $rowc6['cat_name'];
+                          }
+                          ?>
 
-                                $sqls6 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results6 = $conn->query($sqls6);
-                                if ($results6->num_rows > 0) {
-                                  while ($rows6 = $results6->fetch_assoc()) {
-                                    $category6 = $rows6['category6'];
+                          <!-- category #5 -->
+                          <!-- category #6 -->
+                          <?php
+                          if ($c_count < 6) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
 
-                                    if ($category6 == $category_id) {
-                                      $selected6 = 'selected';
-                                    } else {
-                                      $selected6 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected6; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                          <?php
+                          $sqlc6 = "SELECT * FROM category WHERE cat_id = 6";
+                          $resultc6 = $conn->query($sqlc6);
+                          if ($resultc6->num_rows > 0) {
+                            while ($rowc6 = $resultc6->fetch_assoc()) {
+                              $category_id = $rowc6['cat_id'];
+                              $category_name = $rowc6['cat_name'];
+
+                              $sqls6 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results6 = $conn->query($sqls6);
+                              if ($results6->num_rows > 0) {
+                                while ($rows6 = $results6->fetch_assoc()) {
+                                  $category6 = $rows6['category6'];
+
+                                  if ($category6 == $category_id) {
+                                    $checked6 = 'checked';
+                                  } else {
+                                    $checked6 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked6; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #6 -->
-                      <!-- category #7 -->
-                      <?php
-                      if ($c_count < 7) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #7</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category7">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc7 = "SELECT * FROM category";
-                            $resultc7 = $conn->query($sqlc7);
-                            if ($resultc7->num_rows > 0) {
-                              while ($rowc7 = $resultc7->fetch_assoc()) {
-                                $category_id = $rowc7['cat_id'];
-                                $category_name = $rowc7['cat_name'];
+                          }
+                          ?>
 
-                                $sqls7 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results7 = $conn->query($sqls7);
-                                if ($results7->num_rows > 0) {
-                                  while ($rows7 = $results7->fetch_assoc()) {
-                                    $category7 = $rows7['category7'];
+                          <!-- category #6 -->
+                          <!-- category #7 -->
+                          <?php
+                          if ($c_count < 7) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
 
-                                    if ($category7 == $category_id) {
-                                      $selected7 = 'selected';
-                                    } else {
-                                      $selected7 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected7; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                          <?php
+                          $sqlc7 = "SELECT * FROM category  WHERE cat_id = 7";
+                          $resultc7 = $conn->query($sqlc7);
+                          if ($resultc7->num_rows > 0) {
+                            while ($rowc7 = $resultc7->fetch_assoc()) {
+                              $category_id = $rowc7['cat_id'];
+                              $category_name = $rowc7['cat_name'];
+
+                              $sqls7 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results7 = $conn->query($sqls7);
+                              if ($results7->num_rows > 0) {
+                                while ($rows7 = $results7->fetch_assoc()) {
+                                  $category7 = $rows7['category7'];
+
+                                  if ($category7 == $category_id) {
+                                    $checked7 = 'checked';
+                                  } else {
+                                    $checked7 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked7; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #7 -->
-                      <!-- category #8 -->
-                      <?php
-                      if ($c_count < 8) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #8</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category8">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc8 = "SELECT * FROM category";
-                            $resultc8 = $conn->query($sqlc8);
-                            if ($resultc8->num_rows > 0) {
-                              while ($rowc8 = $resultc8->fetch_assoc()) {
-                                $category_id = $rowc8['cat_id'];
-                                $category_name = $rowc8['cat_name'];
+                          }
+                          ?>
 
-                                $sqls8 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results8 = $conn->query($sqls8);
-                                if ($results8->num_rows > 0) {
-                                  while ($rows8 = $results8->fetch_assoc()) {
-                                    $category8 = $rows8['category8'];
+                          <!-- category #7 -->
+                          <!-- category #8 -->
+                          <?php
+                          if ($c_count < 8) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
 
-                                    if ($category8 == $category_id) {
-                                      $selected8 = 'selected';
-                                    } else {
-                                      $selected8 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected8; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                          <?php
+                          $sqlc8 = "SELECT * FROM category  WHERE cat_id = 8";
+                          $resultc8 = $conn->query($sqlc8);
+                          if ($resultc8->num_rows > 0) {
+                            while ($rowc8 = $resultc8->fetch_assoc()) {
+                              $category_id = $rowc8['cat_id'];
+                              $category_name = $rowc8['cat_name'];
+
+                              $sqls8 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results8 = $conn->query($sqls8);
+                              if ($results8->num_rows > 0) {
+                                while ($rows8 = $results8->fetch_assoc()) {
+                                  $category8 = $rows8['category8'];
+
+                                  if ($category8 == $category_id) {
+                                    $checked8 = 'checked';
+                                  } else {
+                                    $checked8 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked8; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #8 -->
-                      <!-- category #9 -->
-                      <?php
-                      if ($c_count < 9) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #9</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category9">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc9 = "SELECT * FROM category";
-                            $resultc9 = $conn->query($sqlc9);
-                            if ($resultc9->num_rows > 0) {
-                              while ($rowc9 = $resultc9->fetch_assoc()) {
-                                $category_id = $rowc9['cat_id'];
-                                $category_name = $rowc9['cat_name'];
+                          }
+                          ?>
 
-                                $sqls9 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results9 = $conn->query($sqls9);
-                                if ($results9->num_rows > 0) {
-                                  while ($rows9 = $results9->fetch_assoc()) {
-                                    $category9 = $rows9['category9'];
+                          <!-- category #8 -->
+                          <!-- category #9 -->
+                          <?php
+                          if ($c_count < 9) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
 
-                                    if ($category9 == $category_id) {
-                                      $selected9 = 'selected';
-                                    } else {
-                                      $selected9 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected9; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                          <?php
+                          $sqlc9 = "SELECT * FROM category  WHERE cat_id = 9";
+                          $resultc9 = $conn->query($sqlc9);
+                          if ($resultc9->num_rows > 0) {
+                            while ($rowc9 = $resultc9->fetch_assoc()) {
+                              $category_id = $rowc9['cat_id'];
+                              $category_name = $rowc9['cat_name'];
+
+                              $sqls9 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results9 = $conn->query($sqls9);
+                              if ($results9->num_rows > 0) {
+                                while ($rows9 = $results9->fetch_assoc()) {
+                                  $category9 = $rows9['category9'];
+
+                                  if ($category9 == $category_id) {
+                                    $checked9 = 'checked';
+                                  } else {
+                                    $checked9 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked9; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #9 -->
-                      <!-- category #10 -->
-                      <?php
-                      if ($c_count < 10) {
-                        $hide = 'hide-me';
-                      } else {
-                        $hide = '';
-                      }
-                      ?>
-                      <div class="col-md-3 <?php echo $hide; ?>">
-                        <div class="form-group">
-                          <label>Category #10</label>
-                          <select class="form-control select4bs4" style="width: 100%;" name="category10">
-                            <option value="0">None</option>
-                            <?php
-                            $sqlc10 = "SELECT * FROM category";
-                            $resultc10 = $conn->query($sqlc10);
-                            if ($resultc10->num_rows > 0) {
-                              while ($rowc10 = $resultc10->fetch_assoc()) {
-                                $category_id = $rowc10['cat_id'];
-                                $category_name = $rowc10['cat_name'];
+                          }
+                          ?>
 
-                                $sqls10 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
-                                $results10 = $conn->query($sqls10);
-                                if ($results10->num_rows > 0) {
-                                  while ($rows10 = $results10->fetch_assoc()) {
-                                    $category10 = $rows10['category10'];
+                          <!-- category #9 -->
+                          <!-- category #10 -->
+                          <?php
+                          if ($c_count < 10) {
+                            $hide = 'hide-me';
+                          } else {
+                            $hide = '';
+                          }
+                          ?>
+                          <?php
+                          $sqlc10 = "SELECT * FROM category  WHERE cat_id = 10";
+                          $resultc10 = $conn->query($sqlc10);
+                          if ($resultc10->num_rows > 0) {
+                            while ($rowc10 = $resultc10->fetch_assoc()) {
+                              $category_id = $rowc10['cat_id'];
+                              $category_name = $rowc10['cat_name'];
 
-                                    if ($category10 == $category_id) {
-                                      $selected10 = 'selected';
-                                    } else {
-                                      $selected10 = '';
-                                    }
-                            ?>
-                                    <option <?php echo $selected10; ?> value="<?php echo $category_id; ?>"><?php echo $category_name; ?></option>
-                            <?php
+                              $sqls10 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
+                              $results10 = $conn->query($sqls10);
+                              if ($results10->num_rows > 0) {
+                                while ($rows10 = $results10->fetch_assoc()) {
+                                  $category10 = $rows10['category10'];
+
+                                  if ($category10 == $category_id) {
+                                    $checked10 = 'checked';
+                                  } else {
+                                    $checked10 = '';
                                   }
+                          ?>
+                                  <div class="form-check <?php echo $hide; ?>">
+                                    <input class="form-check-input" type="checkbox" name="category<?php echo $category_id; ?>" <?php echo $checked10; ?> value="<?php echo $category_id; ?>" />
+                                    <label class="form-check-label"><?php echo $category_name; ?></label>
+                                  </div>
+                          <?php
                                 }
                               }
                             }
-                            ?>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- category #10 -->
+                          }
+                          ?>
 
+                          <!-- category #10 -->
+                        </div>
+
+                        <button type="submit" name="save" class="btn btn-primary">Save</button>
+                      </div>
                     </div>
-
-
-                    <button type="submit" name="save" class="btn btn-primary">Save</button>
-                  </div>
-                </div>
 
               </form>
           <?php
