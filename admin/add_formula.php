@@ -6,23 +6,70 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
-  //explode date-range
+  $sf_id = mysqli_real_escape_string($conn, $_POST['sf_id']);
+  $mode = mysqli_real_escape_string($conn, $_POST['mode']);
   $strand_id = mysqli_real_escape_string($conn, $_POST['strand_id']);
+  $category1 = mysqli_real_escape_string($conn, $_POST['category1']);
+  $category2 = mysqli_real_escape_string($conn, $_POST['category2']);
+  $category3 = mysqli_real_escape_string($conn, $_POST['category3']);
+  $category4 = mysqli_real_escape_string($conn, $_POST['category4']);
+  $category5 = mysqli_real_escape_string($conn, $_POST['category5']);
+  $category6 = mysqli_real_escape_string($conn, $_POST['category6']);
+  $category7 = mysqli_real_escape_string($conn, $_POST['category7']);
+  $category8 = mysqli_real_escape_string($conn, $_POST['category8']);
+  $category9 = mysqli_real_escape_string($conn, $_POST['category9']);
+  $category10 = mysqli_real_escape_string($conn, $_POST['category10']);
+  $total = mysqli_real_escape_string($conn, $_POST['c_count']);
 
-  $formula = implode(', ', $_POST['formula']);
+  if ($mode == 'edit') {
+    $sql1 = "UPDATE strand_formula SET
+    strand_id='$strand_id',
+    category1='$category1',
+    category2='$category2',
+    category3='$category3',
+    category4='$category4',
+    category5='$category5',
+    category6='$category6',
+    category7='$category7',
+    category8='$category8',
+    category9='$category9',
+    category10='$category10',
+    total_category='$total'
+    WHERE sf_id='$sf_id'";
 
-  $sql = "INSERT INTO strand_formula (strand_id, formula) VALUES ('$strand_id', '$formula')";
-  if ($conn->query($sql) == TRUE) {
-
-    $_SESSION['UpdateFormulaSuccess'] = true;
-    header("Location: strand_formula.php?id=" . $strand_id);
-    exit();
+    if ($conn->query($sql1) == TRUE) {
+      $_SESSION['UpdateFormulaSuccess'] = true;
+      header("Location: strand_formula.php?id=" . $strand_id);
+      exit();
+    } else {
+      //If data failed to insert then show that error. Note: This conditio n should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
+      echo "Error " . $sql1 . "<br>" . $conn->error;
+    }
   } else {
-    //If data failed to insert then show that error. Note: This conditio n should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
-    echo "Error " . $sql . "<br>" . $conn->error;
+    $sql = "INSERT INTO strand_formula (strand_id, category1, category2, category3, category4, category5, category6, category7, category8, category9, category10, total_category) VALUES
+    ('$strand_id',
+    '$category1',
+    '$category2',
+    '$category3',
+    '$category4',
+    '$category5',
+    '$category6',
+    '$category7',
+    '$category8',
+    '$category9',
+    '$category10',
+    '$total')";
+    if ($conn->query($sql) == TRUE) {
+      $_SESSION['UpdateFormulaSuccess'] = true;
+      header("Location: strand_formula.php?id=" . $strand_id);
+      exit();
+    } else {
+      //If data failed to insert then show that error. Note: This conditio n should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
+      echo "Error " . $sql . "<br>" . $conn->error;
+    }
   }
 } else {
-  //if email found in database then show email already exists error.
+
   $_SESSION['UpdateFormulaSuccess'] = true;
   header("Location: strand_formula.php?id=" . $strand_id);
   exit();

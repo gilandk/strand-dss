@@ -30,8 +30,36 @@ $result = $conn->query($sql);
 
   <section class="content">
     <div class="container-fluid">
+
       <div class="row">
         <div class="col-md-12">
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['UpdateFormulaSuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
+              Formula Successfully Added!
+            </div>
+          <?php
+            unset($_SESSION['UpdateFormulaSuccess']);
+          }
+          ?>
+
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['UpdateFormulaFailed'])) {
+          ?>
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+              Formula title already exist!
+            </div>
+          <?php
+            unset($_SESSION['UpdateFormulaFailed']);
+          }
+          ?>
 
           <?php
           if ($result->num_rows > 0) {
@@ -42,18 +70,35 @@ $result = $conn->query($sql);
 
           ?>
               <form action="add_formula.php" method="POST" enctype="multipart/form-data">
+
+                <?php
+                $count = "SELECT * FROM category";
+                $r_count = $conn->query($count);
+                $c_count = $r_count->num_rows;
+
+                $sql = "SELECT * FROM strand_formula WHERE strand_id = '$strand_id'";
+                $res = $conn->query($sql);
+
+                if ($res->num_rows > 0) {
+                  while ($rowsf = $res->fetch_assoc()) {
+                    $sf_id = $rowsf['sf_id'];
+                  }
+                  $mode = 'edit';
+                } else {
+                  $mode = 'add';
+                }
+                ?>
+
                 <input type="hidden" name="strand_id" value="<?php echo $strand_id; ?>">
+                <input type="hidden" name="c_count" value="<?php echo $c_count; ?>">
+                <input type="hidden" name="sf_id" value="<?php echo $sf_id; ?>">
+                <input type="hidden" name="mode" value="<?php echo $mode; ?>">
                 <div class="card">
                   <div class="card-header">
                     <h5 class="card-title"><?php echo $strand_name . ' <strong>(' . $strand_abr . ')</strong>'; ?></h5>
                   </div><!-- /.card-header -->
                   <div class="card-body">
 
-                    <?php
-                    $count = "SELECT * FROM category";
-                    $r_count = $conn->query($count);
-                    $c_count = $r_count->num_rows;
-                    ?>
 
                     <div class="row">
 
