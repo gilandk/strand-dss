@@ -99,7 +99,16 @@ $result = $conn->query($sql);
 
                         <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_s)); ?></td>
                         <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_e)); ?></td>
-                        <td class="text-center"><?php echo $status; ?></td>
+
+                        <td class="text-center">
+                          <?php
+                          if ($status == 'Active') {
+                            $class = 'text-success';
+                          } else {
+                            $class = 'text-danger';
+                          }
+                          ?> <span class="<?php echo $class; ?>"><?php echo $status; ?></span>
+                        </td>
                         <td class="text-center">
                           <a href="manage_exam.php?id=<?php echo $exam_id; ?>" class="btn btn-block btn-outline-info btn-xs">Manage</a>
                         </td>

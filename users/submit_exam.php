@@ -57,7 +57,7 @@ if (isset($_POST)) {
       } elseif ($percentile == 31 or $percentile <= 40) {
         $apt = 'Below Average';
         $val = 2;
-      } elseif ($percentile == 51 or $percentile <= 50) {
+      } elseif ($percentile == 41 or $percentile <= 50) {
         $apt = 'Low Average';
         $val = 3;
       } elseif ($percentile == 51 or $percentile <= 60) {

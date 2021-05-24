@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (!empty($_SESSION['role']) && ($_SESSION['role'] == 'User')) {
+  header("Location: users/index.php");
+  exit();
+}
+
+
 require_once('db.php');
 
 $show = 'hidden';
@@ -30,6 +36,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['status'] = $row['status'];
         $_SESSION['id'] = $row['user_id'];
         $_SESSION['uid'] = $row['student_uid'];
+        $_SESSION['role'] = 'User';
 
         mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");
 
@@ -148,7 +155,7 @@ function first_char($str)
         </form>
 
         <p class="mb-1">
-          <a href="forgot-password.html">I forgot my password</a>
+          <a href="register.php">Sign up here</a>
         </p>
       </div>
       <!-- /.login-card-body -->

@@ -11,13 +11,6 @@ include('include/header.php');
         <div class="col-sm-6">
           <h1 class="m-0 text-dark"> Open Exams</h1>
         </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Layout</a></li>
-            <li class="breadcrumb-item active">Top Navigation</li>
-          </ol>
-        </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
@@ -28,7 +21,25 @@ include('include/header.php');
     <div class="container">
 
       <?php
-      $sql = "SELECT * FROM exams WHERE exam_status='Active' ORDER by exam_date_s ASC";
+
+      if (isset($_SESSION['RegisterSuccess'])) {
+      ?>
+        <div class="alert alert-success alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <h5><i class="icon fas fa-check"></i> Success!</h5>
+          Welcome! Please Complete you're Profile before taking the exam. <a href="profile.php">Here</a>
+        </div>
+      <?php
+        unset($_SESSION['RegisterSuccess']);
+      }
+      ?>
+
+      <?php
+
+      $current_date = date('d-m-Y h:i', time());
+      // echo '<br/>';
+
+      $sql = "SELECT * FROM exams WHERE exam_status='Active' OR exam_date_e < '$current_date' ORDER by exam_date_s DESC";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -53,6 +64,8 @@ include('include/header.php');
 
       <?php
         }
+      } else {
+        echo 'No Exams Available';
       }
       ?>
 

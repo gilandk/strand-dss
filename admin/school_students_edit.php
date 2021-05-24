@@ -61,7 +61,7 @@
 	            <div class="alert alert-success alert-dismissible">
 	              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 	              <h5><i class="icon fas fa-check"></i> Success!</h5>
-	              Student Successfully Update!
+	              Student Info Successfully Update!
 	            </div>
 	          <?php
               unset($_SESSION['updateStudentSuccess']);
@@ -86,7 +86,7 @@
 	              <form action="update_student.php" id="students" method="POST" enctype="multipart/form-data">
 	                <input type="hidden" name="user_id" value="<?php echo $u_id; ?>">
 	                <!-- Default box -->
-	                <div class="card collapsed-card">
+	                <div class="card card-info collapse-card">
 	                  <div class="card-header">
 	                    <h3 class="card-title">Student Info</h3>
 	                    <div class="card-tools">
@@ -152,7 +152,7 @@
 	                <!-- /.card -->
 
 	                <!-- Default box card-primary collapsed-card -->
-	                <div class="card collapsed-card">
+	                <div class="card card-info collapse-card">
 	                  <div class="card-header">
 	                    <h3 class="card-title">Educational Info</h3>
 	                    <div class="card-tools">
@@ -205,26 +205,38 @@
 	                    <div class=" form-group">
 	                      <label>Strand 1st Option</label>
 	                      <select class="form-control" name="strand1">
-	                        <option <?php if ($strand_opt1 == $abm) echo "selected" ?>>Accountancy, Business and Management (ABM)</option>
-	                        <option <?php if ($strand_opt1 == $stem) echo "selected" ?>>Science Technology Engineering and Mathematics (STEM)</option>
-	                        <option <?php if ($strand_opt1 == $he) echo "selected" ?>>Home Economics</option>
-	                        <option <?php if ($strand_opt1 == $ict) echo "selected" ?>>Information and Communication Technology (ICT)</option>
-	                        <option <?php if ($strand_opt1 == $afa) echo "selected" ?>>Agri-Fishery Arts</option>
-	                        <option <?php if ($strand_opt1 == $ia) echo "selected" ?>>Industrial Arts</option>
-	                        <option <?php if ($strand_opt1 == $ad) echo "selected" ?>>Arts and Design</option>
+	                        <?php
+                          $sql1 = "SELECT * FROM strands ORDER BY strand_id ASC";
+                          $result1 = $conn->query($sql1);
+                          if ($result1->num_rows > 0) {
+                            while ($rows = $result1->fetch_assoc()) {
+
+                              $strand_name = $rows['strand_name'];
+                          ?>
+	                            <option <?php if ($strand_opt1 == $strand_name) echo 'selected' ?> value="<?php echo $strand_name; ?>"><?php echo $strand_name; ?></option>
+	                        <?php
+                            }
+                          }
+                          ?>
 	                      </select>
 	                    </div>
 
 	                    <div class="form-group">
 	                      <label>Strand 2nd Option</label>
 	                      <select class="form-control" name="strand2">
-	                        <option <?php if ($strand_opt2 == $abm) echo "selected" ?>>Accountancy, Business and Management (ABM)</option>
-	                        <option <?php if ($strand_opt2 == $stem) echo "selected" ?>>Science Technology Engineering and Mathematics (STEM)</option>
-	                        <option <?php if ($strand_opt2 == $he) echo "selected" ?>>Home Economics</option>
-	                        <option <?php if ($strand_opt2 == $ict) echo "selected" ?>>Information and Communication Technology (ICT)</option>
-	                        <option <?php if ($strand_opt2 == $afa) echo "selected" ?>>Agri-Fishery Arts</option>
-	                        <option <?php if ($strand_opt2 == $ia) echo "selected" ?>>Industrial Arts</option>
-	                        <option <?php if ($strand_opt2 == $ad) echo "selected" ?>>Arts and Design</option>
+	                        <?php
+                          $sql1 = "SELECT * FROM strands ORDER BY strand_id ASC";
+                          $result1 = $conn->query($sql1);
+                          if ($result1->num_rows > 0) {
+                            while ($rows = $result1->fetch_assoc()) {
+
+                              $strand_name = $rows['strand_name'];
+                          ?>
+	                            <option <?php if ($strand_opt2 == $strand_name) echo 'selected' ?> value="<?php echo $strand_name; ?>"><?php echo $strand_name; ?></option>
+	                        <?php
+                            }
+                          }
+                          ?>
 	                      </select>
 	                    </div>
 
@@ -235,7 +247,7 @@
 	                <!-- /.card -->
 
 	                <!-- Default box -->
-	                <div class="card collapsed-card">
+	                <div class="card card-info collapsed-card">
 	                  <div class="card-header">
 	                    <h3 class="card-title">Account Info</h3>
 	                    <div class="card-tools">

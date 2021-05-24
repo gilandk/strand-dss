@@ -90,7 +90,6 @@ $result = $conn->query($sql);
                 ?>
 
                 <input type="hidden" name="strand_id" value="<?php echo $strand_id; ?>">
-                <input type="hidden" name="c_count" value="<?php echo $c_count; ?>">
                 <input type="hidden" name="sf_id" value="<?php echo $sf_id; ?>">
                 <input type="hidden" name="mode" value="<?php echo $mode; ?>">
                 <div class="card">

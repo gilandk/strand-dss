@@ -1,21 +1,13 @@
 <?php
 session_start();
 
-if (empty($_SESSION['logged_in'])) {
-  header("Location: index.php");
+if (($_SESSION['role'] != 'User') || empty($_SESSION['logged_in'])) {
+  header("Location: ../index.php");
   exit();
 }
 
 require_once('../db.php');
 
-
-$abm = 'Accountancy, Business and Management (ABM)';
-$stem = 'Science Technology Engineering and Mathematics (STEM)';
-$he = 'Home Economics';
-$ict = 'Information and Communication Technology (ICT)';
-$afa = 'Agri-Fishery Arts';
-$ia = 'Industrial Arts';
-$ad = 'Arts and Design';
 ?>
 
 <!DOCTYPE html>
@@ -136,7 +128,7 @@ $ad = 'Arts and Design';
             <li class="nav-item dropdown">
               <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?php echo $_SESSION['fullname']; ?></a>
               <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                <li><a href="#" class="dropdown-item">Update Info</a></li>
+                <li><a href="update_info.php" class="dropdown-item">Update Info</a></li>
                 <li><a href="#" class="dropdown-item">Account</a></li>
 
                 <li class="dropdown-divider"></li>

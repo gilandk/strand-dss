@@ -154,19 +154,17 @@ if ($result->num_rows > 0) {
                       <label class="col-sm-2 col-form-label">Strand Offered</label>
                       <div class="col-sm-10 select2-purple">
                         <select class="select2" multiple="multiple" size="5" data-placeholder="Select Strands" autocomplete="false" name="strands[]" style="width: 100%;">
+                          <?php
+                          $sql1 = "SELECT * FROM strands ORDER BY strand_id ASC";
+                          $result1 = $conn->query($sql1);
+                          if ($result1->num_rows > 0) {
+                            while ($rows = $result1->fetch_assoc()) {
 
-                          <?php
-                          foreach ($strands as $value) {
+                              $strand_name = $rows['strand_name'];
                           ?>
-                            <option <?php if ($value == $abm) echo 'selected' ?>><?php echo $abm; ?></option>
-                            <option <?php if ($value == $ict) echo 'selected' ?>><?php echo $ict; ?></option>
-                            <option <?php if ($value == $humss) echo 'selected' ?>><?php echo $humss; ?></option>
-                            <option <?php if ($value == $stem) echo 'selected' ?>><?php echo $stem; ?></option>
-                            <option <?php if ($value == $he) echo 'selected' ?>><?php echo $he; ?></option>
-                            <option <?php if ($value == $ia) echo 'selected' ?>><?php echo $ia; ?></option>
-                            <option <?php if ($value == $afa) echo 'selected' ?>><?php echo $afa; ?></option>
-                            <option <?php if ($value == $ad) echo 'selected' ?>><?php echo $ad; ?></option>
+                              <option <?php if ($strand_name == $strand_name) echo 'selected' ?> value="<?php echo $strand_name; ?>"><?php echo $strand_name; ?></option>
                           <?php
+                            }
                           }
                           ?>
                         </select>

@@ -190,15 +190,6 @@ $("#students").on("submit", function(e) {
     }
 });
 
-//password
-$("#facilitator").on("submit", function(e) {
-    e.preventDefault();
-    if ($('#password').val() != $('#cpassword').val()) {
-        $('#passwordError').show();
-    } else {
-        $(this).unbind('submit').submit();
-    }
-});
 
 
 //changepassword
