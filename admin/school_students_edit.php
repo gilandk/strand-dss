@@ -19,6 +19,7 @@
       $allias = $row['allias'];
       $birthdate = $row['birthdate'];
       $contact = $row['contact'];
+      $school = $row['school'];
       $age = $row['age'];
       $grade = $row['grade'];
       $section = $row['section'];
@@ -164,8 +165,15 @@
 
 	                    <div class="form-group">
 	                      <label>Student number</label>
+	                      <input type="text" class="form-control" placeholder="School/Academy/University" name="st_id" value="<?php echo $school; ?>" />
+	                    </div>
+
+	                    <div class="form-group">
+	                      <label>Student number</label>
 	                      <input type="number" class="form-control" placeholder="Student Number" name="st_id" value="<?php echo $student_id; ?>" />
 	                    </div>
+
+
 
 	                    <div class="row">
 	                      <div class="col-md-4">

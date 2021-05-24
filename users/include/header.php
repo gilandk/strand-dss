@@ -129,7 +129,7 @@ require_once('../db.php');
               <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><?php echo $_SESSION['fullname']; ?></a>
               <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
                 <li><a href="update_info.php" class="dropdown-item">Update Info</a></li>
-                <li><a href="#" class="dropdown-item">Account</a></li>
+                <li><a href="update_account.php" class="dropdown-item">Account</a></li>
 
                 <li class="dropdown-divider"></li>
 

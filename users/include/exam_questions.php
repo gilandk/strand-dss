@@ -100,6 +100,7 @@
     }
   }
   ?>
-
- <button type="submit" class="btn btn-success" name="save">Submit</button>
+ <div class="row ml-2 mb-2">
+   <button type="submit" class="btn btn-success" name="save">Submit</button>
+ </div>
  </form>

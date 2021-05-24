@@ -42,27 +42,13 @@ if (isset($_POST)) {
   if ($email == $emailcomp) {
     $sql = "UPDATE student_info SET
         
-            student_id='$student_id',
-            firstname='$firstname',
-            middlename='$middlename',
-            lastname='$lastname',
-            allias='$allias',
-            birthdate='$birthdate',
-            age='$age',
-            contact='$contact',
-            school='$school',
-            s_year='$s_year',
-            grade='$grade',
-            section='$section',
-            strand_opt1='$strand_opt1',
-            strand_opt2='$strand_opt2',
             user_pass='$password'
 
             WHERE user_id = '$u_id'";
     if ($conn->query($sql) == TRUE) {
 
       $_SESSION['updateStudentSuccess'] = true;
-      header("Location: school_students_edit.php?id=" . $u_id);
+      header("Location: update_account.php?id=" . $u_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -72,20 +58,6 @@ if (isset($_POST)) {
 
     $sql = "UPDATE student_info SET
         
-            student_id='$student_id',
-            firstname='$firstname',
-            middlename='$middlename',
-            lastname='$lastname',
-            allias='$allias',
-            birthdate='$birthdate',
-            age='$age',
-            contact='$contact',
-            school='$school',
-            grade='$grade',
-            section='$section',
-             s_year='$s_year';
-            strand_opt1='$strand_opt1',
-            strand_opt2='$strand_opt2',
             user_pass='$password',
             user_email='$email'
 
@@ -93,7 +65,7 @@ if (isset($_POST)) {
     if ($conn->query($sql) == TRUE) {
 
       $_SESSION['updateStudentSuccess'] = true;
-      header("Location: school_students_edit.php?id=" . $u_id);
+      header("Location: update_account.php?id=" . $u_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -103,13 +75,13 @@ if (isset($_POST)) {
 
     //if name found in database then show email already exists error.
     $_SESSION['updateStudentFailed'] = true;
-    header("Location: school_students_edit.php?id=" . $u_id);
+    header("Location: update_account.php?id=" . $u_id);
     exit();
   }
   //Close database connection. Not compulsory but good practice.
   $conn->close();
 } else {
   //redirect them back to register page if they didn't click register button
-  header("Location: school_students_edit.php?id=" . $u_id);
+  header("Location: update_account.php?id=" . $u_id);
   exit();
 }
