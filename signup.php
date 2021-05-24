@@ -29,7 +29,6 @@ if (isset($_POST)) {
           $_SESSION['fullname'] = $row['firstname'] . ' ' . $row['lastname'] . ' ' . $row['allias'];
           $_SESSION['status'] = $row['status'];
           $_SESSION['id'] = $row['user_id'];
-          $_SESSION['uid'] = $row['student_uid'];
           $_SESSION['role'] = 'User';
         }
       }

@@ -154,7 +154,7 @@ if ($result->num_rows > 0) {
                   <div class="card-body">
 
                     <div class="form-group">
-                      <label>Student number</label>
+                      <label>School/Academy/University</label>
                       <input type="text" class="form-control" placeholder="School/Academy/University" name="school" value="<?php echo $school; ?>" />
                     </div>
 

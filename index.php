@@ -35,7 +35,6 @@ if (isset($_POST['submit'])) {
         $_SESSION['fullname'] = $row['firstname'] . ' ' . strtoupper(first_char($row['middlename'])) . '. ' . $row['lastname'] . ' ' . $row['allias'];
         $_SESSION['status'] = $row['status'];
         $_SESSION['id'] = $row['user_id'];
-        $_SESSION['uid'] = $row['student_uid'];
         $_SESSION['role'] = 'User';
 
         mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");

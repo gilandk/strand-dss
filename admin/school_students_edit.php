@@ -163,16 +163,16 @@
 	                  </div>
 	                  <div class="card-body">
 
+
 	                    <div class="form-group">
 	                      <label>Student number</label>
-	                      <input type="text" class="form-control" placeholder="School/Academy/University" name="st_id" value="<?php echo $school; ?>" />
+	                      <input type="text" class="form-control" placeholder="School/Academy/University" name="school" value="<?php echo $school; ?>" />
 	                    </div>
 
 	                    <div class="form-group">
 	                      <label>Student number</label>
 	                      <input type="number" class="form-control" placeholder="Student Number" name="st_id" value="<?php echo $student_id; ?>" />
 	                    </div>
-
 
 
 	                    <div class="row">
