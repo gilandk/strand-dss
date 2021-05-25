@@ -104,12 +104,6 @@
                     <p>Manage Categories</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="boxed" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Exam Results</p>
-                  </a>
-                </li>
               </ul>
             </li>
             <!-- exam -->

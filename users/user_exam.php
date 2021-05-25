@@ -60,7 +60,7 @@ $userid = $_SESSION['id'];
               <p class="card-text">
                 <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
               </p>
-              <a href="take_exam.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Take Exam</a>
+              <a href="exam_result.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Result</a>
             </div>
           </div>
 

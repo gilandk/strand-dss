@@ -1,9 +1,8 @@
 <?php
 include('include/header.php');
-include('include/sidebar.php');
 
 $user_id = $_SESSION['id'];
-$e_id = $_REQUEST['eid'];
+$e_id = $_REQUEST['id'];
 
 $sql = "SELECT * FROM examinee_student WHERE student_id = '$user_id'";
 $result = $conn->query($sql);
