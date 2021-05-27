@@ -55,11 +55,6 @@ if ($result->num_rows > 0) {
 
               <p class="text-muted text-center">Junior - Senior High</p>
 
-              <ul class="list-group list-group-unbordered mb-3">
-                <li class="list-group-item">
-                  <b>Students</b> <a class="float-right">1000</a>
-                </li>
-              </ul>
             </div>
             <!-- /.card-body -->
           </div>
@@ -91,9 +86,10 @@ if ($result->num_rows > 0) {
               <hr>
 
               <strong><i class="fas fa-map-marker-alt mr-1"></i> Contact Information</strong>
-              <p class="text-muted"><strong>Email: </strong><?php echo $email; ?></p>
-
-              <p class="text-muted"><strong>Contact: </strong><?php echo $contact; ?></p>
+              <p class="text-muted"><strong>Email: </strong><?php echo $email; ?>
+                <br />
+                <strong>Contact: </strong><?php echo $contact; ?>
+              </p>
 
 
             </div>
@@ -134,6 +130,7 @@ if ($result->num_rows > 0) {
             <div class="card-header p-2">
               <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link active" href="#settings" data-toggle="tab">Settings</a></li>
+                <li class="nav-item"><a class="nav-link" href="#logo" data-toggle="tab">Logo</a></li>
               </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
@@ -194,6 +191,9 @@ if ($result->num_rows > 0) {
                       </div>
                     </div>
                   </form>
+                </div>
+                <!-- /.tab-pane -->
+                <div class="active tab-pane" id="logo">
                 </div>
                 <!-- /.tab-pane -->
               </div>

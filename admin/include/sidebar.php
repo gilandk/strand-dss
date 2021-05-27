@@ -109,13 +109,7 @@
                 <li class="nav-item">
                   <a href="exam_category.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Manage Categories</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="boxed" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Exam Results</p>
+                    <p>Categories/Questions</p>
                   </a>
                 </li>
               </ul>
