@@ -32,6 +32,11 @@ include('include/sidebar.php');
   $resultexam = $conn->query($sqlexam);
   $t_exams = $resultexam->num_rows;
 
+  $sqlcat = "SELECT* FROM category";
+  $resultcat = $conn->query($sqlcat);
+  $t_cat = $resultcat->num_rows;
+
+
 
   $c_1 = 0;
   $c_2 = 0;
@@ -278,64 +283,189 @@ include('include/sidebar.php');
 
   <section class="content">
     <div class="container-fluid">
+
+      <!-- Info boxes -->
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="info-box">
+            <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Users</span>
+              <span class="info-box-number">
+                <?php echo $t_students; ?>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-clipboard"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Exams</span>
+              <span class="info-box-number"><?php echo $t_exams; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix hidden-md-up"></div>
+
+        <div class="col-12 col-sm-6 col-md-4">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1"><i class="fas fa-clipboard-list"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Categories</span>
+              <span class="info-box-number"><?php echo $t_exams; ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
       <div class="row">
         <div class="col-md-12">
           <!-- DONUT CHART -->
-          <div class="row">
 
-
-            <div class="col-md-3">
-              <div class="info-box mb-3 bg-warning">
-                <span class="info-box-icon"><i class="fas fa-user-plus"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Active Users</span>
-                  <span class="info-box-number"><?php echo $t_students; ?></span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-              <div class="info-box mb-3 bg-success">
-                <span class="info-box-icon"> <i class="fas fa-clipboard"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Active Exams</span>
-                  <span class="info-box-number"><?php echo $t_exams; ?></span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-              <div class="info-box mb-3 bg-danger">
-                <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Downloads</span>
-                  <span class="info-box-number">114,381</span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Strands</h3>
             </div>
-
-            <div class="col-md-9">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Strands</h3>
-                </div>
-                <div class="card-body">
-                  <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
+            <div class="card-body">
+              <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
             </div>
+            <!-- /.card-body -->
           </div>
+          <!-- /.card -->
 
-          <!-- /.paste here -->
 
-        </div><!-- /.col -->
-      </div><!-- /. row -->
-    </div><!-- /.container-fluid -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Categories</th>
+                      <th class="text-center">Progress</th>
+                      <th class="text-center">Questions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <?php
+                    if ($resultcat->num_rows > 0) {
+                      while ($rowc = $resultcat->fetch_assoc()) {
+
+                        $cat_id = $rowc['cat_id'];
+                        $cat_name = $rowc['cat_name'];
+                        $cat_item = $rowc['cat_items'];
+
+                        $sqlq = "SELECT * FROM questions WHERE q_cat = '$cat_id' ";
+                        $resq = $conn->query($sqlq);
+                        $q_count = $resq->num_rows;
+
+                        $progress = ($q_count / $cat_item) * 100;
+
+                        if (($progress == 0) || ($progress <= 30)) {
+                          $color = 'danger';
+                        } else if (($progress == 31) || ($progress <= 50)) {
+                          $color = 'warning';
+                        } else if (($progress == 51) || ($progress <= 99)) {
+                          $color = 'primary';
+                        } else if ($progress == 100) {
+                          $color = 'success';
+                        }
+
+
+                    ?>
+                        <tr>
+                          <td><?php echo $cat_name; ?></td>
+                          <td class="text-center">
+                            <div class="progress progress-xs">
+                              <div class="progress-bar bg-<?php echo $color; ?>" style="width: <?php echo $progress; ?>%"></div>
+                            </div>
+                          </td>
+                          <td class="text-center"><?php echo $q_count . ' / ' . $cat_item; ?></td>
+                        </tr>
+                    <?php
+                      }
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <div class="col-md-6">
+              <div class="card">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Student Name</th>
+                      <th class="text-center">Status</th>
+                      <th class="text-center">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+
+                    $sql_es = "SELECT * FROM examinee_student ORDER BY date_taken";
+                    $res_es = $conn->query($sql_es);
+
+                    if ($res_es->num_rows > 0) {
+                      while ($row_es = $res_es->fetch_assoc()) {
+
+                        $student_id = $row_es['student_id'];
+                        $exam_id = $row_es['exam_id'];
+                        $exam_status = $row_es['exam_status'];
+                        $date_taken = $row_es['date_taken'];
+
+                        $sqlu = "SELECT * FROM student_info WHERE user_id = '$student_id' ";
+                        $resu = $conn->query($sqlu);
+
+                        if ($resu->num_rows > 0) {
+                          while ($rowu = $resu->fetch_assoc()) {
+
+                            $fullname = $rowu['firstname'] . ' ' . $rowu['middlename'] . ' ' . $rowu['lastname'] . ' ' . $rowu['allias'];
+
+                    ?>
+                            <tr>
+                              <td><?php echo $fullname; ?></td>
+                              <td class="text-center"><?php echo $exam_status; ?></td>
+                              <td class="text-center"><?php echo $date_taken; ?></td>
+                            </tr>
+                    <?php
+                          }
+                        }
+                      }
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <!-- /.paste here -->
+
+          </div><!-- /.col -->
+        </div><!-- /. row -->
+      </div><!-- /.container-fluid -->
+    </div>
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 

@@ -32,6 +32,14 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="analytics.php" class="nav-link">
+                <i class="nav-icon far fa-chart-bar"></i>
+                <p>
+                  Analytics
+                </p>
+              </a>
+            </li>
             <!-- school -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
