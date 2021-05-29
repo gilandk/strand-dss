@@ -6,6 +6,7 @@ $subc_id = $_REQUEST['id'];
 
 $sql1 = "SELECT * FROM category JOIN sub_category ON category.cat_id = sub_category.main_cat WHERE sub_category.sub_id = '$subc_id'";
 $result1 = $conn->query($sql1);
+
 while ($row = $result1->fetch_assoc()) {
 
   $cat_id = $row['cat_id'];
@@ -121,6 +122,8 @@ while ($row = $result1->fetch_assoc()) {
 
                   $sql = "SELECT * FROM questions WHERE q_scat = '$subc_id'";
                   $result = $conn->query($sql);
+
+                  $cat_count = $result->num_rows;
 
                   if ($result->num_rows > 0) {
                     while ($rows = $result->fetch_assoc()) {
@@ -240,7 +243,7 @@ while ($row = $result1->fetch_assoc()) {
 
                       <div class="form-group">
                         <label>Item #:</label>
-                        <input type="number" name="q_item" class="form-control" placeholder="Items" required>
+                        <input type="number" name="q_item" class="form-control" placeholder="Items" value="<?php echo $cat_count + 1; ?>" required>
                         </select>
                       </div>
 

@@ -1,9 +1,9 @@
 <?php
 include('include/header.php');
-include('include/sidebar.php');
+
 
 $user_id = $_SESSION['id'];
-$e_id = $_REQUEST['eid'];
+$e_id = $_REQUEST['id'];
 
 $sql = "SELECT * FROM examinee_student WHERE student_id = '$user_id'";
 $result = $conn->query($sql);
@@ -35,23 +35,19 @@ if ($resultuser->num_rows > 0) {
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Exam Results</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Examination</li>
-          </ol>
+          <h1 class="m-0 text-dark"> Exam Result</h1>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
 
-  <section class="content">
-    <div class="container-fluid">
+  <!-- Main content -->
+  <div class="content">
+    <div class="container">
       <div class="row">
         <div class="col-md-12">
 
@@ -326,20 +322,22 @@ if ($resultuser->num_rows > 0) {
                             // echo '<br/>';
                             // echo '<br/>';
 
-                            // $c_1 = 5;
-                            // $c_2 = 5;
-                            // $c_3 = 5;
-                            // $c_4 = 5;
-                            // $c_5 = 5;
-                            // $c_6 = 5;
-                            // $c_7 = 5;
-                            // $c_8 = 5;
-                            // $c_9 = 5;
+                            // $c_1 = 7;
+                            // $c_2 = 7;
+                            // $c_3 = 7;
+                            // $c_4 = 7;
+                            // $c_5 = 7;
+                            // $c_6 = 7;
+                            // $c_7 = 7;
+                            // $c_8 = 7;
+                            // $c_9 = 7;
                             // $c_10 = 0;
 
-                            // $total = 72;
+                            // $total = 63;
 
-                            $total = $total_category * 8;
+                            // echo $total_category;
+
+                            $total = $total_category * 7;
 
                             $c_sum = ($c_1 + $c_2 + $c_3 + $c_4 + $c_5 + $c_6 + $c_7 + $c_8 + $c_9 + $c_10);
 
@@ -352,7 +350,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category1_1 = ($c_1 == 0 || $c_1 <= 2);
                               $category1_2 = ($c_1 == 3 || $c_1 <= 5);
-                              $category1_3 = ($c_1 == 6 || $c_1 <= 8);
+                              $category1_3 = ($c_1 == 6 || $c_1 <= 7);
                             }
 
                             if ($c2 == 0) {
@@ -362,7 +360,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category2_1 = ($c_2 == 0 || $c_2 <= 2);
                               $category2_2 = ($c_2 == 3 || $c_2 <= 5);
-                              $category2_3 = ($c_2 == 6 || $c_2 <= 8);
+                              $category2_3 = ($c_2 == 6 || $c_2 <= 7);
                             }
 
                             if ($c3 == 0) {
@@ -372,7 +370,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category3_1 = ($c_3 == 0 || $c_3 <= 2);
                               $category3_2 = ($c_3 == 3 || $c_3 <= 5);
-                              $category3_3 = ($c_3 == 6 || $c_3 <= 8);
+                              $category3_3 = ($c_3 == 6 || $c_3 <= 7);
                             }
 
                             if ($c4 == 0) {
@@ -382,7 +380,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category4_1 = ($c_4 == 0 || $c_4 <= 2);
                               $category4_2 = ($c_4 == 3 || $c_4 <= 5);
-                              $category4_3 = ($c_4 == 6 || $c_4 <= 8);
+                              $category4_3 = ($c_4 == 6 || $c_4 <= 7);
                             }
 
                             if ($c5 == 0) {
@@ -392,7 +390,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category5_1 = ($c_5 == 0 || $c_5 <= 2);
                               $category5_2 = ($c_5 == 3 || $c_5 <= 5);
-                              $category5_3 = ($c_5 == 6 || $c_5 <= 8);
+                              $category5_3 = ($c_5 == 6 || $c_5 <= 7);
                             }
 
                             if ($c6 == 0) {
@@ -402,7 +400,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category6_1 = ($c_6 == 0 || $c_6 <= 2);
                               $category6_2 = ($c_6 == 3 || $c_6 <= 5);
-                              $category6_3 = ($c_6 == 6 || $c_6 <= 8);
+                              $category6_3 = ($c_6 == 6 || $c_6 <= 7);
                             }
 
                             if ($c7 == 0) {
@@ -412,7 +410,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category7_1 = ($c_7 == 0 || $c_7 <= 2);
                               $category7_2 = ($c_7 == 3 || $c_7 <= 5);
-                              $category7_3 = ($c_7 == 6 || $c_7 <= 8);
+                              $category7_3 = ($c_7 == 6 || $c_7 <= 7);
                             }
 
                             if ($c8 == 0) {
@@ -422,7 +420,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category8_1 = ($c_8 == 0 || $c_8 <= 2);
                               $category8_2 = ($c_8 == 3 || $c_8 <= 5);
-                              $category8_3 = ($c_8 == 6 || $c_8 <= 8);
+                              $category8_3 = ($c_8 == 6 || $c_8 <= 7);
                             }
 
 
@@ -433,7 +431,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category9_1 = ($c_9 == 0 || $c_9 <= 2);
                               $category9_2 = ($c_9 == 3 || $c_9 <= 5);
-                              $category9_3 = ($c_9 == 6 || $c_9 <= 8);
+                              $category9_3 = ($c_9 == 6 || $c_9 <= 7);
                             }
 
                             if ($c10 == 0) {
@@ -443,7 +441,7 @@ if ($resultuser->num_rows > 0) {
                             } else {
                               $category10_1 = ($c_10 == 0 || $c_10 <= 2);
                               $category10_2 = ($c_10 == 3 || $c_10 <= 5);
-                              $category10_3 = ($c_10 == 6 || $c_10 <= 8);
+                              $category10_3 = ($c_10 == 6 || $c_10 <= 7);
                             }
 
 
@@ -474,10 +472,10 @@ if ($resultuser->num_rows > 0) {
               </dl>
             </div>
           </div>
-
-
-        </div><!-- /. row -->
-      </div><!-- /.container-fluid -->
+        </div>
+      </div>
+    </div>
+  </div><!-- /.container-fluid -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 

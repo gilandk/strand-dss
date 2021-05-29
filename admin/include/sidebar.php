@@ -32,14 +32,32 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="analytics.php" class="nav-link">
+            <!-- school -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon far fa-chart-bar"></i>
                 <p>
                   Analytics
+                  <i class="fas fa-angle-left right"></i>
+
                 </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="analytics_s.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>By Strands</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="analytics_c.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>By Category</p>
+                  </a>
+                </li>
+              </ul>
             </li>
+            <!-- school -->
             <!-- school -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">

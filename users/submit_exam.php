@@ -48,33 +48,30 @@ if (isset($_POST)) {
 
       $percentile = ($score / $cat_items) * 100;
 
-      if ($percentile == 0 or $percentile <= 20) {
+      if ($percentile == 0) {
         $apt = 'Very Low';
         $val = 0;
-      } elseif ($percentile == 21 or $percentile <= 30) {
+      } elseif ($percentile == 1 or $percentile <= 2) {
         $apt = 'Low';
         $val = 1;
-      } elseif ($percentile == 31 or $percentile <= 40) {
+      } elseif ($percentile == 3 or $percentile <= 14) {
         $apt = 'Below Average';
         $val = 2;
-      } elseif ($percentile == 41 or $percentile <= 50) {
+      } elseif ($percentile == 15 or $percentile <= 50) {
         $apt = 'Low Average';
         $val = 3;
-      } elseif ($percentile == 51 or $percentile <= 60) {
+      } elseif ($percentile == 51 or $percentile <= 85) {
         $apt = 'Average';
         $val = 4;
-      } elseif ($percentile == 61 or $percentile <= 70) {
-        $apt = 'High Average';
+      } elseif ($percentile == 86 or $percentile <= 97) {
+        $apt = 'Above Average';
         $val = 5;
-      } elseif ($percentile == 71 or $percentile <= 80) {
-        $apt = 'Well Above Average';
+      } elseif ($percentile == 98 or $percentile <= 99) {
+        $apt = 'Very High';
         $val = 6;
-      } elseif ($percentile == 81 or $percentile <= 90) {
-        $apt = 'Superior';
+      } elseif ($percentile == 100) {
+        $apt = 'Excellent';
         $val = 7;
-      } elseif ($percentile == 91 or $percentile <= 100) {
-        $apt = 'Very Superior';
-        $val = 8;
       } else {
         $apt = '';
       }

@@ -22,3 +22,10 @@
     bottom: 6%;
     right: 1%;
 }
+
+.bar {
+    min-height: 300px;
+    height: 300px;
+    max-height: 300px;
+    max-width: 100%;
+}

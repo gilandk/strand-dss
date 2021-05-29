@@ -49,7 +49,7 @@ $('#birthdate').on('change', function() {
 
 //datatables
 $(function() {
-    $('#school_facilitator').DataTable({
+    $('#analytics_categories1').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -59,6 +59,125 @@ $(function() {
         "responsive": true,
     });
 });
+
+//datatables
+$(function() {
+    $('#analytics_categories2').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories3').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories4').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories5').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories6').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories7').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories8').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories9').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+//datatables
+$(function() {
+    $('#analytics_categories10').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
+
 
 $(function() {
     $('#school_students').DataTable({

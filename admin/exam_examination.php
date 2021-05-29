@@ -97,8 +97,8 @@ $result = $conn->query($sql);
                                                 $i++; ?></td>
                         <td><?php echo $type; ?></td>
 
-                        <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_s)); ?></td>
-                        <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_e)); ?></td>
+                        <td class="text-center"><?php echo $date_s; ?></td>
+                        <td class="text-center"><?php echo $date_e; ?></td>
 
                         <td class="text-center">
                           <?php
