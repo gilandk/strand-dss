@@ -55,7 +55,7 @@ $c_id = $_REQUEST['id'];
 
 
               ?>
-                    <table class='table borderless'>
+                    <table id="analytics_categories" class='table borderless'>
                       <tbody>
                         <tr>
                           <td><strong>Student Highest Score</strong></td>
@@ -97,7 +97,7 @@ $c_id = $_REQUEST['id'];
               <!-- BAR CHART -->
               <div class="chart">
                 <div class="card-body">
-                  <canvas id="barChart<?php echo $c_id; ?>" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                  <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
                 </div>
               </div>
             </div>
@@ -233,7 +233,7 @@ $c_id = $_REQUEST['id'];
             //-------------
             //- BAR CHART -
             //-------------
-            var barChartCanvas = $('#barChart<?php echo $cat_id; ?>').get(0).getContext('2d')
+            var barChartCanvas = $('#barChart').get(0).getContext('2d')
             var barChartData = jQuery.extend(true, {}, areaChartData)
             var temp0 = areaChartData.datasets[0]
 

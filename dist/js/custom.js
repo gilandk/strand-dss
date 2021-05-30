@@ -49,7 +49,7 @@ $('#birthdate').on('change', function() {
 
 //datatables
 $(function() {
-    $('#analytics_categories1').DataTable({
+    $('#analytics_categories').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -62,7 +62,7 @@ $(function() {
 
 //datatables
 $(function() {
-    $('#analytics_categories2').DataTable({
+    $('#analytics_strands').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -72,111 +72,6 @@ $(function() {
         "responsive": true,
     });
 });
-
-//datatables
-$(function() {
-    $('#analytics_categories3').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories4').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories5').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories6').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories7').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories8').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories9').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
-//datatables
-$(function() {
-    $('#analytics_categories10').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-});
-
 
 
 $(function() {

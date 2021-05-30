@@ -44,7 +44,7 @@ $s_id = $_REQUEST['id'];
 
           <div class="card">
             <div class="card-body">
-              <table class="table">
+              <table id="analytics_strands" class="table">
                 <thead>
                   <tr>
                     <th>Name</th>
