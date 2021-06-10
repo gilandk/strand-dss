@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> Student Info</h1>
+          <h1 class="m-0 text-dark"> Student Account</h1>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->

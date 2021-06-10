@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item active">Manage Exam</li>
             <li class="breadcrumb-item active"><a href="exam_examination.php">Examination</a></li>
           </ol>
         </div><!-- /.col -->
@@ -94,46 +95,43 @@ if ($result->num_rows > 0) {
                   ?>
                   <div class="row">
                     <div class="col-md-12">
-                      <div class="card">
 
-                        <form action="update_examinfo.php" method="POST" enctype="multipart/form-data">
+                      <form action="update_examinfo.php" method="POST" enctype="multipart/form-data">
 
-                          <input type="hidden" name="exam_id" value="<?php echo $exam_id; ?>">
+                        <input type="hidden" name="exam_id" value="<?php echo $exam_id; ?>">
 
-                          <div class="form-group mt-3 ml-3 mr-3">
-                            <label>Type</label>
-                            <input type="text" class="form-control" placeholder="Examination Type" name="exam_type" value="<?php echo $exam_type; ?>" />
-                          </div>
+                        <div class="form-group ml-2 mr-2">
+                          <label>Type</label>
+                          <input type="text" class="form-control" placeholder="Examination Type" name="exam_type" value="<?php echo $exam_type; ?>" />
+                        </div>
 
-                          <div class="form-group ml-3 mr-3">
-                            <label>Schedule:</label>
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="far fa-clock"></i></span>
-                              </div>
-                              <input type="text" class="form-control" id="exam_sched" name="exam_sched" value="<?php echo date("m/d/Y H:i A", strtotime($exam_date_s)) . ' - ' . date("m/d/Y H:i A", strtotime($exam_date_e)); ?>">
+                        <div class="form-group ml-2 mr-2">
+                          <label>Schedule:</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="far fa-clock"></i></span>
                             </div>
-                            <!-- /.input group -->
+                            <input type="text" class="form-control" id="exam_sched" name="exam_sched" value="<?php echo date("m/d/Y H:i A", strtotime($exam_date_s)) . ' - ' . date("m/d/Y H:i A", strtotime($exam_date_e)); ?>">
                           </div>
-                          <!-- /.form group -->
+                          <!-- /.input group -->
+                        </div>
+                        <!-- /.form group -->
 
-                          <div class="form-group ml-3 mr-3">
-                            <label>Examination Guide:</label>
-                            <textarea class="textarea" name="guide" id="guide"><?php echo stripcslashes($exam_guide) ?></textarea>
-                            <script>
-                              CKEDITOR.replace('guide', {
-                                height: 200,
-                                filebrowserUploadUrl: "upload.php",
-                              });
-                            </script>
-                          </div>
-                          <div class="form-group ml-3 mr-3">
-                            <button type="submit" name="save" class="btn btn-primary">Save</button>
-                          </div>
-                        </form>
+                        <div class="form-group ml-2 mr-2">
+                          <label>Examination Guide:</label>
+                          <textarea class="textarea" name="guide" id="guide"><?php echo stripcslashes($exam_guide) ?></textarea>
+                          <script>
+                            CKEDITOR.replace('guide', {
+                              height: 200,
+                              filebrowserUploadUrl: "upload.php",
+                            });
+                          </script>
+                        </div>
+                        <div class="form-group ml-2 mr-2">
+                          <button type="submit" name="save" class="btn btn-primary">Save</button>
+                        </div>
+                      </form>
 
-
-                      </div>
                     </div>
 
                   </div>
@@ -152,7 +150,6 @@ if ($result->num_rows > 0) {
                               <tr>
                                 <th hidden>ID</th>
                                 <th class="text-center"></th>
-                                <th class="text-center">Order</th>
                                 <th class="text-center">Category</th>
                                 <th class=" text-center">Hours</th>
                                 <th class=" text-center">Minutes</th>
@@ -168,7 +165,6 @@ if ($result->num_rows > 0) {
                               ?>
                                   <tr>
                                     <td class="text-center"><a class="confirmation" href="unset_category.php?id=<?php echo $row1['ec_id']; ?>&eid=<?php echo $exam_id; ?>"><i class=" fas fa-minus text-danger"></i></a></td>
-                                    <td class="text-center"><?php echo $row1['cat_seq']; ?></td>
                                     <td class="text-center"><?php echo $row1['cat_name']; ?></td>
                                     <td class="text-center edit" id="cHour_<?php echo $row1['ec_id']; ?>" contenteditable>
                                       <?php

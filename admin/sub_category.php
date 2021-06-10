@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item active">Sub Category</li>
-            <li class="breadcrumb-item"><a href="exam_category.php">Manage Examination</a></li>
+            <li class="breadcrumb-item"><a href="exam_category.php">Category</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -60,21 +60,60 @@ if ($result->num_rows > 0) {
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h5><i class="icon fas fa-check"></i> Success!</h5>
-              Category Successfully Added!
+              Sub-Category Added!
             </div>
           <?php
             unset($_SESSION['addSCSuccess']);
           }
           ?>
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['updateSCSuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
+              Category Successfully Added!
+            </div>
+          <?php
+            unset($_SESSION['updateSCSuccess']);
+          }
+          ?>
 
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['updateSCFailed'])) {
+          ?>
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+              Category title already exist!
+            </div>
+          <?php
+            unset($_SESSION['updateSCFailed']);
+          }
+          ?>
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['deleteSCSuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Alert!</h5>
+              Sub-Category Deleted!
+            </div>
+          <?php
+            unset($_SESSION['deleteSCSuccess']);
+          }
+          ?>
           <?php
           //If User already registered with this email then show error message.
           if (isset($_SESSION['addSCFailed'])) {
           ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-              Category title already exist!
+              <h5><i class="icon fas fa-ban"></i> Warning!</h5>
+              Sub-Category title already exist!
             </div>
           <?php
             unset($_SESSION['addSCFailed']);
@@ -133,7 +172,7 @@ if ($result->num_rows > 0) {
 
                           <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-success btn-sm">Questions</a>
                           <a href="subcat_edit.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-warning btn-sm">Update</a>
-
+                          <a href="delete_subcategory.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-danger btn-sm">Delete</a>
                         </td>
                       </tr>
                   <?php

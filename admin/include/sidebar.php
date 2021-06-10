@@ -156,7 +156,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="boxed" class="nav-link">
+                    <a href="maintenance.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Maintenance</p>
                     </a>

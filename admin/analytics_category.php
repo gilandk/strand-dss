@@ -16,7 +16,8 @@ $c_id = $_REQUEST['id'];
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Analytics</li>
+            <li class="breadcrumb-item active">Category</li>
+            <li class="breadcrumb-item active"><a href="analytics_c.php?">Analytics (Category)</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->

@@ -105,11 +105,11 @@ include('include/sidebar.php');
             $strand_abr = $rows['strand_abr'];
 
         ?>
-            <div class="col-md-6">
+            <div class="col-md-3">
               <!-- DONUT CHART -->
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title"><?php echo $strand_name; ?><strong>(<?php echo $strand_abr; ?>)</strong></h3>
+                  <h3 class="card-title"><strong><?php echo $strand_abr; ?></strong></h3>
                 </div>
                 <div class="card-body">
                   <canvas id="donutChart<?php echo $strand_id; ?>" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
@@ -396,6 +396,11 @@ include('include/sidebar.php');
       <div class="row">
         <div class="col-md-6">
           <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">
+                Categories
+              </h5>
+            </div>
             <table class="table">
               <thead>
                 <tr>
@@ -454,18 +459,23 @@ include('include/sidebar.php');
 
         <div class="col-md-6">
           <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">
+                Recent Exam Takers
+              </h5>
+            </div>
             <table class="table">
               <thead>
                 <tr>
                   <th>Student Name</th>
-                  <th class="text-center">Status</th>
+                  <th class="text-center">Exam</th>
                   <th class="text-center">Date</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
 
-                $sql_es = "SELECT * FROM examinee_student ORDER BY date_taken";
+                $sql_es = "SELECT * FROM examinee_student ORDER BY date_taken LIMIT 10";
                 $res_es = $conn->query($sql_es);
 
                 if ($res_es->num_rows > 0) {
@@ -476,21 +486,29 @@ include('include/sidebar.php');
                     $exam_status = $row_es['exam_status'];
                     $date_taken = $row_es['date_taken'];
 
-                    $sqlu = "SELECT * FROM student_info WHERE user_id = '$student_id' ";
-                    $resu = $conn->query($sqlu);
+                    $sqle = "SELECT * FROM exams WHERE exam_id = '$exam_id'";
+                    $rese = $conn->query($sqle);
 
-                    if ($resu->num_rows > 0) {
-                      while ($rowu = $resu->fetch_assoc()) {
+                    while ($rowe = $rese->fetch_assoc()) {
 
-                        $fullname = $rowu['firstname'] . ' ' . $rowu['middlename'] . ' ' . $rowu['lastname'] . ' ' . $rowu['allias'];
+                      $exam_type = $rowe['exam_type'];
+
+                      $sqlu = "SELECT * FROM student_info WHERE user_id = '$student_id' ";
+                      $resu = $conn->query($sqlu);
+
+                      if ($resu->num_rows > 0) {
+                        while ($rowu = $resu->fetch_assoc()) {
+
+                          $fullname = $rowu['firstname'] . ' ' . $rowu['middlename'] . ' ' . $rowu['lastname'] . ' ' . $rowu['allias'];
 
                 ?>
-                        <tr>
-                          <td><?php echo $fullname; ?></td>
-                          <td class="text-center"><?php echo $exam_status; ?></td>
-                          <td class="text-center"><?php echo $date_taken; ?></td>
-                        </tr>
+                          <tr>
+                            <td><?php echo $fullname; ?></td>
+                            <td class="text-center"><?php echo $exam_type; ?></td>
+                            <td class="text-center"><?php echo $date_taken; ?></td>
+                          </tr>
                 <?php
+                        }
                       }
                     }
                   }

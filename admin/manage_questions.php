@@ -27,7 +27,9 @@ while ($row = $result1->fetch_assoc()) {
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Manage Examination</li>
+            <li class="breadcrumb-item">Questions</li>
+            <li class="breadcrumb-item active"><a href="sub_category.php?id=<?php echo $subc_id; ?>">Sub Category</a></li>
+            <li class="breadcrumb-item"><a href="exam_category.php">Category</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -77,29 +79,29 @@ while ($row = $result1->fetch_assoc()) {
             </div>
             <?php
             //If User already registered with this email then show error message.
-            if (isset($_SESSION['addCategorySuccess'])) {
+            if (isset($_SESSION['addQuestionSuccess'])) {
             ?>
               <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i> Success!</h5>
-                Category Successfully Added!
+                Question Added!
               </div>
             <?php
-              unset($_SESSION['addCategorySuccess']);
+              unset($_SESSION['addQuestionSuccess']);
             }
             ?>
 
             <?php
             //If User already registered with this email then show error message.
-            if (isset($_SESSION['addCategoryFailed'])) {
+            if (isset($_SESSION['deleteQuestion'])) {
             ?>
               <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                Category title already exist!
+                Question Deleted!
               </div>
             <?php
-              unset($_SESSION['addCategoryFailed']);
+              unset($_SESSION['deleteQuestion']);
             }
             ?>
             <div class="card-body pad table-responsive">

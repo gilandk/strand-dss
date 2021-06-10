@@ -20,7 +20,8 @@ $result = $conn->query($sql);
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Strand</li>
+            <li class="breadcrumb-item active">Formula</li>
+            <li class="breadcrumb-item active"><a href="manage_strands.php?id=<?php echo $strand_id; ?>">Strands</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->

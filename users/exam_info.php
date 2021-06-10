@@ -28,13 +28,6 @@ if ($result->num_rows > 0) {
         <div class="col-sm-6">
           <h1 class="m-0 text-dark"> <?php echo $type; ?> </h1>
         </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Layout</a></li>
-            <li class="breadcrumb-item active">Top Navigation</li>
-          </ol>
-        </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
@@ -75,6 +68,23 @@ if ($result->num_rows > 0) {
       <div class="row">
 
         <div class="col-md-8">
+          <?php
+          $sqlea = "SELECT * FROM exam_answers WHERE examinee_id = '$u_id' AND exam_id = $e_id";
+          $resultea = $conn->query($sqlea);
+          $countea = $resultea->num_rows;
+
+          $sqlc = "SELECT * FROM category";
+          $resultc = $conn->query($sqlc);
+          $countc = $resultc->num_rows;
+
+          if ($countea == $countc) {
+            echo ' <div class="callout callout-success">
+                  <p>Exam Completed!</p>
+                </div>
+              ';
+          }
+          ?>
+
           <div class="card">
             <div class="card-body">
 
@@ -89,6 +99,7 @@ if ($result->num_rows > 0) {
               <a href="index.php" class="card-link">Back</a>
             </div>
           </div>
+
         </div>
 
         <div class="col-md-4">

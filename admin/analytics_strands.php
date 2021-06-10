@@ -16,7 +16,8 @@ $s_id = $_REQUEST['id'];
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Analytics</li>
+            <li class="breadcrumb-item active">Strands</li>
+            <li class="breadcrumb-item active"><a href="analytics_s.php?">Analytics (Strands)</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->

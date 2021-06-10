@@ -43,8 +43,8 @@ if ($resultuser->num_rows > 0) {
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item active">Exam Results</li>
-            <li class="breadcrumb-item active"><a href="manage_exam.php?id=<?php echo $e_id; ?>">Manage Exam</a></li>
-            <li class=" breadcrumb-item active"><a href="exam_examination.php">Examination</a></li>
+            <li class="breadcrumb-item active"><a href="school_exams.php?id=<?php echo $e_id; ?>">Student Exams</a></li>
+            <li class="breadcrumb-item active"><a href="school_students.php">Students</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->

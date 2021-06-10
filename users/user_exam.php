@@ -38,9 +38,6 @@ $userid = $_SESSION['id'];
 
       <?php
 
-      $current_date = date('d-m-Y h:i', time());
-      // echo '<br/>';
-
       $sql = "SELECT * FROM exams JOIN examinee_student ON exams.exam_id = examinee_student.exam_id WHERE examinee_student.student_id = '$userid'";
       $result = $conn->query($sql);
 
