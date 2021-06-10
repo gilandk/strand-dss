@@ -25,11 +25,12 @@ if ($result->num_rows > 0) {
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Student Info</h1>
+          <h1 class="m-0 text-dark">Strand Info</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Students</li>
+            <li class="breadcrumb-item active">Strand Info</li>
+            <li class="breadcrumb-item active"><a href="manage_strands.php?id=<?php echo $strand_id; ?>">Strands</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->

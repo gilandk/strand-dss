@@ -15,18 +15,6 @@
       $type = $row['exam_type'];
       $date_s = $row['exam_date_s'];
       $date_e = $row['exam_date_e'];
-      $handler_id = $row['exam_handler'];
-
-      $sql1 = "SELECT * FROM school_admin WHERE sa_id = '$handler_id'";
-      $res1 = $conn->query($sql1);
-      if ($res1->num_rows > 0) {
-        while ($sa = $res1->fetch_assoc()) {
-
-          $handler = $sa['sa_fullname'];
-        }
-      } else {
-        $handler = 'None';
-      }
     }
   }
 

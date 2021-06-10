@@ -14,7 +14,7 @@ include('include/sidebar.php');
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Manage Examination</li>
+            <li class="breadcrumb-item active">Category</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -28,11 +28,37 @@ include('include/sidebar.php');
         <div class="col-md-12">
           <?php
           //If User already registered with this email then show error message.
-          if (isset($_SESSION['addCategoryFailed'])) {
+          if (isset($_SESSION['addCategorySuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Success!</h5>
+              Category Added!
+            </div>
+          <?php
+            unset($_SESSION['addCategorySuccess']);
+          }
+          ?>
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['deleteCategorySuccess'])) {
           ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+              Category Deleted!
+            </div>
+          <?php
+            unset($_SESSION['deleteCategorySuccess']);
+          }
+          ?>
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['addCategoryFailed'])) {
+          ?>
+            <div class="alert alert-warning alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Warning!</h5>
               Category title already exist!
             </div>
           <?php
@@ -41,6 +67,12 @@ include('include/sidebar.php');
           ?>
           <div class="card card-primary card-outline">
             <!-- /.card-header -->
+            <div class="card-header">
+              <button class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
+                Add Category
+              </button>
+            </div>
+
 
 
             <div class="card-body pad table-responsive">
@@ -71,8 +103,9 @@ include('include/sidebar.php');
                         <td class="text-center"><?php echo $row['cat_items']; ?></td>
 
                         <td class="text-center">
-                          <a href="sub_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Manage</a>
+                          <a href="sub_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Sub-Category</a>
                           <a href="exam_category_edit.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
+                          <a href="delete_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-danger btn-xs">Delete</a>
                         </td>
                       </tr>
                   <?php
@@ -88,6 +121,58 @@ include('include/sidebar.php');
     </div><!-- /.container-fluid -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-lg">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Add Category</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form action="add_category.php" method="POST" enctype="multipart/form-data">
+
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Name" name="category" />
+          </div>
+
+
+          <div class="form-group">
+            <label>Instruction:</label>
+            <textarea class="textarea" name="Instruction" id="instruction"></textarea>
+            <script>
+              CKEDITOR.replace('instruction', {
+                height: 200,
+                filebrowserUploadUrl: "upload.php",
+              });
+            </script>
+          </div>
+
+          <div class="form-group">
+            <label>Items</label>
+            <input type="number" class="form-control" placeholder="Items" name="items" />
+          </div>
+
+
+
+      </div><!-- /.modal-body -->
+
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" name="save" class="btn btn-primary">Save</button>
+      </div>
+      </form>
+
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 
 <?php
 include('include/footer.php');

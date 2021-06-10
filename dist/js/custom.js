@@ -49,7 +49,7 @@ $('#birthdate').on('change', function() {
 
 //datatables
 $(function() {
-    $('#school_facilitator').DataTable({
+    $('#analytics_categories').DataTable({
         "paging": true,
         "lengthChange": true,
         "searching": true,
@@ -59,6 +59,20 @@ $(function() {
         "responsive": true,
     });
 });
+
+//datatables
+$(function() {
+    $('#analytics_strands').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+    });
+});
+
 
 $(function() {
     $('#school_students').DataTable({

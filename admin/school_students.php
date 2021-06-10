@@ -23,7 +23,7 @@ $result = $conn->query($sql);
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> Students</h1>
+          <h1 class="m-0 text-dark">Students</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -114,9 +114,11 @@ $result = $conn->query($sql);
                           }
                           ?>
                           <span class="<?php echo $class; ?>"><?php echo $status; ?></span>
-
                         </td>
-                        <td><a href="school_students_edit.php?id=<?php echo $rows['user_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
+                        <td>
+                          <a href="student_exams.php?id=<?php echo $rows['user_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Exams</a>
+                          <a href="school_students_edit.php?id=<?php echo $rows['user_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
+                        </td>
                       </tr>
                   <?php
                     }

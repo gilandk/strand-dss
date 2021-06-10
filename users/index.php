@@ -27,7 +27,7 @@ include('include/header.php');
         <div class="alert alert-success alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
           <h5><i class="icon fas fa-check"></i> Success!</h5>
-          Welcome! Please Complete you're Profile before taking the exam. <a href="profile.php">Here</a>
+          Welcome! Please Complete you're Profile before taking the exam. <a href="update_info.php">Here</a>
         </div>
       <?php
         unset($_SESSION['RegisterSuccess']);

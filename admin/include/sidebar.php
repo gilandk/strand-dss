@@ -35,6 +35,32 @@
             <!-- school -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
+                <i class="nav-icon far fa-chart-bar"></i>
+                <p>
+                  Analytics
+                  <i class="fas fa-angle-left right"></i>
+
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="analytics_s.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>By Strands</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="analytics_c.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>By Category</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- school -->
+            <!-- school -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-school"></i>
                 <p>
                   School
@@ -101,7 +127,11 @@
                 <li class="nav-item">
                   <a href="exam_category.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
+<<<<<<< HEAD
                     <p>Manage Categories</p>
+=======
+                    <p>Categories/Questions</p>
+>>>>>>> develop
                   </a>
                 </li>
               </ul>
@@ -130,7 +160,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="boxed" class="nav-link">
+                    <a href="maintenance.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Maintenance</p>
                     </a>

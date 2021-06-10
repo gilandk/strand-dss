@@ -43,7 +43,8 @@
 	        </div><!-- /.col -->
 	        <div class="col-sm-6">
 	          <ol class="breadcrumb float-sm-right">
-	            <li class="breadcrumb-item active">Students</li>
+	            <li class="breadcrumb-item active">Students Info</li>
+	            <li class="breadcrumb-item active"><a href="school_students.php">Students</a></li>
 	          </ol>
 	        </div><!-- /.col -->
 	      </div><!-- /.row -->

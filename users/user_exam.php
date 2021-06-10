@@ -38,9 +38,6 @@ $userid = $_SESSION['id'];
 
       <?php
 
-      $current_date = date('d-m-Y h:i', time());
-      // echo '<br/>';
-
       $sql = "SELECT * FROM exams JOIN examinee_student ON exams.exam_id = examinee_student.exam_id WHERE examinee_student.student_id = '$userid'";
       $result = $conn->query($sql);
 
@@ -60,7 +57,11 @@ $userid = $_SESSION['id'];
               <p class="card-text">
                 <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
               </p>
+<<<<<<< HEAD
               <a href="exam_result.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Result</a>
+=======
+              <a href="exam_result.php?id=<?php echo $exam_id; ?>" class="card-link">View Results</a>
+>>>>>>> develop
             </div>
           </div>
 

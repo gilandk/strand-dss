@@ -1,12 +1,9 @@
 <?php
 include('include/header.php');
-<<<<<<< HEAD
-=======
+include('include/sidebar.php');
 
->>>>>>> develop
-
-$user_id = $_SESSION['id'];
-$e_id = $_REQUEST['id'];
+$user_id = $_REQUEST['id'];
+$e_id = $_REQUEST['eid'];
 
 $sql = "SELECT * FROM examinee_student WHERE student_id = '$user_id'";
 $result = $conn->query($sql);
@@ -38,19 +35,25 @@ if ($resultuser->num_rows > 0) {
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <div class="content-header">
-    <div class="container">
+    <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> Exam Result</h1>
+          <h1 class="m-0 text-dark">Exam Results</h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item active">Exam Results</li>
+            <li class="breadcrumb-item active"><a href="school_exams.php?id=<?php echo $e_id; ?>">Student Exams</a></li>
+            <li class="breadcrumb-item active"><a href="school_students.php">Students</a></li>
+          </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content-header -->
 
-  <!-- Main content -->
-  <div class="content">
-    <div class="container">
+  <section class="content">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
 
@@ -156,7 +159,6 @@ if ($resultuser->num_rows > 0) {
                           <tr>
                             <td><strong>Exam Status:</strong></td>
                             <td><?php echo $exam_status; ?></td>
-
                           </tr>
                         </tbody>
                       </table>
@@ -165,8 +167,7 @@ if ($resultuser->num_rows > 0) {
                   <table class="table table-bordered table-striped cat">
                     <thead>
                       <tr>
-                        <th class="text-center">id</th>
-                        <th class="text-center">Category</th>
+                        <th>Category</th>
                         <th class="text-center">Score</th>
                         <th class="text-center">Percentile</th>
                         <th class="text-center">Aptitude</th>
@@ -204,11 +205,10 @@ if ($resultuser->num_rows > 0) {
                               $json2[] = $cat_name;
                       ?>
                               <tr>
-                                <td> <?php echo $category_id; ?></td>
                                 <td><?php echo $cat_name; ?></td>
-                                <td><?php echo $score . ' / ' . $cat_items; ?></td>
-                                <td><?php echo $percentile; ?> %</td>
-                                <td><?php echo $apt; ?></td>
+                                <td class="text-center"><?php echo $score . ' / ' . $cat_items; ?></td>
+                                <td class="text-center"><?php echo $percentile; ?> %</td>
+                                <td class="text-center"><?php echo $apt; ?></td>
                               </tr>
                       <?php
 
@@ -325,20 +325,18 @@ if ($resultuser->num_rows > 0) {
                             // echo '<br/>';
                             // echo '<br/>';
 
-                            // $c_1 = 7;
-                            // $c_2 = 7;
-                            // $c_3 = 7;
-                            // $c_4 = 7;
-                            // $c_5 = 7;
-                            // $c_6 = 7;
-                            // $c_7 = 7;
-                            // $c_8 = 7;
-                            // $c_9 = 7;
+                            // $c_1 = 5;
+                            // $c_2 = 5;
+                            // $c_3 = 5;
+                            // $c_4 = 5;
+                            // $c_5 = 5;
+                            // $c_6 = 5;
+                            // $c_7 = 5;
+                            // $c_8 = 5;
+                            // $c_9 = 5;
                             // $c_10 = 0;
 
-                            // $total = 63;
-
-                            // echo $total_category;
+                            // $total = 72;
 
                             $total = $total_category * 7;
 
@@ -464,7 +462,6 @@ if ($resultuser->num_rows > 0) {
                               <td class="text-center"><?php echo $strand_r; ?></td>
                             </tr>
                     <?php
-
                           }
                         }
                       }
@@ -475,10 +472,10 @@ if ($resultuser->num_rows > 0) {
               </dl>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- /.container-fluid -->
+
+
+        </div><!-- /. row -->
+      </div><!-- /.container-fluid -->
   </section><!-- /.content -->
 </div><!-- /.content-wrapper -->
 

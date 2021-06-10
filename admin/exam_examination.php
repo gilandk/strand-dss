@@ -70,7 +70,6 @@ $result = $conn->query($sql);
               <table class="table table-bordered table-striped cat">
                 <thead>
                   <tr>
-                    <th class="text-center">#</th>
                     <th>Type</th>
                     <th class="text-center">Exam Start</th>
                     <th class="text-center">Exam End</th>
@@ -80,7 +79,7 @@ $result = $conn->query($sql);
                 </thead>
                 <tbody>
                   <?php
-                  $i = '1';
+
 
                   if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
@@ -93,12 +92,10 @@ $result = $conn->query($sql);
 
                   ?>
                       <tr>
-                        <td class="text-center"><?php echo $i;
-                                                $i++; ?></td>
                         <td><?php echo $type; ?></td>
 
-                        <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_s)); ?></td>
-                        <td class="text-center"><?php echo date('m-d-Y H:i A', strtotime($date_e)); ?></td>
+                        <td class="text-center"><?php echo $date_s; ?></td>
+                        <td class="text-center"><?php echo $date_e; ?></td>
 
                         <td class="text-center">
                           <?php

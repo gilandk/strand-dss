@@ -6,6 +6,7 @@ $subc_id = $_REQUEST['id'];
 
 $sql1 = "SELECT * FROM category JOIN sub_category ON category.cat_id = sub_category.main_cat WHERE sub_category.sub_id = '$subc_id'";
 $result1 = $conn->query($sql1);
+
 while ($row = $result1->fetch_assoc()) {
 
   $cat_id = $row['cat_id'];
@@ -26,7 +27,9 @@ while ($row = $result1->fetch_assoc()) {
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active">Manage Examination</li>
+            <li class="breadcrumb-item">Questions</li>
+            <li class="breadcrumb-item active"><a href="sub_category.php?id=<?php echo $subc_id; ?>">Sub Category</a></li>
+            <li class="breadcrumb-item"><a href="exam_category.php">Category</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -76,29 +79,29 @@ while ($row = $result1->fetch_assoc()) {
             </div>
             <?php
             //If User already registered with this email then show error message.
-            if (isset($_SESSION['addCategorySuccess'])) {
+            if (isset($_SESSION['addQuestionSuccess'])) {
             ?>
               <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-check"></i> Success!</h5>
-                Category Successfully Added!
+                Question Added!
               </div>
             <?php
-              unset($_SESSION['addCategorySuccess']);
+              unset($_SESSION['addQuestionSuccess']);
             }
             ?>
 
             <?php
             //If User already registered with this email then show error message.
-            if (isset($_SESSION['addCategoryFailed'])) {
+            if (isset($_SESSION['deleteQuestion'])) {
             ?>
               <div class="alert alert-danger alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                Category title already exist!
+                Question Deleted!
               </div>
             <?php
-              unset($_SESSION['addCategoryFailed']);
+              unset($_SESSION['deleteQuestion']);
             }
             ?>
             <div class="card-body pad table-responsive">
@@ -121,6 +124,8 @@ while ($row = $result1->fetch_assoc()) {
 
                   $sql = "SELECT * FROM questions WHERE q_scat = '$subc_id'";
                   $result = $conn->query($sql);
+
+                  $cat_count = $result->num_rows;
 
                   if ($result->num_rows > 0) {
                     while ($rows = $result->fetch_assoc()) {
@@ -240,7 +245,7 @@ while ($row = $result1->fetch_assoc()) {
 
                       <div class="form-group">
                         <label>Item #:</label>
-                        <input type="number" name="q_item" class="form-control" placeholder="Items" required>
+                        <input type="number" name="q_item" class="form-control" placeholder="Items" value="<?php echo $cat_count + 1; ?>" required>
                         </select>
                       </div>
 
