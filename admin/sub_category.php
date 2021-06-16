@@ -141,7 +141,6 @@ if ($result->num_rows > 0) {
 
                 <thead>
                   <tr>
-                    <th>#</th>
                     <th>Question</th>
                     <th class="text-center">Items</th>
                     <th class="text-center">Action</th>
@@ -158,21 +157,20 @@ if ($result->num_rows > 0) {
                     while ($rows = $res1->fetch_assoc()) {
                       $sub_id = $rows['sub_id'];
 
-                      $sql2 = "SELECT Count(*) As sc_items FROM questions WHERE q_scat = '$sub_id'";
+                      $sql2 = "SELECT Count(*) As sc_items FROM questions WHERE q_scat = '$sub_id' AND q_cat = '$id'";
                       $res2 = $conn->query($sql2);
                       $rowc = $res2->fetch_assoc();
                       $sc_items = $rowc['sc_items'];
 
                   ?>
                       <tr>
-                        <td><?php echo $rows['sc_index']; ?></td>
                         <td><?php echo $rows['sub_title']; ?></td>
                         <td class="text-center"><?php echo $sc_items; ?></td>
                         <td class="text-center">
 
-                          <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-success btn-sm">Questions</a>
+                          <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>&cid=<?php echo $rows['main_cat']; ?>" class=" btn btn-outline-success btn-sm">Questions</a>
                           <a href="subcat_edit.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-warning btn-sm">Update</a>
-                          <a href="delete_subcategory.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-danger btn-sm">Delete</a>
+                          <a href="delete_subcategory.php?id=<?php echo $rows['sub_id']; ?>&cid=<?php echo $rows['main_cat']; ?>" class="btn btn-outline-danger btn-sm">Delete</a>
                         </td>
                       </tr>
                   <?php
@@ -215,11 +213,6 @@ if ($result->num_rows > 0) {
                     filebrowserUploadUrl: "upload.php",
                   });
                 </script>
-              </div>
-
-              <div class="form-group">
-                <label>Index</label>
-                <input type="text" class="form-control" placeholder="Index" name="sc_index" min="A" max="Z" />
               </div>
           </div>
           <div class="modal-footer justify-content-between">

@@ -26,12 +26,19 @@ if (isset($_POST)) {
       if ($result1->num_rows > 0) {
         while ($row = $result1->fetch_assoc()) {
           $_SESSION['logged_in'] = 'yes';
-          $_SESSION['fullname'] = $row['firstname'] . ' ' . $row['lastname'] . ' ' . $row['allias'];
+          $_SESSION['fullname'] = $row['firstname'] . ' ' . $row['lastname'];
           $_SESSION['status'] = $row['status'];
           $_SESSION['id'] = $row['user_id'];
           $_SESSION['role'] = 'User';
         }
       }
+
+      $user_id = $row['user_id'];
+      $activity = 'Registered User (' . $row['firstname'] . ' ' . $row['lastname'] . ')';
+
+      $audit = "INSERT INTO audit_trails (user_id, activity) VALUES ('$user_id', '$activity')";
+      $conn->query($audit);
+
 
       $_SESSION['RegisterSuccess'] = true;
       header("Location: users/index.php");

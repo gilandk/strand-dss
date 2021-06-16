@@ -475,7 +475,7 @@ include('include/sidebar.php');
               <tbody>
                 <?php
 
-                $sql_es = "SELECT * FROM examinee_student ORDER BY date_taken LIMIT 10";
+                $sql_es = "SELECT * FROM examinee_student ORDER BY date_taken DESC LIMIT 10";
                 $res_es = $conn->query($sql_es);
 
                 if ($res_es->num_rows > 0) {

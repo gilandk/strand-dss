@@ -29,6 +29,9 @@ if (isset($_POST)) {
   $oldpassword = mysqli_real_escape_string($conn, $_POST['oldpassword']);
   $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
+  $admin_id = $_SESSION['id'];
+  $activity = 'Updated student (' . $student_id . ')';
+
   if ($newpassword == NULL) {
     $password = $oldpassword;
   } else {
@@ -61,6 +64,9 @@ if (isset($_POST)) {
             WHERE user_id = '$u_id'";
     if ($conn->query($sql) == TRUE) {
 
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
+
       $_SESSION['updateStudentSuccess'] = true;
       header("Location: school_students_edit.php?id=" . $u_id);
       exit();
@@ -83,7 +89,7 @@ if (isset($_POST)) {
             school='$school',
             grade='$grade',
             section='$section',
-             s_year='$s_year';
+            s_year='$s_year';
             strand_opt1='$strand_opt1',
             strand_opt2='$strand_opt2',
             user_pass='$password',
@@ -91,6 +97,9 @@ if (isset($_POST)) {
 
             WHERE user_id = '$u_id'";
     if ($conn->query($sql) == TRUE) {
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['updateStudentSuccess'] = true;
       header("Location: school_students_edit.php?id=" . $u_id);

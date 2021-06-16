@@ -12,12 +12,18 @@ if (isset($_POST)) {
   $strand_abr = mysqli_real_escape_string($conn, $_POST['strand_abr']);
   $strand_description = mysqli_real_escape_string($conn, $_POST['strand_description']);
 
+  $admin_id = $_SESSION['id'];
+
   $title = "SELECT * FROM strands WHERE strand_name = '$strand_name'";
   $result = $conn->query($title);
 
   if ($strand_name2 == $strand_name) {
     $sql = "UPDATE strands SET strand_name='$strand_name', strand_abr='$strand_abr', strand_description='$strand_description' WHERE strand_id = '$strand_id'";
     if ($conn->query($sql) == TRUE) {
+
+      $activity = 'Updated a strand ' . $strand_name;
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['UpdateStrandSuccess'] = true;
       header("Location: manage_strands.php");
@@ -30,6 +36,10 @@ if (isset($_POST)) {
 
     $sql = "UPDATE strands SET strand_name='$strand_name', strand_abr='$strand_abr', strand_description='$strand_description' WHERE strand_id = '$strand_id'";
     if ($conn->query($sql) == TRUE) {
+
+      $activity = 'Updated a strand ' . $strand_name2 . '  to ' . $strand_name;
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['UpdateStrandSuccess'] = true;
       header("Location: manage_strands.php");

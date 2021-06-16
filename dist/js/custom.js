@@ -50,29 +50,71 @@ $('#birthdate').on('change', function() {
 //datatables
 $(function() {
     $('#analytics_categories').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
+        "paging": false,
+        "lengthChange": false,
+        "searching": false,
+        'order': [2, "desc"],
         "info": true,
         "autoWidth": false,
         "responsive": true,
+        "pageLength": 20
     });
 });
 
 //datatables
 $(function() {
     $('#analytics_strands').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
+        "paging": false,
+        "lengthChange": false,
+        "searching": false,
+        'order': [2, "desc"],
+        "autoWidth": true,
         "responsive": true,
+        "pageLength": 20
     });
 });
 
+//datatables
+$(function() {
+    $('#reportstrand').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        'order': [2, "desc"],
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "pageLength": 100
+    });
+});
+
+//datatables
+$(function() {
+    $('#reportexam').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        'order': [0, "asc"],
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "pageLength": 100
+    });
+});
+
+//datatables
+$(function() {
+    $('#reportcategory').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        'order': [2, "desc"],
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+        "pageLength": 100
+    });
+});
 
 $(function() {
     $('#school_students').DataTable({
@@ -80,6 +122,7 @@ $(function() {
         "lengthChange": true,
         "searching": true,
         "ordering": true,
+
         "info": true,
         "autoWidth": false,
         "responsive": true,
@@ -92,28 +135,31 @@ $(function() {
         "lengthChange": true,
         "searching": true,
         "ordering": true,
+        'order': [3, "desc"],
         "info": true,
         "autoWidth": true,
         "responsive": true,
+        "pageLength": 50
     });
 });
 
+$('#daterange-btn').daterangepicker({
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment()
+    },
+    function(start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+    }
+)
 
-$(document).ready(function() {
-    $('table.cat').DataTable({
-        'paging': false,
-        'lengthChange': false,
-        'searching': false,
-        'info': false,
-        'autoWidth': false,
-        dom: 'Plfrtip',
-        language: {
-            searchPanes: {
-                emptyPanes: 'There are no panes to display. :/'
-            }
-        }
-    });
-});
 
 /** add active class and stay opened when selected */
 var url = window.location;
@@ -225,8 +271,6 @@ $(function() {
     $('.select2bs4').select2({
         theme: 'bootstrap4'
     })
-
-
 });
 
 //confirmation when click
@@ -241,3 +285,38 @@ $('.confirmation').on('click', function() {
 
 //Bootstrap Duallistbox
 $('.duallistbox').bootstrapDualListbox()
+
+
+
+document.getElementById('dlexcel').addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("#analytics_strands"), "top25-strand");
+});
+
+document.getElementById('dlexcel').addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("#analytics_categories"), "top25-category");
+});
+
+
+
+document.getElementById('dlexcel').addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("#reportstrand"), "reports_strand");
+});
+
+
+document.getElementById('dlexcel').addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("#reportcategory"), "reports_category");
+});
+
+
+document.getElementById('dlexcel').addEventListener('click', function() {
+    var table2excel = new Table2Excel();
+    table2excel.export(document.querySelectorAll("#reportexam"), "reports_exam");
+});
+
+function printResult() {
+    window.print();
+}

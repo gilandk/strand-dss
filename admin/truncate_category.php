@@ -4,8 +4,6 @@ session_start();
 
 require_once('../db.php');
 
-
-
 $sql = "TRUNCATE TABLE category";
 if ($conn->query($sql) == TRUE) {
 

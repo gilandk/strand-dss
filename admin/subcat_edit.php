@@ -12,7 +12,6 @@ if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 
     $cat_id = $row['main_cat'];
-    $sc_index = $row['sc_index'];
     $sc_title = $row['sub_title'];
     $sc_instruct = $row['sub_instruction'];
   }
@@ -49,6 +48,7 @@ if ($result->num_rows > 0) {
             <form action="update_subcatinfo.php" method="POST" enctype="multipart/form-data">
 
               <input type="hidden" name="sc_id" value="<?php echo $sc_id; ?>">
+              <input type="hidden" name="cat_id" value="<?php echo $cat_id; ?>">
 
               <div class="form-group mt-3 ml-3 mr-3">
                 <label>Sub-Category</label>
@@ -64,11 +64,6 @@ if ($result->num_rows > 0) {
                     filebrowserUploadUrl: "upload.php",
                   });
                 </script>
-              </div>
-
-              <div class="form-group ml-3 mr-3">
-                <label>Index</label>
-                <input type="text" class="form-control" placeholder="Index" name="sc_index" value="<?php echo $sc_index; ?>" min="A" max="Z" />
               </div>
 
               <div class="form-group ml-3 mr-3">

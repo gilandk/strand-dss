@@ -1,5 +1,5 @@
 <!-- /.content-wrapper -->
-<footer class="main-footer">
+<footer class="main-footer screen">
   <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">Strand|DSS</a>.</strong>
   All rights reserved.
   <div class="float-right d-none d-sm-inline-block">
@@ -31,6 +31,7 @@
 <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.js"></script>
+
 <!-- Select2 -->
 <script src="../plugins/select2/js/select2.full.min.js"></script>
 

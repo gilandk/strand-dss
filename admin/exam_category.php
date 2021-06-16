@@ -65,6 +65,19 @@ include('include/sidebar.php');
             unset($_SESSION['addCategoryFailed']);
           }
           ?>
+          <?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['UpdateCategorySuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
+              Category Successfully Updated!
+            </div>
+          <?php
+            unset($_SESSION['UpdateCategorySuccess']);
+          }
+          ?>
           <div class="card card-primary card-outline">
             <!-- /.card-header -->
             <div class="card-header">

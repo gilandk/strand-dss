@@ -56,7 +56,7 @@ $c_id = $_REQUEST['id'];
 
 
               ?>
-                    <table id="analytics_categories" class='table borderless'>
+                    <table class='table borderless'>
                       <tbody>
                         <tr>
                           <td><strong>Student Highest Score</strong></td>
@@ -118,12 +118,19 @@ $c_id = $_REQUEST['id'];
 
           <div class="card">
             <div class="card-header">
-              <h5 class="card-title"><?php echo $cat_name; ?></h5>
+              <a class="btn btn-primary btn-sm" href="analytics_category_reports.php?id=<?php echo $c_id; ?>"> View All</a>
+              <button class="btn btn-success btn-sm" id="dlexcel"><i class="fas fa-file-export"></i> Export</button>
+              <button class="btn btn-info btn-sm" onClick="window.location.reload()"><i class="fas fa-sync"></i> Refresh</button>
             </div>
 
             <div class="card-body">
-              <table id="analytics_categories<?php echo $cat_id; ?>" class="table">
+              <table id="analytics_categories" class="table table-bordered">
                 <thead>
+                  <tr>
+                    <th colspan="5" class="text-center">
+                      Top 20 - <?php echo $cat_name; ?>
+                    </th>
+                  </tr>
                   <tr>
                     <th>Name</th>
                     <th>Exam</th>

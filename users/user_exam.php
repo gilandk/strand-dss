@@ -24,20 +24,6 @@ $userid = $_SESSION['id'];
 
       <?php
 
-      if (isset($_SESSION['RegisterSuccess'])) {
-      ?>
-        <div class="alert alert-success alert-dismissible">
-          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-          <h5><i class="icon fas fa-check"></i> Success!</h5>
-          Welcome! Please Complete you're Profile before taking the exam. <a href="profile.php">Here</a>
-        </div>
-      <?php
-        unset($_SESSION['RegisterSuccess']);
-      }
-      ?>
-
-      <?php
-
       $sql = "SELECT * FROM exams JOIN examinee_student ON exams.exam_id = examinee_student.exam_id WHERE examinee_student.student_id = '$userid'";
       $result = $conn->query($sql);
 
@@ -57,11 +43,7 @@ $userid = $_SESSION['id'];
               <p class="card-text">
                 <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
               </p>
-<<<<<<< HEAD
-              <a href="exam_result.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Result</a>
-=======
-              <a href="exam_result.php?id=<?php echo $exam_id; ?>" class="card-link">View Results</a>
->>>>>>> develop
+              <a href="exam_result.php?id=<?php echo $exam_id; ?>" class="card-link">Result</a>
             </div>
           </div>
 

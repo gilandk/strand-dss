@@ -342,7 +342,9 @@ include('include/sidebar.php');
               <h3 class="card-title">Strands</h3>
             </div>
             <div class="card-body">
-              <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+
+              <canvas id="barChart" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+
             </div>
             <!-- /.card-body -->
           </div>
@@ -469,28 +471,60 @@ include('include/sidebar.php');
 </div><!-- /.content-wrapper -->
 
 <script>
-  //-------------
-  //- DONUT CHART -
-  //-------------
-  // Get context with jQuery - using jQuery's .get() method.
-  var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
-  var donutData = {
-    labels: <?php echo json_encode($json); ?>,
+  var areaChartData = {
+    labels: <?php echo json_encode($json) ?>,
     datasets: [{
-      data: <?php echo json_encode($strand_t); ?>,
-      backgroundColor: ['#f55454', '#00a669', '#f3cd12', '#00c0ef', '#4b3cbc', '#ded2d9', '#AC33FF', '#33FF8E'],
-    }]
+      label: 'Not Compatible',
+      backgroundColor: 'rgba(60,141,188,0.9)',
+      borderColor: 'rgba(60,141,188,0.8)',
+      pointRadius: false,
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(60,141,188,1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(60,141,188,1)',
+      data: [5, 3, 2, 4]
+    }, {
+      label: 'Average',
+      backgroundColor: 'rgba(210, 214, 222, 1)',
+      borderColor: 'rgba(210, 214, 222, 1)',
+      pointRadius: false,
+      pointColor: 'rgba(210, 214, 222, 1)',
+      pointStrokeColor: '#c1c7d1',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(220,220,220,1)',
+      data: [6, 4, 1, 3]
+    }, {
+      label: 'Compatible',
+      backgroundColor: 'rgba(210, 214, 222, 1)',
+      borderColor: 'rgba(210, 214, 222, 1)',
+      pointRadius: false,
+      pointColor: 'rgba(210, 214, 222, 1)',
+      pointStrokeColor: '#c1c7d1',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(220,220,220,1)',
+      data: [6, 6, 4, 2]
+    }, ]
   }
-  var donutOptions = {
-    maintainAspectRatio: false,
+  //-------------
+  //- BAR CHART -
+  //-------------
+  var barChartCanvas = $('#barChart').get(0).getContext('2d')
+  var barChartData = jQuery.extend(true, {}, areaChartData)
+  var temp0 = areaChartData.datasets[0]
+  var temp1 = areaChartData.datasets[1]
+  barChartData.datasets[0] = temp1
+  barChartData.datasets[1] = temp0
+
+  var barChartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    datasetFill: false
   }
-  //Create pie or douhnut chart
-  // You can switch between pie and douhnut using the method below.
-  var donutChart = new Chart(donutChartCanvas, {
-    type: 'doughnut',
-    data: donutData,
-    options: donutOptions
+
+  var barChart = new Chart(barChartCanvas, {
+    type: 'bar',
+    data: barChartData,
+    options: barChartOptions
   })
 </script>
 <?php

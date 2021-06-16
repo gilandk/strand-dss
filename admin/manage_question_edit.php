@@ -18,7 +18,6 @@ while ($row = $result->fetch_assoc()) {
   $c = $row['choice3'];
   $d = $row['choice4'];
   $ans = $row['answerQ'];
-  $q_item = $row['q_item'];
 }
 ?>
 
@@ -34,9 +33,9 @@ while ($row = $result->fetch_assoc()) {
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">Update Questions</li>
-            <li class="breadcrumb-item"><a href="manage_questions.php?id=<?php echo $q_id; ?>">Questions</a></li>
+            <li class="breadcrumb-item"><a href="manage_questions.php?id=<?php echo $q_scat; ?>&cid=<?php echo $q_cat; ?>">Questions</a></li>
             <li class="breadcrumb-item active"><a href="sub_category.php?id=<?php echo $q_scat; ?>">Sub Category</a></li>
-            <li class="breadcrumb-item"><a href="exam_category.php">Category</a></li>
+            <li class=" breadcrumb-item"><a href="exam_category.php">Category</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -53,6 +52,7 @@ while ($row = $result->fetch_assoc()) {
             <form action="update_question.php" method="POST" enctype="multipart/form-data">
 
               <input type="hidden" name="q_id" value="<?php echo $q_id; ?>">
+              <input type="hidden" name="q_cat" value="<?php echo $q_cat; ?>">
               <input type="hidden" name="q_scat" value="<?php echo $q_scat; ?>">
 
               <div class="form-group mr-3 ml-3 mt-3">
@@ -131,15 +131,6 @@ while ($row = $result->fetch_assoc()) {
                 </div>
 
                 <div class="col-md-4">
-
-
-                  <div class="form-group mr-3 ml-3">
-                    <label>Item #:</label>
-                    <input type="number" name="q_item" class="form-control" value="<?php echo $q_item; ?>" placeholder="Items" required>
-                    </select>
-                  </div>
-
-
 
                   <div class="form-group mr-3 ml-3">
                     <label>Correct Answer:</label>

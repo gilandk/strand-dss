@@ -13,6 +13,8 @@ if (isset($_POST)) {
   $instruction = mysqli_real_escape_string($conn, $_POST['instruction']);
   $items = mysqli_real_escape_string($conn, $_POST['items']);
 
+  $admin_id = $_SESSION['id'];
+
   $title = "SELECT * FROM category WHERE cat_name ='$category'";
   $result = $conn->query($title);
 
@@ -21,8 +23,13 @@ if (isset($_POST)) {
     $sql = "UPDATE category SET cat_name='$category', cat_instruct='$instruction', cat_items='$items' WHERE cat_id = '$cat_id'";
     if ($conn->query($sql) == TRUE) {
 
+      $activity = 'Updated a category ' . $category;
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
+
       $_SESSION['UpdateCategorySuccess'] = true;
-      header("Location: exam_category_edit.php?id=" . $cat_id);
+      header("Location: exam_category.php");
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -33,8 +40,13 @@ if (isset($_POST)) {
     $sql = "UPDATE category SET cat_name='$category', cat_instruct='$instruction', cat_items='$items' WHERE cat_id = '$cat_id'";
     if ($conn->query($sql) == TRUE) {
 
+      $activity = 'Updated a category ' . $category2 . ' to ' . $category;
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
+
       $_SESSION['UpdateCategorySuccess'] = true;
-      header("Location: exam_category_edit.php?id=" . $cat_id);
+      header("Location: exam_category.php");
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up

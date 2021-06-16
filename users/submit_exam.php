@@ -12,6 +12,8 @@ if (isset($_POST)) {
   $c_id = mysqli_real_escape_string($conn, $_POST['c_id']);
   $status = 1;
 
+  $activity = 'Student submitted exam (' . $user_id . ')';
+
 
   if (!empty($_POST['ans'])) {
 
@@ -23,14 +25,23 @@ if (isset($_POST)) {
     $selected = $_POST['ans'];
     print_r($selected);
 
-    $q = "SELECT * FROM questions WHERE q_cat = '$c_id' ORDER BY q_item";
+    $q = "SELECT * FROM questions WHERE q_cat = '$c_id'";
     $resultq = $conn->query($q);
 
     while ($q = $resultq->fetch_array()) {
       $answer = $q['answerQ'];
+
+      echo '<br/>';
+      $q_id = $q['q_id'];
+      echo 'Id # ';
+      print_r($q_id);
+      echo ' Answer ';
       print_r($answer);
 
       $checked = $answer == $selected[$i];
+
+      echo ' Checked ';
+      print_r($checked);
 
       if ($checked) {
         $score++;
@@ -78,16 +89,24 @@ if (isset($_POST)) {
     }
   }
 
+  echo '<br/>';
   echo $score;
+  echo '<br/>';
   echo $apt;
+  echo '<br/>';
   echo $percentile;
+  echo '<br/>';
   echo $val;
+  echo '<br/>';
 
   $sql = "INSERT INTO exam_answers
-      (exam_id, examinee_id, category_id, score, status, percentile, aptitude, value)
-      VALUES
-      ('$e_id', '$user_id', '$c_id', '$score', '$status', '$percentile', '$apt', '$val')";
+        (exam_id, examinee_id, category_id, score, status, percentile, aptitude, value)
+        VALUES
+        ('$e_id', '$user_id', '$c_id', '$score', '$status', '$percentile', '$apt', '$val')";
   if ($conn->query($sql) == TRUE) {
+
+    $audit = "INSERT INTO audit_trails (user_id, activity) VALUES ('$user_id', '$activity')";
+    $conn->query($audit);
 
     $_SESSION['submitExamSuccess'] = true;
     header("Location: exam_info.php?id=" . $e_id);

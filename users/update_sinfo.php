@@ -23,6 +23,9 @@ if (isset($_POST)) {
   $strand_opt1 = mysqli_real_escape_string($conn, $_POST['strand1']);
   $strand_opt2 = mysqli_real_escape_string($conn, $_POST['strand2']);
 
+  $user_id = $_SESSION['id'];
+  $activity = 'Update Student Account (' . $student_id . ')';
+
   $sql = "UPDATE student_info SET
         
             student_id='$student_id',
@@ -42,6 +45,10 @@ if (isset($_POST)) {
 
             WHERE user_id = '$u_id'";
   if ($conn->query($sql) == TRUE) {
+
+
+    $audit = "INSERT INTO audit_trails (user_id, activity) VALUES ('$user_id', '$activity')";
+    $conn->query($audit);
 
     $_SESSION['updateStudentSuccess'] = true;
     header("Location: update_info.php?id=" . $u_id);

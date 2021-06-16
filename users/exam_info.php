@@ -120,7 +120,7 @@ if ($result->num_rows > 0) {
                     $cat_name = $row2['cat_name'];
                     $cat_instruct = $row2['cat_instruct'];
 
-                    $sql3 = "SELECT * FROM exam_answers WHERE examinee_id = '$u_id' AND category_id = $c_id";
+                    $sql3 = "SELECT * FROM exam_answers WHERE examinee_id = '$u_id' AND category_id = '$c_id' AND exam_id = '$e_id'";
                     $result3 = $conn->query($sql3);
 
                     if ($result3->num_rows > 0) {

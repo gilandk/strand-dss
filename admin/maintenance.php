@@ -41,8 +41,7 @@ include('include/sidebar.php');
 
                   <div class="row">
 
-
-                    <table class="table">
+                    <table class="table table-borderless">
                       <thead>
                         <tr>
                           <th></th>

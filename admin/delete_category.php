@@ -8,6 +8,13 @@ if (isset($_POST)) {
 
   $category_id = $_REQUEST['id'];
 
+  $act = "SELECT * FROM category WHERE cat_id = '$category_id'";
+  $actres = $conn->query($act);
+  $row = mysqli_fetch_assoc($actres);
+
+  $admin_id = $_SESSION['id'];
+  $activity = 'Deleted a category ' . $row['cat_name'];
+
 
   $sql = "DELETE FROM category WHERE cat_id = '$category_id';";
   if ($conn->query($sql) == TRUE) {
@@ -15,8 +22,11 @@ if (isset($_POST)) {
     $sql1 = "DELETE FROM sub_category WHERE main_cat = '$category_id'";
     $conn->query($sql1);
 
-    $sql2 = "DELETE FROm questions WHERE q_cat = '$category_id'";
+    $sql2 = "DELETE FROM questions WHERE q_cat = '$category_id'";
     $conn->query($sql2);
+
+    $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+    $conn->query($audit);
 
     $_SESSION['deleteCategorySuccess'] = true;
     header("Location: exam_category.php");

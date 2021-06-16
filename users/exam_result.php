@@ -1,9 +1,5 @@
 <?php
 include('include/header.php');
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 
 $user_id = $_SESSION['id'];
 $e_id = $_REQUEST['id'];
@@ -60,9 +56,10 @@ if ($resultuser->num_rows > 0) {
                 <i class="fas fa-text-width"></i>
                 Student Info
               </h3>
+              <button class="btn btn-outline-info btn-xs float-right screen" onclick="printResult()">Print as PDF</button>
             </div><!-- /.card-header -->
             <div class="card-body">
-              <dl class="row">
+              <div class="row">
                 <div class="col-md-6">
                   <table class='table borderless'>
                     <tbody>
@@ -71,12 +68,12 @@ if ($resultuser->num_rows > 0) {
                         <td><?php echo $fullname; ?></td>
                       </tr>
                       <tr>
-                        <td><strong>Email:</strong> </td>
-                        <td><?php echo $user_email; ?></td>
+                        <td class="screen"><strong>Email:</strong> </td>
+                        <td class="screen"><?php echo $user_email; ?></td>
                       </tr>
                       <tr>
-                        <td><strong>Contact:</strong> </td>
-                        <td><?php echo $contact; ?></td>
+                        <td class="screen"><strong>Contact:</strong> </td>
+                        <td class="screen"><?php echo $contact; ?></td>
                       </tr>
                       <tr>
                         <td><strong>Birthdate:</strong> </td>
@@ -110,7 +107,7 @@ if ($resultuser->num_rows > 0) {
                     <canvas id="donutChart" class="graph-card"></canvas>
                   </div>
                 </div>
-              </dl>
+              </div>
             </div><!-- /.card-body -->
           </div> <!-- /.card -->
 
@@ -134,7 +131,7 @@ if ($resultuser->num_rows > 0) {
                   $exam_date_e = $row1['exam_date_e'];
                   $exam_status = $row1['exam_status'];
               ?>
-                  <dl class="row">
+                  <div class="row">
                     <div class="col-md-6">
                       <table class='table borderless'>
                         <tbody>
@@ -142,10 +139,6 @@ if ($resultuser->num_rows > 0) {
                             <td><strong>Exam Type:</strong></td>
                             <td><?php echo $exam_type; ?></td>
                           </tr>
-                          <tr>
-                            <td><strong>Exam Date:</strong></td>
-                            <td><?php echo $exam_date_s . ' - ' . $exam_date_e; ?></td>
-                          </tr>
 
                         </tbody>
                       </table>
@@ -154,71 +147,69 @@ if ($resultuser->num_rows > 0) {
                       <table class='table borderless'>
                         <tbody>
                           <tr>
-                            <td><strong>Exam Status:</strong></td>
-                            <td><?php echo $exam_status; ?></td>
-
+                            <td><strong>Exam Date:</strong></td>
+                            <td><?php echo $exam_date_s . ' - ' . $exam_date_e; ?></td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                  </dl>
-                  <table class="table table-bordered table-striped cat">
-                    <thead>
-                      <tr>
-                        <th class="text-center">id</th>
-                        <th class="text-center">Category</th>
-                        <th class="text-center">Score</th>
-                        <th class="text-center">Percentile</th>
-                        <th class="text-center">Aptitude</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-
-                      $sql2 = "SELECT * FROM exam_answers WHERE exam_id='$e_id' AND examinee_id='$user_id'";
-                      $result2 = $conn->query($sql2);
-
-                      if ($result2->num_rows > 0) {
-                        while ($row2 = $result2->fetch_assoc()) {
-
-                          $category_id = $row2['category_id'];
-                          $score = $row2['score'];
-                          $percentile = $row2['percentile'];
-                          $apt = $row2['aptitude'];
-                          $value = $row2['value'];
-
-                          extract($row2);
-                          $json[] = $percentile;
-
-
-                          $sql3 = "SELECT * FROM category WHERE cat_id = '$category_id' ORDER BY cat_seq ASC";
-                          $result3 = $conn->query($sql3);
+                    <div class="col-md-12">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th class="text-center">Category</th>
+                            <th class="text-center">Score</th>
+                            <th class="text-center">Percentile</th>
+                            <th class="text-center">Aptitude</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php
+                          $sql2 = "SELECT * FROM exam_answers WHERE exam_id='$e_id' AND examinee_id='$user_id' ORDER BY percentile DESC";
+                          $result2 = $conn->query($sql2);
 
                           if ($result2->num_rows > 0) {
-                            while ($row3 = $result3->fetch_assoc()) {
+                            while ($row2 = $result2->fetch_assoc()) {
 
-                              $cat_name = $row3['cat_name'];
-                              $cat_items = $row3['cat_items'];
+                              $category_id = $row2['category_id'];
+                              $score = $row2['score'];
+                              $percentile = $row2['percentile'];
+                              $apt = $row2['aptitude'];
+                              $value = $row2['value'];
 
-                              extract($row3);
-                              $json2[] = $cat_name;
-                      ?>
-                              <tr>
-                                <td> <?php echo $category_id; ?></td>
-                                <td><?php echo $cat_name; ?></td>
-                                <td><?php echo $score . ' / ' . $cat_items; ?></td>
-                                <td><?php echo $percentile; ?> %</td>
-                                <td><?php echo $apt; ?></td>
-                              </tr>
-                      <?php
+                              extract($row2);
+                              $json[] = $percentile;
 
+
+                              $sql3 = "SELECT * FROM category WHERE cat_id = '$category_id'";
+                              $result3 = $conn->query($sql3);
+
+                              if ($result2->num_rows > 0) {
+                                while ($row3 = $result3->fetch_assoc()) {
+
+                                  $cat_name = $row3['cat_name'];
+                                  $cat_items = $row3['cat_items'];
+
+                                  extract($row3);
+                                  $json2[] = $cat_name;
+                          ?>
+                                  <tr>
+                                    <td><?php echo $cat_name; ?></td>
+                                    <td class="text-center"><?php echo $score . ' / ' . $cat_items; ?></td>
+                                    <td class="text-center"><?php echo $percentile; ?> %</td>
+                                    <td class="text-center"><?php echo $apt; ?></td>
+                                  </tr>
+                          <?php
+
+                                }
+                              }
                             }
                           }
-                        }
-                      }
-                      ?>
-                    </tbody>
-                  </table>
+                          ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
               <?php
                 }
               }
@@ -234,7 +225,7 @@ if ($resultuser->num_rows > 0) {
               </h3>
             </div><!-- /.card-header -->
             <div class="card-body">
-              <dl class="row">
+              <div class="row">
 
                 <table class='table borderless'>
                   <tbody>
@@ -472,7 +463,7 @@ if ($resultuser->num_rows > 0) {
                     ?>
                   </tbody>
                 </table>
-              </dl>
+              </div>
             </div>
           </div>
         </div>

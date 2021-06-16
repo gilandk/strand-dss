@@ -29,3 +29,18 @@
     max-height: 300px;
     max-width: 100%;
 }
+
+@media print {
+    .screen {
+        display: none;
+    }
+    .print {
+        display: block;
+    }
+}
+
+@page {
+    size: auto A4 portrait;
+    margin: 5mm;
+    /* this affects the margin in the printer settings */
+}

@@ -25,29 +25,64 @@ include('include/sidebar.php');
   <section class="content">
     <div class="card card-primary card-outline">
       <div class="card-body">
+        <!-- /.form group -->
         <table id="settings_audit" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Account ID</th>
+              <th>Name/ID</th>
               <th>Role</th>
-              <th>Full Name</th>
               <th>Activity</th>
               <th>Date & Time</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>123456</td>
-              <td>Admin</td>
-              <td>Aron</td>
-              <td>Edit name</td>
-              <td>01-03-2021</td>
+            <?php
+            $sql = "SELECT * FROM audit_trails ORDER BY date";
+            $result = $conn->query($sql);
 
-            </tr>
+            if ($result->num_rows > 0) {
+              while ($rows = $result->fetch_assoc()) {
+                $admin_id = $rows['admin_id'];
+                $user_id = $rows['user_id'];
+                $activity = $rows['activity'];
+                $date = $rows['date'];
+
+                if ($admin_id != NULL) {
+
+                  $sql1 = "SELECT * FROM admin WHERE admin_id = '$admin_id'";
+                  $result1 = $conn->query($sql1);
+
+                  $row = mysqli_fetch_assoc($result1);
+                  $admin_name = $row['admin_name'];
+                  $admin_role = $row['admin_role'];
+
+                  echo  '<tr>';
+                  echo '<td>' . $admin_name . '</td>';
+                  echo '<td>' . $admin_role . '</td>';
+                  echo '<td>' . $activity . '</td>';
+                  echo '<td>' . date('d-M-Y h:i A ', strtotime($date)) . '</td>';
+                  echo '</tr>';
+                } else {
+
+                  $sql2 = "SELECT * FROM student_info WHERE user_id = '$user_id'";
+                  $result2 = $conn->query($sql2);
+                  $row2 = mysqli_fetch_assoc($result2);
+                  $user_name = $row2['student_id'];
+                  $user_role = 'User';
+
+                  echo  '<tr>';
+                  echo '<td>' . $user_name . '</td>';
+                  echo '<td>' . $user_role . '</td>';
+                  echo '<td>' . $activity . '</td>';
+                  echo '<td>' . date('d-M-Y h:i A ', strtotime($date)) . '</td>';
+                  echo '</tr>';
+                }
+              }
+            }
+            ?>
           </tbody>
           <tfoot>
             <tr>
-              <th>Account ID</th>
               <th>Role</th>
               <th>Full Name</th>
               <th>Activity</th>
@@ -62,6 +97,46 @@ include('include/sidebar.php');
     <section>
       <!-- /.content -->
 </div>
+<script>
+  var minDate, maxDate;
+
+  // Custom filtering function which will search data in column four between two values
+  $.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+      var min = minDate.val();
+      var max = maxDate.val();
+      var date = new Date(data[4]);
+
+      if (
+        (min === null && max === null) ||
+        (min === null && date <= max) ||
+        (min <= date && max === null) ||
+        (min <= date && date <= max)
+      ) {
+        return true;
+      }
+      return false;
+    }
+  );
+
+  $(document).ready(function() {
+    // Create date inputs
+    minDate = new DateTime($('#min'), {
+      format: 'MMMM Do YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+      format: 'MMMM Do YYYY'
+    });
+
+    // DataTables initialisation
+    var table = $('#settings_audit').DataTable();
+
+    // Refilter the table
+    $('#min, #max').on('change', function() {
+      table.draw();
+    });
+  });
+</script>
 
 <?php
 include('include/footer.php');

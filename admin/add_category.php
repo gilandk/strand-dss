@@ -10,6 +10,9 @@ if (isset($_POST)) {
   $instruction = mysqli_real_escape_string($conn, $_POST['instruction']);
   $items = mysqli_real_escape_string($conn, $_POST['items']);
 
+  $admin_id = $_SESSION['id'];
+  $activity = 'Added new Category ' . $category;
+
   $title = "SELECT * FROM category WHERE cat_name = '$category'";
   $result = $conn->query($title);
 
@@ -17,6 +20,9 @@ if (isset($_POST)) {
 
     $sql = "INSERT INTO category (cat_name, cat_instruct, cat_items) VALUES ('$category', '$instruction', '$items')";
     if ($conn->query($sql) == TRUE) {
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id','$activity')";
+      $conn->query($audit);
 
       $_SESSION['addCategorySuccess'] = true;
       header("Location: exam_category.php");

@@ -61,6 +61,9 @@ require_once('../db.php');
   <!-- Toastr -->
   <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
 
+  <!-- table2excel -->
+  <script src="../dist/js/table2excel.js"></script>
+
   <script src="http://cdn.ckeditor.com/4.6.2/standard-all/ckeditor.js"></script>
   <!-- ChartJS -->
   <script src="../plugins/chart.js/Chart.min.js"></script>
@@ -69,6 +72,7 @@ require_once('../db.php');
   <!-- jQuery UI 1.11.4 -->
   <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 
 </head>
 <!-- oncontextmenu="return false" -->

@@ -6,8 +6,6 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
-
-
   $sf_id = mysqli_real_escape_string($conn, $_POST['sf_id']);
   $mode = mysqli_real_escape_string($conn, $_POST['mode']);
   $strand_id = mysqli_real_escape_string($conn, $_POST['strand_id']);

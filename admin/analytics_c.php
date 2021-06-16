@@ -51,7 +51,8 @@ include('include/sidebar.php');
                       <tr>
                         <td><?php echo $row['cat_name']; ?></td>
                         <td class="text-center">
-                          <a href="analytics_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-sm">View</a>
+                          <a href="analytics_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Charts</a>
+                          <a href="analytics_category_reports.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-sm">Reports</a>
                         </td>
                       </tr>
                   <?php

@@ -36,10 +36,11 @@ include('include/header.php');
 
       <?php
 
-      $current_date = date('d-m-Y h:i', time());
+      $current_datetime = date('m/d/Y h:i A');
+
       // echo '<br/>';
 
-      $sql = "SELECT * FROM exams WHERE exam_status='Active' OR exam_date_e < '$current_date' ORDER by exam_date_s DESC";
+      $sql = "SELECT * FROM exams WHERE exam_status='Active' ORDER by exam_date_s DESC";
       $result = $conn->query($sql);
 
       if ($result->num_rows > 0) {
@@ -49,20 +50,30 @@ include('include/header.php');
           $type = $row['exam_type'];
           $date_s = $row['exam_date_s'];
           $date_e = $row['exam_date_e'];
+
+          // echo '<br/>';
+          $edate = date(strtotime($date_e));
+          // echo '<br/>';
+          $cdate = date(strtotime($current_datetime));
+          // echo '<br/>';
+          if ($edate > $cdate) {
       ?>
 
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title mb-2"><?php echo $type; ?></h5>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title mb-2"><?php echo $type; ?></h5>
 
-              <p class="card-text">
-                <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
-              </p>
-              <a href="take_exam.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Take Exam</a>
+                <p class="card-text">
+                  <i class="far fa-calendar-alt"></i> <?php echo date('F d, Y', strtotime($date_s)) . ' to ' .  date('F d, Y', strtotime($date_e)); ?>
+                </p>
+                <a href="take_exam.php?id=<?php echo $exam_id; ?>" class="card-link confirmation">Take Exam</a>
+              </div>
             </div>
-          </div>
 
       <?php
+          } else {
+            echo '';
+          }
         }
       } else {
         echo 'No Exams Available';

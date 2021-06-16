@@ -3,8 +3,9 @@ include('include/header.php');
 include('include/sidebar.php');
 
 $subc_id = $_REQUEST['id'];
+$cid = $_REQUEST['cid'];
 
-$sql1 = "SELECT * FROM category JOIN sub_category ON category.cat_id = sub_category.main_cat WHERE sub_category.sub_id = '$subc_id'";
+$sql1 = "SELECT * FROM category JOIN sub_category ON category.cat_id = sub_category.main_cat WHERE sub_category.sub_id = '$subc_id' AND sub_category.main_cat = '$cid'";
 $result1 = $conn->query($sql1);
 
 while ($row = $result1->fetch_assoc()) {
@@ -28,8 +29,8 @@ while ($row = $result1->fetch_assoc()) {
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">Questions</li>
-            <li class="breadcrumb-item active"><a href="sub_category.php?id=<?php echo $subc_id; ?>">Sub Category</a></li>
-            <li class="breadcrumb-item"><a href="exam_category.php">Category</a></li>
+            <li class="breadcrumb-item active"><a href="sub_category.php?id=<?php echo $cid; ?>">Sub Category</a></li>
+            <li class=" breadcrumb-item"><a href="exam_category.php">Category</a></li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -39,6 +40,8 @@ while ($row = $result1->fetch_assoc()) {
 
   <section class="content">
     <div class="container-fluid">
+
+
       <div class="row">
         <div class="col-md-12">
 
@@ -49,7 +52,7 @@ while ($row = $result1->fetch_assoc()) {
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h5><i class="icon fas fa-check"></i> Success!</h5>
-              Question Successfully Added!
+              Question Added!
             </div>
           <?php
             unset($_SESSION['addQuestionSuccess']);
@@ -58,17 +61,18 @@ while ($row = $result1->fetch_assoc()) {
 
           <?php
           //If User already registered with this email then show error message.
-          if (isset($_SESSION['addQUestionFailed'])) {
+          if (isset($_SESSION['deleteQuestion'])) {
           ?>
             <div class="alert alert-danger alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-              Question Failed to Add!
+              Question Deleted!
             </div>
           <?php
-            unset($_SESSION['addQuestionFailed']);
+            unset($_SESSION['deleteQuestion']);
           }
           ?>
+
           <div class="card card-primary card-outline">
             <div class="card-header">
               <div class="row mb-2">
@@ -77,42 +81,13 @@ while ($row = $result1->fetch_assoc()) {
                 </button>
               </div>
             </div>
-            <?php
-            //If User already registered with this email then show error message.
-            if (isset($_SESSION['addQuestionSuccess'])) {
-            ?>
-              <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-check"></i> Success!</h5>
-                Question Added!
-              </div>
-            <?php
-              unset($_SESSION['addQuestionSuccess']);
-            }
-            ?>
 
-            <?php
-            //If User already registered with this email then show error message.
-            if (isset($_SESSION['deleteQuestion'])) {
-            ?>
-              <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                Question Deleted!
-              </div>
-            <?php
-              unset($_SESSION['deleteQuestion']);
-            }
-            ?>
             <div class="card-body pad table-responsive">
-
-
 
               <table class="table table-bordered table-striped cat">
 
                 <thead>
                   <tr>
-                    <th class="text-center">#</th>
                     <th>Question</th>
                     <th class="text-center">Action</th>
                   </tr>
@@ -122,21 +97,18 @@ while ($row = $result1->fetch_assoc()) {
 
                   <?php
 
-                  $sql = "SELECT * FROM questions WHERE q_scat = '$subc_id'";
+                  $sql = "SELECT * FROM questions WHERE q_scat = '$subc_id' AND q_cat = '$cid'";
                   $result = $conn->query($sql);
-
-                  $cat_count = $result->num_rows;
 
                   if ($result->num_rows > 0) {
                     while ($rows = $result->fetch_assoc()) {
 
                   ?>
                       <tr>
-                        <td class="text-center"><?php echo $rows['q_item']; ?></td>
                         <td><?php echo $rows['question']; ?></td>
                         <td class="text-center">
                           <a href="manage_question_edit.php?id=<?php echo $rows['q_id']; ?>" class="btn btn-block btn-outline-warning btn-sm">Update</a>
-                          <a href="delete_question.php?id=<?php echo $rows['q_id']; ?>" class="btn btn-block btn-outline-danger btn-sm">Delete</a>
+                          <a href="delete_question.php?id=<?php echo $rows['q_id']; ?>&scid=<?php echo $rows['q_scat']; ?>&cid=<?php echo $rows['q_cat']; ?>" class="btn btn-block btn-outline-danger btn-sm">Delete</a>
                         </td>
                       </tr>
                   <?php
@@ -242,13 +214,6 @@ while ($row = $result1->fetch_assoc()) {
                     </div>
 
                     <div class="col-md-4">
-
-                      <div class="form-group">
-                        <label>Item #:</label>
-                        <input type="number" name="q_item" class="form-control" placeholder="Items" value="<?php echo $cat_count + 1; ?>" required>
-                        </select>
-                      </div>
-
 
                       <div class="form-group">
                         <label>Correct Answer:</label>

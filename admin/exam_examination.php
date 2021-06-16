@@ -57,6 +57,20 @@ $result = $conn->query($sql);
             unset($_SESSION['addExamFailed']);
           }
           ?>
+
+          <?php
+
+          if (isset($_SESSION['deleteExam'])) {
+          ?>
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-ban"></i> Alert!</h5>
+              Exam Deleted!
+            </div>
+          <?php
+            unset($_SESSION['deleteExam']);
+          }
+          ?>
           <div class="card card-primary card-outline">
             <!-- /.card-header -->
             <div class="card-header">
@@ -108,6 +122,7 @@ $result = $conn->query($sql);
                         </td>
                         <td class="text-center">
                           <a href="manage_exam.php?id=<?php echo $exam_id; ?>" class="btn btn-block btn-outline-info btn-xs">Manage</a>
+                          <a href="delete_exam.php?id=<?php echo $exam_id; ?>" class="btn btn-block btn-outline-danger btn-xs">Delete</a>
                         </td>
                       </tr>
                   <?php

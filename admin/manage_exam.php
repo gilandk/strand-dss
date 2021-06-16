@@ -127,6 +127,16 @@ if ($result->num_rows > 0) {
                             });
                           </script>
                         </div>
+
+                        <div class="form-group ml-2 mr-2">
+                          <div class="col-md-6">
+                            <label>Examination Status:</label>
+                            <select name="status" class="form-control">
+                              <option <?php if ($exam_status == 'Active') echo 'selected'; ?>>Active</option>
+                              <option <?php if ($exam_status == 'Inactive') echo 'selected'; ?>>Inactive</option>
+                            </select>
+                          </div>
+                        </div>
                         <div class="form-group ml-2 mr-2">
                           <button type="submit" name="save" class="btn btn-primary">Save</button>
                         </div>

@@ -12,6 +12,9 @@ if (isset($_POST)) {
   $emailcomp = mysqli_real_escape_string($conn, $_POST['emailcomp']);
   $role = mysqli_real_escape_string($conn, $_POST['role']);
 
+  $admin_id = $_SESSION['id'];
+  $activity = 'Updated admin account';
+
   $oldpassword = mysqli_real_escape_string($conn, $_POST['oldpassword']);
   $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
@@ -28,6 +31,11 @@ if (isset($_POST)) {
     $sql = "UPDATE admin SET admin_name='$name', admin_role='$role', admin_pass='$password' WHERE admin_id = '$a_id'";
     if ($conn->query($sql) == TRUE) {
 
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
+
+
       $_SESSION['updateAdminAccSuccess'] = true;
       header("Location: settings_update_acc.php?id=" . $a_id);
       exit();
@@ -39,6 +47,9 @@ if (isset($_POST)) {
 
     $sql = "UPDATE admin SET admin_name='$name', admin_email='$email', admin_role='$role', admin_pass='$password' WHERE admin_id = '$a_id'";
     if ($conn->query($sql) == TRUE) {
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['updateAdminAccSuccess'] = true;
       header("Location: settings_update_acc.php?id=" . $a_id);

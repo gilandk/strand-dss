@@ -15,6 +15,9 @@ if (isset($_POST)) {
   $section = mysqli_real_escape_string($conn, $_POST['section']);
   $s_year = mysqli_real_escape_string($conn, $_POST['s_year']);
 
+  $admin_id = $_SESSION['id'];
+  $activity = 'Added new student (' . $st_id . ')';
+
   $password = mysqli_real_escape_string($conn, $_POST['password']);
 
   $emailcheck = "SELECT * FROM student_info WHERE user_email = '$email'";
@@ -25,6 +28,9 @@ if (isset($_POST)) {
     $sql = "INSERT INTO student_info (student_id, firstname, middlename, lastname, user_email, grade, section, user_pass)
                                     VALUES ('$st_id','$fname', '$mname', '$lname', '$email', '$grade', '$section', '$password')";
     if ($conn->query($sql) == TRUE) {
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['addStudentSuccess'] = true;
       header("Location: school_students.php");

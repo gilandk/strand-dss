@@ -39,6 +39,13 @@ if (isset($_POST['submit'])) {
 
         mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");
 
+
+        $user_id = $row['user_id'];
+        $activity = 'Logged in as User (' . $row['firstname'] . ' ' . strtoupper(first_char($row['middlename'])) . '. ' . $row['lastname'] . ' ' . $row['allias'] . ')';
+
+        $audit = "INSERT INTO audit_trails (user_id, activity) VALUES ('$user_id', '$activity')";
+        $conn->query($audit);
+
         header('location: users/index.php');
       }
     } else {

@@ -11,14 +11,19 @@ if (isset($_POST)) {
   $strand_abr = mysqli_real_escape_string($conn, $_POST['strand_abr']);
   $strand_description = mysqli_real_escape_string($conn, $_POST['strand_description']);
 
+  $admin_id = $_SESSION['id'];
+  $activity = 'Added new strand ' . $strand_name;
+
   $title = "SELECT * FROM strands WHERE strand_name = '$strand_name'";
   $result = $conn->query($title);
 
   if ($result->num_rows == 0) {
 
     $sql = "INSERT INTO strands (strand_name, strand_abr, strand_description) VALUES ('$strand_name', '$strand_abr', '$strand_description')";
-
     if ($conn->query($sql) == TRUE) {
+
+      $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['addStrandSuccess'] = true;
       header("Location: manage_strands.php");

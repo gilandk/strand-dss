@@ -3,9 +3,6 @@
 include('include/header.php');
 include('include/sidebar.php');
 
-if ($_SESSION['role'] == 'Admin') {
-  header("Location: dashboard.php");
-}
 
 $sql = "SELECT * FROM admin";
 $result = $conn->query($sql);

@@ -41,38 +41,41 @@ $userid = $_REQUEST['id'];
                       Date
                     </th>
                     <th>
-
                     </th>
                   </tr>
                 </thead>
-                <tr>
-                  <?php
-                  $sql = "SELECT * FROM exams JOIN examinee_student ON exams.exam_id = examinee_student.exam_id WHERE examinee_student.student_id = '$userid'";
-                  $result = $conn->query($sql);
+                <?php
+                $sql = "SELECT * FROM exams JOIN examinee_student ON exams.exam_id = examinee_student.exam_id WHERE examinee_student.student_id = '$userid'";
+                $result = $conn->query($sql);
 
-                  if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
+                if ($result->num_rows > 0) {
+                  while ($row = $result->fetch_assoc()) {
 
-                      $exam_id = $row['exam_id'];
-                      $type = $row['exam_type'];
-                      $date_s = $row['exam_date_s'];
-                      $date_e = $row['exam_date_e'];
+                    $exam_id = $row['exam_id'];
+                    $type = $row['exam_type'];
+                    $date_s = $row['exam_date_s'];
+                    $date_e = $row['exam_date_e'];
 
-                  ?>
+                    $date_taken = $row['date_taken'];
+
+                ?>
+                    <tr>
+
                       <td>
                         <?php echo $type; ?>
                       </td>
                       <td>
-                        <?php echo $date_s; ?> - <?php echo $date_e; ?>
+                        <?php echo date('d-M-Y h:i A', strtotime($date_taken)); ?>
                       </td>
                       <td>
                         <a href="exam_result.php?id=<?php echo $userid; ?>&eid=<?php echo $exam_id; ?>" class="btn btn-block btn-outline-primary btn-xs">Result</a>
                       </td>
-                  <?php
-                    }
+
+                    </tr>
+                <?php
                   }
-                  ?>
-                </tr>
+                }
+                ?>
               </table>
             </div>
             <!-- /.paste here -->

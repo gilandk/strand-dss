@@ -40,6 +40,12 @@ if (isset($_POST['submit'])) {
 
         mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");
 
+        $admin_id = $row['admin_id'];
+        $activity = 'Logged in ' . $row['admin_name'];
+
+        $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";
+        $conn->query($audit);
+
         header('location:dashboard.php');
       }
     } else {

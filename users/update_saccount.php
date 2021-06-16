@@ -26,6 +26,10 @@ if (isset($_POST)) {
   $email = mysqli_real_escape_string($conn, $_POST['email']);
   $emailcomp = mysqli_real_escape_string($conn, $_POST['emailcomp']);
 
+  $user_id = $_SESSION['id'];
+  $activity = 'Update Student Account (' . $student_id . ')';
+
+
   $oldpassword = mysqli_real_escape_string($conn, $_POST['oldpassword']);
   $newpassword = mysqli_real_escape_string($conn, $_POST['newpassword']);
 
@@ -47,6 +51,9 @@ if (isset($_POST)) {
             WHERE user_id = '$u_id'";
     if ($conn->query($sql) == TRUE) {
 
+      $audit = "INSERT INTO audit_trails (user_id, activity) VALUES ('$admin_id', '$activity')";
+      $conn->query($audit);
+
       $_SESSION['updateStudentSuccess'] = true;
       header("Location: update_account.php?id=" . $u_id);
       exit();
@@ -63,6 +70,9 @@ if (isset($_POST)) {
 
             WHERE user_id = '$u_id'";
     if ($conn->query($sql) == TRUE) {
+
+      $audit = "INSERT INTO audit_trails (user_id, activity) VALUES ('$user_id', '$activity')";
+      $conn->query($audit);
 
       $_SESSION['updateStudentSuccess'] = true;
       header("Location: update_account.php?id=" . $u_id);

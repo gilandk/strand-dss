@@ -55,6 +55,12 @@
                     <p>By Category</p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="analytics_e.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>By Exam</p>
+                  </a>
+                </li>
               </ul>
             </li>
             <!-- school -->
@@ -127,11 +133,7 @@
                 <li class="nav-item">
                   <a href="exam_category.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-<<<<<<< HEAD
                     <p>Manage Categories</p>
-=======
-                    <p>Categories/Questions</p>
->>>>>>> develop
                   </a>
                 </li>
               </ul>

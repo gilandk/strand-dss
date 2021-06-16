@@ -4,7 +4,13 @@ $hour = $cHour * 3600000;
 $min = $cMin * 60000;
 $time = $hour + $min;
 
-$cMin = $cMin - 1;
+
+if ($cMin == 0) {
+  $cMin = $cMin;
+} else {
+  $cMin = $cMin - 1;
+}
+
 
 ?>
 
@@ -14,7 +20,7 @@ $cMin = $cMin - 1;
 
     <div class="info-box-content">
       <span class="info-box-text">Timer</span>
-      <span class="info-box-number" id="realtime"><?php echo $cHour . ':' . $cMin; ?>:60</span>
+      <span class="info-box-number" id="realtime"><?php echo $cHour . ':' . $cMin; ?>:59</span>
     </div>
     <!-- /.info-box-content -->
   </div>
@@ -52,6 +58,7 @@ $cMin = $cMin - 1;
     }
     if (hour <= 00) {
       hour = 00;
+      mins = 59
     }
 
     $("#realtime").text(hour + ":" + plz(mins) + ":" + plz(secs));
