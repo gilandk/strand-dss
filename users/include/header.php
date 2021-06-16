@@ -91,7 +91,7 @@ require_once('../db.php');
               <a href="index.php" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">Strands</a>
+              <a href="strand.php" class="nav-link">Strands</a>
             </li>
             <li class="nav-item">
               <a href="user_exam.php" class="nav-link">My Exams</a>

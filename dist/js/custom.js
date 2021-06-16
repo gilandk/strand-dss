@@ -143,6 +143,59 @@ $(function() {
     });
 });
 
+var minDate, maxDate;
+
+// Custom filtering function which will search data in column four between two values
+$.fn.dataTable.ext.search.push(
+    function(settings, data, dataIndex) {
+        var min = minDate.val();
+        var max = maxDate.val();
+        var date = new Date(data[3]);
+
+        if (
+            (min === null && max === null) ||
+            (min === null && date <= max) ||
+            (min <= date && max === null) ||
+            (min <= date && date <= max)
+        ) {
+            return true;
+        }
+        return false;
+    }
+);
+
+$(document).ready(function() {
+    // Create date inputs
+    minDate = new DateTime($('#min'), {
+        format: 'D MMM YYYY'
+    });
+    maxDate = new DateTime($('#max'), {
+        format: 'D MMM  YYYY'
+    });
+
+    // DataTables initialisation
+    var table = $('#settings_audit').DataTable();
+
+    // Refilter the table
+    $('#min, #max').on('change', function() {
+        table.draw();
+    });
+});
+
+$(function() {
+    $('#audit_filter').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        'order': [3, "desc"],
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "pageLength": 50
+    });
+});
+
 $('#daterange-btn').daterangepicker({
         ranges: {
             'Today': [moment(), moment()],

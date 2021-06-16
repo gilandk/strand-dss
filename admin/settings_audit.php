@@ -1,6 +1,9 @@
 <?php
 include('include/header.php');
 include('include/sidebar.php');
+
+$sql = "SELECT * FROM audit_trails ORDER BY date";
+$result = $conn->query($sql);
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -25,118 +28,87 @@ include('include/sidebar.php');
   <section class="content">
     <div class="card card-primary card-outline">
       <div class="card-body">
-        <!-- /.form group -->
-        <table id="settings_audit" class="table table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>Name/ID</th>
-              <th>Role</th>
-              <th>Activity</th>
-              <th>Date & Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php
-            $sql = "SELECT * FROM audit_trails ORDER BY date";
-            $result = $conn->query($sql);
 
-            if ($result->num_rows > 0) {
-              while ($rows = $result->fetch_assoc()) {
-                $admin_id = $rows['admin_id'];
-                $user_id = $rows['user_id'];
-                $activity = $rows['activity'];
-                $date = $rows['date'];
+        <div class="row mb-2">
+          <div class="col-md-4">
+            <label for="min">From:</label>
+            <input type="text" name="min" id="min" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label for="max">To:</label>
+            <input type="text" name="max" id="max" class="form-control">
+          </div>
+        </div>
 
-                if ($admin_id != NULL) {
 
-                  $sql1 = "SELECT * FROM admin WHERE admin_id = '$admin_id'";
-                  $result1 = $conn->query($sql1);
+        <div id="audit_table">
+          <!-- /.form group -->
+          <table id="settings_audit" class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Name/ID</th>
+                <th>Role</th>
+                <th>Activity</th>
+                <th>Date</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              if ($result->num_rows > 0) {
+                while ($rows = $result->fetch_assoc()) {
+                  $admin_id = $rows['admin_id'];
+                  $user_id = $rows['user_id'];
+                  $activity = $rows['activity'];
+                  $date = $rows['date'];
 
-                  $row = mysqli_fetch_assoc($result1);
-                  $admin_name = $row['admin_name'];
-                  $admin_role = $row['admin_role'];
+                  if ($admin_id != NULL) {
 
-                  echo  '<tr>';
-                  echo '<td>' . $admin_name . '</td>';
-                  echo '<td>' . $admin_role . '</td>';
-                  echo '<td>' . $activity . '</td>';
-                  echo '<td>' . date('d-M-Y h:i A ', strtotime($date)) . '</td>';
-                  echo '</tr>';
-                } else {
+                    $sql1 = "SELECT * FROM admin WHERE admin_id = '$admin_id'";
+                    $result1 = $conn->query($sql1);
 
-                  $sql2 = "SELECT * FROM student_info WHERE user_id = '$user_id'";
-                  $result2 = $conn->query($sql2);
-                  $row2 = mysqli_fetch_assoc($result2);
-                  $user_name = $row2['student_id'];
-                  $user_role = 'User';
+                    $row = mysqli_fetch_assoc($result1);
+                    $admin_name = $row['admin_name'];
+                    $admin_role = $row['admin_role'];
 
-                  echo  '<tr>';
-                  echo '<td>' . $user_name . '</td>';
-                  echo '<td>' . $user_role . '</td>';
-                  echo '<td>' . $activity . '</td>';
-                  echo '<td>' . date('d-M-Y h:i A ', strtotime($date)) . '</td>';
-                  echo '</tr>';
+                    echo  '<tr>';
+                    echo '<td>' . $admin_name . '</td>';
+                    echo '<td>' . $admin_role . '</td>';
+                    echo '<td>' . $activity . '</td>';
+                    echo '<td>' . date('d-M-Y', strtotime($date)) . '</td>';
+                    echo '<td>' . date('h:i A', strtotime($date)) . '</td>';
+                    echo '</tr>';
+                  } else {
+
+                    $sql2 = "SELECT * FROM student_info WHERE user_id = '$user_id'";
+                    $result2 = $conn->query($sql2);
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $user_name = $row2['student_id'];
+                    $user_role = 'User';
+
+                    echo  '<tr>';
+                    echo '<td>' . $user_name . '</td>';
+                    echo '<td>' . $user_role . '</td>';
+                    echo '<td>' . $activity . '</td>';
+                    echo '<td>' . date('d-M-Y', strtotime($date)) . '</td>';
+                    echo '<td>' . date('h:i A', strtotime($date)) . '</td>';
+                    echo '</tr>';
+                  }
                 }
               }
-            }
-            ?>
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>Role</th>
-              <th>Full Name</th>
-              <th>Activity</th>
-              <th>Date & Time</th>
-            </tr>
-          </tfoot>
-        </table>
+              ?>
+            </tbody>
+          </table>
+        </div>
       </div>
+
       <!-- /.card-body -->
     </div>
     <!-- /.card -->
     <section>
       <!-- /.content -->
 </div>
-<script>
-  var minDate, maxDate;
 
-  // Custom filtering function which will search data in column four between two values
-  $.fn.dataTable.ext.search.push(
-    function(settings, data, dataIndex) {
-      var min = minDate.val();
-      var max = maxDate.val();
-      var date = new Date(data[4]);
-
-      if (
-        (min === null && max === null) ||
-        (min === null && date <= max) ||
-        (min <= date && max === null) ||
-        (min <= date && date <= max)
-      ) {
-        return true;
-      }
-      return false;
-    }
-  );
-
-  $(document).ready(function() {
-    // Create date inputs
-    minDate = new DateTime($('#min'), {
-      format: 'MMMM Do YYYY'
-    });
-    maxDate = new DateTime($('#max'), {
-      format: 'MMMM Do YYYY'
-    });
-
-    // DataTables initialisation
-    var table = $('#settings_audit').DataTable();
-
-    // Refilter the table
-    $('#min, #max').on('change', function() {
-      table.draw();
-    });
-  });
-</script>
 
 <?php
 include('include/footer.php');

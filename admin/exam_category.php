@@ -93,7 +93,6 @@ include('include/sidebar.php');
               <table class="table table-bordered table-striped cat">
                 <thead>
                   <tr>
-                    <th class="text-center">#</th>
                     <th>Category Name</th>
 
                     <th class="text-center">No. of Questions</th>
@@ -111,7 +110,6 @@ include('include/sidebar.php');
 
                   ?>
                       <tr>
-                        <td class="text-center"><?php echo $row['cat_seq']; ?></td>
                         <td><?php echo $row['cat_name']; ?></td>
                         <td class="text-center"><?php echo $row['cat_items']; ?></td>
 
