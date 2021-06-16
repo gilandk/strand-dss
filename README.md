@@ -6,6 +6,7 @@ JUNIOR-SENIOR HIGH STRAND CAREER
 
 #student - localhost/strand-dss
 
-#school_admin - localhost/strand-dss/school
-
 #admin localhost/strand-dss/admin
+
+email: admin@gmail.com 
+pass: admin
