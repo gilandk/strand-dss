@@ -56,6 +56,18 @@ if (isset($_POST)) {
 
   $total = $checkedBoxes;
 
+  // $total =
+  //   $category1 +
+  //   $category2 +
+  //   $category3 +
+  //   $category4 +
+  //   $category5 +
+  //   $category6 +
+  //   $category7 +
+  //   $category8 +
+  //   $category9 +
+  //   $category10;
+
 
   if ($mode == 'edit') {
     $sql1 = "UPDATE strand_formula SET

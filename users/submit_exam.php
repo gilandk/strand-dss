@@ -71,13 +71,13 @@ if (isset($_POST)) {
       } elseif ($percentile == 15 or $percentile <= 50) {
         $apt = 'Low Average';
         $val = 3;
-      } elseif ($percentile == 51 or $percentile <= 85) {
+      } elseif ($percentile == 51 or $percentile <= 75) {
         $apt = 'Average';
         $val = 4;
-      } elseif ($percentile == 86 or $percentile <= 97) {
+      } elseif ($percentile == 76 or $percentile <= 89) {
         $apt = 'Above Average';
         $val = 5;
-      } elseif ($percentile == 98 or $percentile <= 99) {
+      } elseif ($percentile == 90 or $percentile <= 99) {
         $apt = 'Very High';
         $val = 6;
       } elseif ($percentile == 100) {

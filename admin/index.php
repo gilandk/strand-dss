@@ -36,7 +36,6 @@ if (isset($_POST['submit'])) {
         $_SESSION['name'] = $row['admin_name'];
         $_SESSION['status'] = $row['admin_status'];
         $_SESSION['id'] = $row['admin_id'];
-        $_SESSION['uid'] = $row['admin_uid'];
 
         mysqli_query($conn, "DELETE FROM loginlogs WHERE IpAddress='$ip_address'");
 

@@ -33,13 +33,38 @@
               </a>
             </li>
             <!-- school -->
+            <!-- Exam -->
+            <li class="nav-item has-treeview">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-clipboard-list"></i>
+                <p>
+                  Examination
+                  <i class="fas fa-angle-left right"></i>
+
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="exam_examination.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Examination</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="exam_category.php" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Categories</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- exam -->
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon far fa-chart-bar"></i>
                 <p>
                   Analytics
                   <i class="fas fa-angle-left right"></i>
-
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -71,7 +96,6 @@
                 <p>
                   School
                   <i class="fas fa-angle-left right"></i>
-
                 </p>
               </a>
               <ul class="nav nav-treeview">
@@ -81,64 +105,30 @@
                     <p>Details</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="school_students.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Students</p>
-                  </a>
-                </li>
               </ul>
             </li>
-            <!-- school -->
             <!-- strand -->
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-school"></i>
+            <li class="nav-item">
+              <a href="manage_strands.php" class="nav-link">
+                <i class="nav-icon far fa-edit"></i>
                 <p>
                   Strands
-                  <i class="fas fa-angle-left right"></i>
-
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="manage_strands.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Manage</p>
-                  </a>
-                </li>
-
-              </ul>
             </li>
             <!-- strand -->
 
 
-            <!-- Exam -->
-            <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-clipboard-list"></i>
-                <p>
-                  Examination
-                  <i class="fas fa-angle-left right"></i>
 
+            <!-- school -->
+            <li class="nav-item">
+              <a href="school_students.php" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Students
                 </p>
               </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="exam_examination.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Manage Examination</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="exam_category.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Manage Categories</p>
-                  </a>
-                </li>
-              </ul>
             </li>
-            <!-- exam -->
 
             <!-- Settings -->
             <li class="nav-item has-treeview">
