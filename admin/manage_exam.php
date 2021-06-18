@@ -24,6 +24,7 @@ if ($result->num_rows > 0) {
     $exam_date_s = $row['exam_date_s'];
     $exam_date_e = $row['exam_date_e'];
     $exam_status = $row['exam_status'];
+    $qs_id = $row['qs_id'];
   }
 }
 ?>
@@ -137,6 +138,32 @@ if ($result->num_rows > 0) {
                             </select>
                           </div>
                         </div>
+
+                        <div class="form-group ml-2 mr-2">
+                          <div class="col-md-6">
+                            <label>Question Set:</label>
+                            <select name="qs_id" class="form-control">
+                              <?php
+                              $qs = "SELECT * FROM question_set ORDER BY date_created";
+                              $qsres = $conn->query($qs);
+                              while ($qsr = $qsres->fetch_assoc()) {
+
+                                if ($qs_id == $qsr['qs_id']) {
+                                  $sel = 'selected';
+                                } else {
+                                  $sel = '';
+                                }
+                              ?>
+
+                                <option <?php if ($qs_id == $qsr['qs_id']) echo 'selected'; ?> value="<?php echo $qsr['qs_id']; ?>"><?php echo $qsr['qs_title']; ?></option>
+
+                              <?php
+                              }
+                              ?>
+
+                            </select>
+                          </div>
+                        </div>
                         <div class="form-group ml-2 mr-2">
                           <button type="submit" name="save" class="btn btn-primary">Save</button>
                         </div>
@@ -167,7 +194,8 @@ if ($result->num_rows > 0) {
                             </thead>
                             <tbody>
                               <?php
-                              $sql1 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
+
+                              $sql1 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' AND qs_id='$qs_id' ORDER by cat_seq ASC";
                               $result1 = $conn->query($sql1);
 
                               if ($result1->num_rows > 0) {
@@ -209,7 +237,7 @@ if ($result->num_rows > 0) {
                             </thead>
                             <tbody>
                               <?php
-                              $sql1 = "SELECT * FROM category LEFT JOIN exam_category ON category.cat_id = exam_category.catID AND exam_category.examID='$e_id' WHERE exam_category.catID IS NULL";
+                              $sql1 = "SELECT * FROM category LEFT JOIN exam_category ON category.cat_id = exam_category.catID AND exam_category.examID='$e_id' WHERE category.qs_id='$qs_id' AND exam_category.catID IS NULL ";
                               $result1 = $conn->query($sql1);
 
                               if ($result1->num_rows > 0) {

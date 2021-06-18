@@ -2,6 +2,8 @@
 
 include('include/header.php');
 include('include/sidebar.php');
+
+$qs_id = $_REQUEST['id'];
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -102,7 +104,7 @@ include('include/sidebar.php');
                 <tbody>
                   <?php
 
-                  $sql = "SELECT * FROM category ORDER by cat_id";
+                  $sql = "SELECT * FROM category WHERE qs_id='$qs_id' ORDER by cat_id";
                   $result = $conn->query($sql);
 
                   if ($result->num_rows > 0) {
@@ -146,6 +148,8 @@ include('include/sidebar.php');
       <div class="modal-body">
         <form action="add_category.php" method="POST" enctype="multipart/form-data">
 
+          <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>" readonly>
+
           <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" placeholder="Name" name="category" />
@@ -167,8 +171,6 @@ include('include/sidebar.php');
             <label>Items</label>
             <input type="number" class="form-control" placeholder="Items" name="items" />
           </div>
-
-
 
       </div><!-- /.modal-body -->
 

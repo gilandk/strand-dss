@@ -12,6 +12,7 @@ if (isset($_POST)) {
   $category2 = mysqli_real_escape_string($conn, $_POST['category2']);
   $instruction = mysqli_real_escape_string($conn, $_POST['instruction']);
   $items = mysqli_real_escape_string($conn, $_POST['items']);
+  $qs_id = mysqli_real_escape_string($conn, $_POST['qs_id']);
 
   $admin_id = $_SESSION['id'];
 
@@ -20,7 +21,7 @@ if (isset($_POST)) {
 
 
   if ($category2 == $category) {
-    $sql = "UPDATE category SET cat_name='$category', cat_instruct='$instruction', cat_items='$items' WHERE cat_id = '$cat_id'";
+    $sql = "UPDATE category SET qs_id='$qs_id', cat_name='$category', cat_instruct='$instruction', cat_items='$items' WHERE cat_id = '$cat_id'";
     if ($conn->query($sql) == TRUE) {
 
       $activity = 'Updated a category ' . $category;
@@ -29,7 +30,7 @@ if (isset($_POST)) {
       $conn->query($audit);
 
       $_SESSION['UpdateCategorySuccess'] = true;
-      header("Location: exam_category.php");
+      header("Location: exam_category.php?id=" . $qs_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -46,7 +47,7 @@ if (isset($_POST)) {
       $conn->query($audit);
 
       $_SESSION['UpdateCategorySuccess'] = true;
-      header("Location: exam_category.php");
+      header("Location: exam_category.php?id=" . $qs_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up

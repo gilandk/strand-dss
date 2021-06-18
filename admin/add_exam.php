@@ -19,11 +19,14 @@ if (isset($_POST)) {
 
   $exam_type = mysqli_real_escape_string($conn, $_POST['exam_type']);
   $guide = mysqli_real_escape_string($conn, $_POST['guide']);
+  $status = mysqli_real_escape_string($conn, $_POST['status']);
+  $qs_id = mysqli_real_escape_string($conn, $_POST['qs_id']);
+
 
   $admin_id = $_SESSION['id'];
   $activity = 'Added new Exam ' . $exam_type;
 
-  $sql = "INSERT INTO exams (exam_type, exam_guide, exam_date_s, exam_date_e) VALUES ('$exam_type', '$guide', '$date_start', '$date_end')";
+  $sql = "INSERT INTO exams (qs_id, exam_type, exam_guide, exam_date_s, exam_date_e, exam_status) VALUES ('$qs_id', '$exam_type', '$guide', '$date_start', '$date_end', '$status')";
   if ($conn->query($sql) == TRUE) {
 
     $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";

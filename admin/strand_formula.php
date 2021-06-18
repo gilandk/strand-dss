@@ -3,6 +3,7 @@ include('include/header.php');
 include('include/sidebar.php');
 
 $strand_id = $_REQUEST['id'];
+$qs_id = $_REQUEST['qid'];
 
 $sql = "SELECT * FROM strands WHERE strand_id ='$strand_id'";
 $result = $conn->query($sql);
@@ -113,7 +114,7 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc1 = "SELECT * FROM category WHERE cat_id = 1";
+                          $sqlc1 = "SELECT * FROM category WHERE cat_id = 1 AND ";
                           $resultc1 = $conn->query($sqlc1);
                           if ($resultc1->num_rows > 0) {
                             while ($rowc1 = $resultc1->fetch_assoc()) {

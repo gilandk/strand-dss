@@ -183,6 +183,29 @@ $result = $conn->query($sql);
             </script>
           </div>
 
+          <div class="form-group">
+            <label>Question Set:</label>
+            <select name="qs_id" class="form-control">
+              <?php
+              $qs = "SELECT * FROM question_set ORDER BY date_created";
+              $qsres = $conn->query($qs);
+              while ($qsr = $qsres->fetch_assoc()) {
+
+                if ($qs_id == $qsr['qs_id']) {
+                  $sel = 'selected';
+                } else {
+                  $sel = '';
+                }
+              ?>
+
+                <option value="<?php echo $qsr['qs_id']; ?>"><?php echo $qsr['qs_title']; ?></option>
+
+              <?php
+              }
+              ?>
+
+            </select>
+          </div>
 
       </div><!-- /.modal-body -->
 
