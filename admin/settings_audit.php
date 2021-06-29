@@ -2,8 +2,7 @@
 include('include/header.php');
 include('include/sidebar.php');
 
-$sql = "SELECT * FROM audit_trails ORDER BY date";
-$result = $conn->query($sql);
+
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -55,6 +54,8 @@ $result = $conn->query($sql);
             </thead>
             <tbody>
               <?php
+              $sql = "SELECT * FROM audit_trails ORDER BY date DESC";
+              $result = $conn->query($sql);
               if ($result->num_rows > 0) {
                 while ($rows = $result->fetch_assoc()) {
                   $admin_id = $rows['admin_id'];

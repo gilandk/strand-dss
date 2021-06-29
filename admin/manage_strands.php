@@ -108,8 +108,7 @@ include('include/sidebar.php');
                       <tr>
                         <td><?php echo $row['strand_name'] . ' <strong>(' . $row['strand_abr'] . ')</strong>'; ?></td>
                         <td><?php echo $row['strand_description']; ?></td>
-                        <td class="text-center">
-                          <a href="add_strand_formula.php?id=<?php echo $row['strand_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Formula</a>
+                        <td class="text-center">         
                           <a href="strand_edit.php?id=<?php echo $row['strand_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
                         </td>
                       </tr>

@@ -11,6 +11,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 
+    $qs_id = $row['qs_id'];
     $cat_id = $row['main_cat'];
     $sc_title = $row['sub_title'];
     $sc_instruct = $row['sub_instruction'];
@@ -49,6 +50,7 @@ if ($result->num_rows > 0) {
 
               <input type="hidden" name="sc_id" value="<?php echo $sc_id; ?>">
               <input type="hidden" name="cat_id" value="<?php echo $cat_id; ?>">
+              <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>">
 
               <div class="form-group mt-3 ml-3 mr-3">
                 <label>Sub-Category</label>

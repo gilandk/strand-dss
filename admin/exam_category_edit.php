@@ -11,7 +11,9 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 
+    $qs_id = $row['qs_id'];
     $cat_id = $row['cat_id'];
+    $fc_id = $row['fc_id'];
     $cat_name = $row['cat_name'];
     $cat_instruct = $row['cat_instruct'];
     $cat_items = $row['cat_items'];
@@ -63,6 +65,7 @@ if ($result->num_rows > 0) {
             <form action="update_categoryinfo.php" method="POST" enctype="multipart/form-data">
 
               <input type="hidden" name="cat_id" value="<?php echo $cat_id; ?>" readonly>
+              <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>" readonly>
 
               <div class=" form-group mt-3 ml-3 mr-3">
                 <label>Category</label>

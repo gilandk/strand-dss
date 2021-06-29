@@ -7,6 +7,7 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
+  $qs_id = mysqli_real_escape_string($conn, $_POST['qs_id']);
   $cat_id = mysqli_real_escape_string($conn, $_POST['cat_id']);
   $category = mysqli_real_escape_string($conn, $_POST['category']);
   $category2 = mysqli_real_escape_string($conn, $_POST['category2']);
@@ -29,7 +30,7 @@ if (isset($_POST)) {
       $conn->query($audit);
 
       $_SESSION['UpdateCategorySuccess'] = true;
-      header("Location: exam_category.php");
+      header("Location: exam_category.php?id=" . $qs_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -46,7 +47,7 @@ if (isset($_POST)) {
       $conn->query($audit);
 
       $_SESSION['UpdateCategorySuccess'] = true;
-      header("Location: exam_category.php");
+      header("Location: exam_category.php?id=" . $qs_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This condition should not come unless we as a developer make mistake or someone tries to hack their way in and mess up

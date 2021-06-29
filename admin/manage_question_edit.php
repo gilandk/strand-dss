@@ -10,6 +10,7 @@ $result = $conn->query($sql);
 
 while ($row = $result->fetch_assoc()) {
 
+  $qs_id = $row['qs_id'];
   $q_cat = $row['q_cat'];
   $q_scat = $row['q_scat'];
   $question = $row['question'];
@@ -54,6 +55,7 @@ while ($row = $result->fetch_assoc()) {
               <input type="hidden" name="q_id" value="<?php echo $q_id; ?>">
               <input type="hidden" name="q_cat" value="<?php echo $q_cat; ?>">
               <input type="hidden" name="q_scat" value="<?php echo $q_scat; ?>">
+              <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>">
 
               <div class="form-group mr-3 ml-3 mt-3">
                 <label>Question:</label>

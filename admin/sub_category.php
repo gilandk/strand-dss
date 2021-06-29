@@ -3,23 +3,23 @@
 include('include/header.php');
 include('include/sidebar.php');
 
-$c_id = $_REQUEST['id'];
+$fc_id = $_REQUEST['id'];
+$qs_id = $_REQUEST['qs_id'];
 
 $total_items = '0';
 
-$sql = "SELECT * FROM category WHERE cat_id = '$c_id'";
+$sql = "SELECT * FROM category WHERE fc_id = '$fc_id' AND qs_id = '$qs_id'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 
-    $id = $row['cat_id'];
-    $seq = $row['cat_seq'];
+    $id = $row['fc_id'];
     $title = $row['cat_name'];
     $instruct = $row['cat_instruct'];
     $items = $row['cat_items'];
 
-    $sql3 = "SELECT COUNT(*) as total_items FROM questions WHERE q_cat = '$id'";
+    $sql3 = "SELECT COUNT(*) as total_items FROM questions WHERE q_cat = '$id' AND qs_id='$qs_id'";
     $res3 = $conn->query($sql3);
     $rowt = $res3->fetch_assoc();
     $total_items = $rowt['total_items'];
@@ -121,7 +121,7 @@ if ($result->num_rows > 0) {
           ?>
 
 
-          <div class="card card-primary card-outline">
+          <div class="card">
             <div class="card-header">
               <div class="row">
                 <div class="col-sm-6">
@@ -136,7 +136,7 @@ if ($result->num_rows > 0) {
               </div>
             </div>
 
-            <div class="card-body pad table-responsive">
+            <div class="card-body">
               <table class="table table-bordered table-striped cat">
 
                 <thead>
@@ -150,17 +150,16 @@ if ($result->num_rows > 0) {
                 <tbody>
 
                   <?php
-                  $sql1 = "SELECT * FROM sub_category WHERE main_cat = '$id'";
+                  $sql1 = "SELECT * FROM sub_category WHERE main_cat = '$id' AND qs_id='$qs_id'";
                   $res1 = $conn->query($sql1);
 
                   if ($res1->num_rows > 0) {
                     while ($rows = $res1->fetch_assoc()) {
                       $sub_id = $rows['sub_id'];
 
-                      $sql2 = "SELECT Count(*) As sc_items FROM questions WHERE q_scat = '$sub_id' AND q_cat = '$id'";
+                      $sql2 = "SELECT * FROM questions WHERE q_scat = '$sub_id' AND q_cat = '$id' AND qs_id='$qs_id'";
                       $res2 = $conn->query($sql2);
-                      $rowc = $res2->fetch_assoc();
-                      $sc_items = $rowc['sc_items'];
+                      $sc_items = $res2->num_rows;
 
                   ?>
                       <tr>
@@ -168,7 +167,7 @@ if ($result->num_rows > 0) {
                         <td class="text-center"><?php echo $sc_items; ?></td>
                         <td class="text-center">
 
-                          <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>&cid=<?php echo $rows['main_cat']; ?>" class=" btn btn-outline-success btn-sm">Questions</a>
+                          <a href="manage_questions.php?id=<?php echo $rows['sub_id']; ?>&cid=<?php echo $rows['main_cat']; ?>&qs_id=<?php echo $qs_id; ?>" class=" btn btn-outline-success btn-sm">Questions</a>
                           <a href="subcat_edit.php?id=<?php echo $rows['sub_id']; ?>" class="btn btn-outline-warning btn-sm">Update</a>
                           <a href="delete_subcategory.php?id=<?php echo $rows['sub_id']; ?>&cid=<?php echo $rows['main_cat']; ?>" class="btn btn-outline-danger btn-sm">Delete</a>
                         </td>
@@ -197,7 +196,8 @@ if ($result->num_rows > 0) {
           <div class="modal-body">
             <form action="add_subcategory.php" method="POST" enctype="multipart/form-data">
 
-              <input type="hidden" name="main_id" value="<?php echo $c_id; ?>" />
+              <input type="hidden" name="main_id" value="<?php echo $fc_id; ?>" />
+              <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>" />
 
               <div class=" form-group">
                 <label>Sub-Category</label>

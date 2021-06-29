@@ -2,15 +2,16 @@
 include('include/header.php');
 include('include/sidebar.php');
 
+$qs_id = $_REQUEST['qs_id'];
 $subc_id = $_REQUEST['id'];
 $cid = $_REQUEST['cid'];
 
-$sql1 = "SELECT * FROM category JOIN sub_category ON category.cat_id = sub_category.main_cat WHERE sub_category.sub_id = '$subc_id' AND sub_category.main_cat = '$cid'";
+$sql1 = "SELECT * FROM category JOIN sub_category ON category.fc_id = sub_category.main_cat WHERE sub_category.sub_id = '$subc_id' AND sub_category.main_cat = '$cid' AND sub_category.qs_id = '$qs_id'";
 $result1 = $conn->query($sql1);
 
 while ($row = $result1->fetch_assoc()) {
 
-  $cat_id = $row['cat_id'];
+  $fc_id = $row['fc_id'];
   $cat_title = $row['cat_name'];
   $sc_title = $row['sub_title'];
 }
@@ -52,10 +53,24 @@ while ($row = $result1->fetch_assoc()) {
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <h5><i class="icon fas fa-check"></i> Success!</h5>
-              Question Added!
+              Question Updated!
             </div>
           <?php
             unset($_SESSION['addQuestionSuccess']);
+          }
+          ?>
+
+<?php
+          //If User already registered with this email then show error message.
+          if (isset($_SESSION['updateQuestionSuccess'])) {
+          ?>
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
+              Question Updated!
+            </div>
+          <?php
+            unset($_SESSION['updateQuestionSuccess']);
           }
           ?>
 
@@ -135,8 +150,9 @@ while ($row = $result1->fetch_assoc()) {
               <div class="modal-body ml-3 mr-3">
                 <form action="add_question.php" method="POST" enctype="multipart/form-data">
 
+                <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>">
                   <input type="hidden" name="q_scat" value="<?php echo $subc_id; ?>">
-                  <input type="hidden" name="q_cat" value="<?php echo $cat_id; ?>">
+                  <input type="hidden" name="q_cat" value="<?php echo $fc_id; ?>">
 
                   <div class="form-group">
                     <label>Question:</label>

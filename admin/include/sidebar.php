@@ -51,9 +51,9 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="exam_category.php" class="nav-link">
+                  <a href="question_set.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Manage Categories</p>
+                    <p>Manage Questions</p>
                   </a>
                 </li>
               </ul>

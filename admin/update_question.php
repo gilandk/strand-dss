@@ -6,6 +6,7 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
+  $qs_id = mysqli_real_escape_string($conn, $_POST['qs_id']);
   $q_id = mysqli_real_escape_string($conn, $_POST['q_id']);
   $q_cat = mysqli_real_escape_string($conn, $_POST['q_cat']);
   $q_scat = mysqli_real_escape_string($conn, $_POST['q_scat']);
@@ -26,13 +27,13 @@ if (isset($_POST)) {
     $conn->query($audit);
 
     $_SESSION['updateQuestionSuccess'] = true;
-    header("Location: manage_questions.php?id=" . $q_scat . '&cid=' . $q_cat);
+    header("Location: manage_questions.php?id=" . $q_scat . '&cid=' . $q_cat . '&qs_id=' . $qs_id);
     exit();
   } else {
     echo $conn->error;
   }
 } else {
   $_SESSION['updateQuestionFailed'] = true;
-  header("Location: manage_questions.php?id=" . $q_scat . '&cid=' . $q_cat);
+  header("Location: manage_questions.php?id=" . $q_scat . '&cid=' . $q_cat . '&qs_id=' . $qs_id);
   exit();
 }

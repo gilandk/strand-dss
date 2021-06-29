@@ -135,7 +135,7 @@ $(function() {
         "lengthChange": true,
         "searching": true,
         "ordering": true,
-        'order': [3, "desc"],
+        'order': [3, "asc"],
         "info": true,
         "autoWidth": true,
         "responsive": true,

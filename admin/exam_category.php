@@ -2,6 +2,9 @@
 
 include('include/header.php');
 include('include/sidebar.php');
+
+$qs_id = $_REQUEST['id'];
+
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -32,7 +35,7 @@ include('include/sidebar.php');
           ?>
             <div class="alert alert-success alert-dismissible">
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h5><i class="icon fas fa-ban"></i> Success!</h5>
+              <h5><i class="icon fas fa-check"></i> Success!</h5>
               Category Added!
             </div>
           <?php
@@ -86,8 +89,6 @@ include('include/sidebar.php');
               </button>
             </div>
 
-
-
             <div class="card-body pad table-responsive">
 
               <table class="table table-bordered table-striped cat">
@@ -102,7 +103,7 @@ include('include/sidebar.php');
                 <tbody>
                   <?php
 
-                  $sql = "SELECT * FROM category ORDER by cat_id";
+                  $sql = "SELECT * FROM category WHERE qs_id='$qs_id' ORDER by cat_id";
                   $result = $conn->query($sql);
 
                   if ($result->num_rows > 0) {
@@ -112,11 +113,10 @@ include('include/sidebar.php');
                       <tr>
                         <td><?php echo $row['cat_name']; ?></td>
                         <td class="text-center"><?php echo $row['cat_items']; ?></td>
-
                         <td class="text-center">
-                          <a href="sub_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Sub-Category</a>
+                          <a href="sub_category.php?id=<?php echo $row['fc_id']; ?>&qs_id=<?php echo $qs_id; ?>" class="btn btn-block btn-outline-info btn-xs">Sub-Category</a>
                           <a href="exam_category_edit.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-warning btn-xs">Update</a>
-                          <a href="delete_category.php?id=<?php echo $row['cat_id']; ?>" class="btn btn-block btn-outline-danger btn-xs">Delete</a>
+                          <a href="delete_category.php?id=<?php echo $row['cat_id']; ?>&qs_id=<?php echo $qs_id; ?>" class="btn btn-block btn-outline-danger btn-xs">Delete</a>
                         </td>
                       </tr>
                   <?php
@@ -145,6 +145,18 @@ include('include/sidebar.php');
 
       <div class="modal-body">
         <form action="add_category.php" method="POST" enctype="multipart/form-data">
+
+        <?php
+
+          $sql1 = "SELECT * FROM category WHERE qs_id = '$qs_id'";
+          $result1 = $conn->query($sql1);
+          $fc_id = $result->num_rows;
+          $fc_id = $fc_id + 1;
+
+        ?>
+
+        <input type="hidden" name="qs_id" value="<?php echo $qs_id;?>" />
+        <input type="hidden" name="fc_id" value="<?php echo $fc_id;?>" />
 
           <div class="form-group">
             <label>Name</label>
