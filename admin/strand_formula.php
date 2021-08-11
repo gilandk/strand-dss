@@ -2,7 +2,8 @@
 include('include/header.php');
 include('include/sidebar.php');
 
-$strand_id = $_REQUEST['id'];
+$qs_id = $_REQUEST['id'];
+$strand_id = $_REQUEST['sid'];
 
 $sql = "SELECT * FROM strands WHERE strand_id ='$strand_id'";
 $result = $conn->query($sql);
@@ -89,7 +90,7 @@ $result = $conn->query($sql);
                   $mode = 'add';
                 }
                 ?>
-
+                <input type="hidden" name="qs_id" value="<?php echo $qs_id; ?>">
                 <input type="hidden" name="strand_id" value="<?php echo $strand_id; ?>">
                 <input type="hidden" name="sf_id" value="<?php echo $sf_id; ?>">
                 <input type="hidden" name="mode" value="<?php echo $mode; ?>">
@@ -113,11 +114,11 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc1 = "SELECT * FROM category WHERE cat_id = 1";
+                          $sqlc1 = "SELECT * FROM category WHERE fc_id = 1 AND qs_id='$qs_id'";
                           $resultc1 = $conn->query($sqlc1);
                           if ($resultc1->num_rows > 0) {
                             while ($rowc1 = $resultc1->fetch_assoc()) {
-                              $category_id = $rowc1['cat_id'];
+                              $category_id = $rowc1['fc_id'];
                               $category_name = $rowc1['cat_name'];
 
                               $sqls1 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -153,11 +154,11 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc2 = "SELECT * FROM category WHERE cat_id = 2";
+                          $sqlc2 = "SELECT * FROM category WHERE fc_id = 2 AND qs_id='$qs_id'";
                           $resultc2 = $conn->query($sqlc2);
                           if ($resultc2->num_rows > 0) {
                             while ($rowc2 = $resultc2->fetch_assoc()) {
-                              $category_id = $rowc2['cat_id'];
+                              $category_id = $rowc2['fc_id'];
                               $category_name = $rowc2['cat_name'];
 
                               $sqls2 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -193,11 +194,11 @@ $result = $conn->query($sql);
                           }
                           ?>
                           <?php
-                          $sqlc3 = "SELECT * FROM category WHERE cat_id = 3";
+                          $sqlc3 = "SELECT * FROM category WHERE fc_id = 3 AND qs_id='$qs_id'";
                           $resultc3 = $conn->query($sqlc3);
                           if ($resultc3->num_rows > 0) {
                             while ($rowc3 = $resultc3->fetch_assoc()) {
-                              $category_id = $rowc3['cat_id'];
+                              $category_id = $rowc3['fc_id'];
                               $category_name = $rowc3['cat_name'];
 
                               $sqls3 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -233,11 +234,11 @@ $result = $conn->query($sql);
                           }
                           ?>
                           <?php
-                          $sqlc4 = "SELECT * FROM category  WHERE cat_id = 4";
+                          $sqlc4 = "SELECT * FROM category  WHERE fc_id = 4 AND qs_id='$qs_id'";
                           $resultc4 = $conn->query($sqlc4);
                           if ($resultc4->num_rows > 0) {
                             while ($rowc4 = $resultc4->fetch_assoc()) {
-                              $category_id = $rowc4['cat_id'];
+                              $category_id = $rowc4['fc_id'];
                               $category_name = $rowc4['cat_name'];
 
                               $sqls4 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -273,11 +274,11 @@ $result = $conn->query($sql);
                           }
                           ?>
                           <?php
-                          $sqlc5 = "SELECT * FROM category WHERE cat_id = 5";
+                          $sqlc5 = "SELECT * FROM category WHERE fc_id = 5 AND qs_id='$qs_id'";
                           $resultc5 = $conn->query($sqlc5);
                           if ($resultc5->num_rows > 0) {
                             while ($rowc5 = $resultc5->fetch_assoc()) {
-                              $category_id = $rowc5['cat_id'];
+                              $category_id = $rowc5['fc_id'];
                               $category_name = $rowc5['cat_name'];
 
                               $sqls5 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -314,11 +315,11 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc6 = "SELECT * FROM category WHERE cat_id = 6";
+                          $sqlc6 = "SELECT * FROM category WHERE fc_id = 6 AND qs_id='$qs_id'";
                           $resultc6 = $conn->query($sqlc6);
                           if ($resultc6->num_rows > 0) {
                             while ($rowc6 = $resultc6->fetch_assoc()) {
-                              $category_id = $rowc6['cat_id'];
+                              $category_id = $rowc6['fc_id'];
                               $category_name = $rowc6['cat_name'];
 
                               $sqls6 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -355,11 +356,11 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc7 = "SELECT * FROM category  WHERE cat_id = 7";
+                          $sqlc7 = "SELECT * FROM category  WHERE fc_id = 7 AND qs_id='$qs_id'";
                           $resultc7 = $conn->query($sqlc7);
                           if ($resultc7->num_rows > 0) {
                             while ($rowc7 = $resultc7->fetch_assoc()) {
-                              $category_id = $rowc7['cat_id'];
+                              $category_id = $rowc7['fc_id'];
                               $category_name = $rowc7['cat_name'];
 
                               $sqls7 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -396,11 +397,11 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc8 = "SELECT * FROM category  WHERE cat_id = 8";
+                          $sqlc8 = "SELECT * FROM category  WHERE fc_id = 8 AND qs_id='$qs_id'";
                           $resultc8 = $conn->query($sqlc8);
                           if ($resultc8->num_rows > 0) {
                             while ($rowc8 = $resultc8->fetch_assoc()) {
-                              $category_id = $rowc8['cat_id'];
+                              $category_id = $rowc8['fc_id'];
                               $category_name = $rowc8['cat_name'];
 
                               $sqls8 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -437,11 +438,11 @@ $result = $conn->query($sql);
                           ?>
 
                           <?php
-                          $sqlc9 = "SELECT * FROM category  WHERE cat_id = 9";
+                          $sqlc9 = "SELECT * FROM category  WHERE fc_id = 9 AND qs_id='$qs_id'";
                           $resultc9 = $conn->query($sqlc9);
                           if ($resultc9->num_rows > 0) {
                             while ($rowc9 = $resultc9->fetch_assoc()) {
-                              $category_id = $rowc9['cat_id'];
+                              $category_id = $rowc9['fc_id'];
                               $category_name = $rowc9['cat_name'];
 
                               $sqls9 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";
@@ -477,11 +478,11 @@ $result = $conn->query($sql);
                           }
                           ?>
                           <?php
-                          $sqlc10 = "SELECT * FROM category  WHERE cat_id = 10";
+                          $sqlc10 = "SELECT * FROM category  WHERE fc_id = 10 AND qs_id='$qs_id'";
                           $resultc10 = $conn->query($sqlc10);
                           if ($resultc10->num_rows > 0) {
                             while ($rowc10 = $resultc10->fetch_assoc()) {
-                              $category_id = $rowc10['cat_id'];
+                              $category_id = $rowc10['fc_id'];
                               $category_name = $rowc10['cat_name'];
 
                               $sqls10 = "SELECT * FROM strand_formula WHERE strand_id='$strand_id'";

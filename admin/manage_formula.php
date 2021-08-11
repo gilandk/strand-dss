@@ -55,7 +55,7 @@ $qs_id = $_REQUEST['id'];
                       <tr>
                         <td><?php echo $row['strand_name'] . ' <strong>(' . $row['strand_abr'] . ')</strong>'; ?></td>
                         <td class="text-center">         
-                            <a href="strand_formula.php?id=<?php echo $qs_id; ?>" class="btn btn-block btn-outline-primary btn-xs">Formula</a>
+                            <a href="strand_formula.php?id=<?php echo $qs_id; ?>&sid=<?php echo $row['strand_id']; ?>" class="btn btn-block btn-outline-primary btn-xs">Formula</a>
                         </td>
                       </tr>
                   <?php

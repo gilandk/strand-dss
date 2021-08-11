@@ -23,8 +23,9 @@ if (isset($_POST)) {
 
   $exam_type = mysqli_real_escape_string($conn, $_POST['exam_type']);
   $guide = mysqli_real_escape_string($conn, $_POST['guide']);
+  $qs_id = mysqli_real_escape_string($conn, $_POST['qs_id']);
 
-  $sql = "UPDATE exams SET exam_type='$exam_type', exam_guide='$guide', exam_date_s='$date_start', exam_date_e='$date_end', exam_status='$status' WHERE exam_id = '$exam_id'";
+  $sql = "UPDATE exams SET qs_id = '$qs_id', exam_type='$exam_type', exam_guide='$guide', exam_date_s='$date_start', exam_date_e='$date_end', exam_status='$status' WHERE exam_id = '$exam_id'";
   if ($conn->query($sql) == TRUE) {
 
     $audit = "INSERT INTO audit_trails (admin_id, activity) VALUES ('$admin_id', '$activity')";

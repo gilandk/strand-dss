@@ -24,6 +24,7 @@ if ($result->num_rows > 0) {
     $exam_date_s = $row['exam_date_s'];
     $exam_date_e = $row['exam_date_e'];
     $exam_status = $row['exam_status'];
+    $e_qs_id = $row['qs_id'];
   }
 }
 ?>
@@ -128,6 +129,28 @@ if ($result->num_rows > 0) {
                           </script>
                         </div>
 
+
+                        <div class="form-group ml-2 mr-2">
+                          <label>Question Set:</label>
+                          <select name="qset" class="form-control">
+                            <?php
+
+                            $sql1 = "SELECT * FROM question_set";
+                            $res1 = $conn->query($sql1);
+
+                            while ($rows = $res1->fetch_assoc()) {
+
+                              $qs_id = $rows['qs_id'];
+                              $qs_name = $rows['title'];
+
+                            ?>
+                              <option <?php if($qs_id == $e_qs_id) echo 'Selected'; ?> value="<?php echo $qs_id; ?>"><?php echo $qs_name; ?></option>
+                            <?php
+                            }
+                            ?>
+                          </select>
+                        </div>
+
                         <div class="form-group ml-2 mr-2">
                           <div class="col-md-6">
                             <label>Examination Status:</label>
@@ -167,7 +190,7 @@ if ($result->num_rows > 0) {
                             </thead>
                             <tbody>
                               <?php
-                              $sql1 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
+                              $sql1 = "SELECT * FROM category JOIN exam_category ON category.fc_id = exam_category.catID WHERE exam_category.examID='$e_id' AND category.qs_id='$e_qs_id'";
                               $result1 = $conn->query($sql1);
 
                               if ($result1->num_rows > 0) {
@@ -185,6 +208,7 @@ if ($result->num_rows > 0) {
                                       <?php
                                       echo $row1['cMin'];
                                       ?>
+                                    </td>
                                   </tr>
                               <?php
                                 }
@@ -209,7 +233,7 @@ if ($result->num_rows > 0) {
                             </thead>
                             <tbody>
                               <?php
-                              $sql1 = "SELECT * FROM category LEFT JOIN exam_category ON category.cat_id = exam_category.catID AND exam_category.examID='$e_id' WHERE exam_category.catID IS NULL";
+                              $sql1 = "SELECT * FROM category LEFT JOIN exam_category ON category.cat_id = exam_category.catID AND exam_category.examID='$e_id' WHERE exam_category.catID IS NULL AND category.qs_id='$e_qs_id'";
                               $result1 = $conn->query($sql1);
 
                               if ($result1->num_rows > 0) {

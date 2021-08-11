@@ -5,12 +5,6 @@ $min = $cMin * 60000;
 $time = $hour + $min;
 
 
-if ($cMin == 0) {
-  $cMin = $cMin;
-} else {
-  $cMin = $cMin - 1;
-}
-
 
 ?>
 

@@ -32,7 +32,7 @@ include('include/sidebar.php');
   $resultexam = $conn->query($sqlexam);
   $t_exams = $resultexam->num_rows;
 
-  $sqlcat = "SELECT* FROM category";
+  $sqlcat = "SELECT* FROM question_set";
   $resultcat = $conn->query($sqlcat);
   $t_cat = $resultcat->num_rows;
 
@@ -81,7 +81,7 @@ include('include/sidebar.php');
             <span class="info-box-icon bg-success elevation-1"><i class="fas fa-clipboard-list"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Categories</span>
+              <span class="info-box-text">Question Set</span>
               <span class="info-box-number"><?php echo $t_cat; ?></span>
             </div>
             <!-- /.info-box-content -->
@@ -398,53 +398,32 @@ include('include/sidebar.php');
           <div class="card">
             <div class="card-header">
               <h5 class="card-title">
-                Categories
+                Exams
               </h5>
             </div>
             <table class="table">
               <thead>
                 <tr>
-                  <th>Categories</th>
-                  <th class="text-center">Progress</th>
-                  <th class="text-center">Questions</th>
+                  <th>Exams</th>
+                  <th class="text-center">Date</th>
                 </tr>
               </thead>
               <tbody>
 
                 <?php
-                if ($resultcat->num_rows > 0) {
-                  while ($rowc = $resultcat->fetch_assoc()) {
+                if ($resultexam->num_rows > 0) {
+                  while ($rowc = $resultexam->fetch_assoc()) {
 
-                    $cat_id = $rowc['cat_id'];
-                    $cat_name = $rowc['cat_name'];
-                    $cat_item = $rowc['cat_items'];
-
-                    $sqlq = "SELECT * FROM questions WHERE q_cat = '$cat_id' ";
-                    $resq = $conn->query($sqlq);
-                    $q_count = $resq->num_rows;
-
-                    $progress = ($q_count / $cat_item) * 100;
-
-                    if (($progress == 0) || ($progress <= 30)) {
-                      $color = 'danger';
-                    } else if (($progress == 31) || ($progress <= 50)) {
-                      $color = 'warning';
-                    } else if (($progress == 51) || ($progress <= 99)) {
-                      $color = 'primary';
-                    } else if ($progress == 100) {
-                      $color = 'success';
-                    }
-
-
+                    $exam_id = $rowc['exam_id'];
+                    $exam_type = $rowc['exam_type'];
+                    $exam_date_s = $rowc['exam_date_s'];
+                    $exam_date_e = $rowc['exam_date_e'];
                 ?>
                     <tr>
-                      <td><?php echo $cat_name; ?></td>
+                      <td><?php echo $exam_type; ?></td>
                       <td class="text-center">
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-<?php echo $color; ?>" style="width: <?php echo $progress; ?>%"></div>
-                        </div>
+                        <?php echo $exam_date_s . ' - ' . $exam_date_e; ?>
                       </td>
-                      <td class="text-center"><?php echo $q_count . ' / ' . $cat_item; ?></td>
                     </tr>
                 <?php
                   }

@@ -79,7 +79,7 @@ $result = $conn->query($sql);
               </button>
             </div>
 
-            <div class="card-body pad table-responsive">
+            <div class="card-body">
 
               <table class="table table-bordered table-striped cat">
                 <thead>
@@ -181,6 +181,27 @@ $result = $conn->query($sql);
                 filebrowserUploadUrl: "upload.php",
               });
             </script>
+          </div>
+
+          <div class="form-group">
+          <label>Question Set:</label>
+          <select name="qset" class="form-control">
+          <?php 
+
+            $sql1 = "SELECT * FROM question_set";
+            $res1 = $conn->query($sql1);
+   
+              while($rows = $res1->fetch_assoc()){
+
+                $qs_id = $rows['qs_id'];
+                $qs_name = $rows['title'];
+
+                ?>
+                    <option value="<?php echo $qs_id; ?>"><?php echo $qs_name; ?></option>
+             <?php
+              }
+          ?>
+          </select>
           </div>
 
 

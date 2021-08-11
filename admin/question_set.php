@@ -65,7 +65,7 @@ include('include/sidebar.php');
             unset($_SESSION['addQsetFailed']);
           }
           ?>
-       
+
           <div class="card">
             <!-- /.card-header -->
             <div class="card-header">
@@ -94,7 +94,9 @@ include('include/sidebar.php');
 
                   ?>
                       <tr>
-                        <td><?php echo $row['title']; ?></td>
+                        <td class="qsedit" id="title_<?php echo $row['qs_id']; ?>" contenteditable>
+                          <?php echo $row['title']; ?>
+                        </td>
                         <td class="text-center">
                           <a href="exam_category.php?id=<?php echo $row['qs_id']; ?>" class="btn btn-block btn-outline-info btn-xs">Category</a>
                           <a href="manage_formula.php?id=<?php echo $row['qs_id']; ?>" class="btn btn-block btn-outline-primary btn-xs">Formula</a>
@@ -105,6 +107,7 @@ include('include/sidebar.php');
                     }
                   }
                   ?>
+           
                 </tbody>
               </table>
             </div><!-- /.card-body -->

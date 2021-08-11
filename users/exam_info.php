@@ -111,7 +111,7 @@ if ($result->num_rows > 0) {
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
                 <?php
-                $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' ORDER by cat_seq ASC";
+                $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id'";
                 $result2 = $conn->query($sql2);
 
                 if ($result2->num_rows > 0) {

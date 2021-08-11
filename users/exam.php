@@ -18,7 +18,7 @@
     }
   }
 
-  $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' and cat_id='$c_id' ORDER by cat_seq ASC";
+  $sql2 = "SELECT * FROM category JOIN exam_category ON category.cat_id = exam_category.catID WHERE examID='$e_id' and cat_id='$c_id'";
   $result1 = $conn->query($sql2);
 
   if ($result1->num_rows > 0) {

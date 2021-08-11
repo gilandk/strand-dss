@@ -6,6 +6,7 @@ require_once('../db.php');
 
 if (isset($_POST)) {
 
+  $qs_id = mysqli_real_escape_string($conn, $_POST['qs_id']);
   $sf_id = mysqli_real_escape_string($conn, $_POST['sf_id']);
   $mode = mysqli_real_escape_string($conn, $_POST['mode']);
   $strand_id = mysqli_real_escape_string($conn, $_POST['strand_id']);
@@ -87,7 +88,7 @@ if (isset($_POST)) {
 
     if ($conn->query($sql1) == TRUE) {
       $_SESSION['UpdateFormulaSuccess'] = true;
-      header("Location: strand_formula.php?id=" . $strand_id);
+      header("Location: strand_formula.php?id=" . $qs_id . "&sid=" . $strand_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This conditio n should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -109,7 +110,7 @@ if (isset($_POST)) {
       '$total')";
     if ($conn->query($sql) == TRUE) {
       $_SESSION['UpdateFormulaSuccess'] = true;
-      header("Location: strand_formula.php?id=" . $strand_id);
+      header("Location: strand_formula.php?id=" . $qs_id . "&sid=" . $strand_id);
       exit();
     } else {
       //If data failed to insert then show that error. Note: This conditio n should not come unless we as a developer make mistake or someone tries to hack their way in and mess up
@@ -119,6 +120,6 @@ if (isset($_POST)) {
 } else {
 
   $_SESSION['UpdateFormulaSuccess'] = true;
-  header("Location: strand_formula.php?id=" . $strand_id);
+  header("Location: strand_formula.php?id=" . $qs_id . "&sid=" . $strand_id);
   exit();
 }

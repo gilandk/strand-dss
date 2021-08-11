@@ -182,19 +182,6 @@ $(document).ready(function() {
     });
 });
 
-$(function() {
-    $('#audit_filter').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        'order': [3, "desc"],
-        "info": true,
-        "autoWidth": true,
-        "responsive": true,
-        "pageLength": 50
-    });
-});
 
 $('#daterange-btn').daterangepicker({
         ranges: {
@@ -266,7 +253,38 @@ $(document).ready(function() {
         });
 
     });
+});
 
+$(document).ready(function() {
+
+    // Add Class
+    $('.qsedit').click(function() {
+        $(this).addClass('qseditMode');
+    });
+
+    // Save data
+    $(".qsedit").focusout(function() {
+        $(this).removeClass("qseditMode");
+        var id = this.id;
+        var split_id = id.split("_");
+        var field_name = split_id[0];
+        var edit_id = split_id[1];
+        var value = $(this).text();
+
+        $.ajax({
+            url: 'update_title.php',
+            type: 'post',
+            data: {
+                field: field_name,
+                value: value,
+                id: edit_id
+            },
+            success: function(response) {
+                console.log('Save successfully');
+            }
+        });
+
+    });
 });
 
 $(document).ready(function() {
@@ -338,7 +356,6 @@ $('.confirmation').on('click', function() {
 
 //Bootstrap Duallistbox
 $('.duallistbox').bootstrapDualListbox()
-
 
 
 document.getElementById('dlexcel').addEventListener('click', function() {
